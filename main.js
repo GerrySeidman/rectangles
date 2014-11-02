@@ -1,5 +1,7 @@
 'use strict';
 
+// Silly comment
+
 (function(root) {
 
     var Point = function(x, y) {
