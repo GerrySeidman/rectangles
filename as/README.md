@@ -40,7 +40,7 @@ The network topology will include a local private network (Host-Only Adapter) fo
 
 ## Steps
 
-* [Goal](docs/01-prerequisites.md)
+* [Base VM Setup](base-vm.md)
 * [Installing the Client Tools](docs/02-client-tools.md)
 * [Provisioning Compute Resources](docs/03-compute-resources.md)
 * [Provisioning the CA and Generating TLS Certificates](docs/04-certificate-authority.md)
