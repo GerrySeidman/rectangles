@@ -52,3 +52,4 @@ The network topology will include a local private network (Host-Only Adapter) fo
 ## Steps
 
 * [Base VM Setup](base-vm.md)
+* Lots more to comee
