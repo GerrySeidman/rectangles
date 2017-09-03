@@ -1,6 +1,6 @@
 # Base VM Setup
 
-## GERRY GIT NOISE touched directly in GitHub
+## GERRY GIT NOISE hammered  in GitHub 
 
 ## VM Tool: VirtualBox
 
