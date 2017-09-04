@@ -3,17 +3,19 @@
 ## Approach
 
 
-For this test environment, we will be setting up a all VMs in VirtualBox VMs on your local laptop.  
+For this test environment, we will be setting up a all VMs as VirtualBox VMs on the local laptop.  
 
 We will first create a "Stem Cell" VM image.  This will be the basis for all the VMs we are using. They will be VirtualBox "link cloned" from this Stem image which has the common preparation before any machine specific setup. 
 
 	Eventually we want to automate this with Vagrant and Ansible (or other such tools).
     
-
-The set up for the base image to clone will have
+The Stem Image will be configured with
 
 * Ubuntu 16.04 
-* The Virtual Box Network and a base Network
+* A Host-Only adapter for a local private network shared by the VMs and the Host machine.  Each VM will have a unique static IP address ( see [clusterOverview.md]
+* A NAT Network adapter with access to the internet and an IP address obtained via DHCP.  This would not be 
+
+
 
 ## Linux Version
 
@@ -33,20 +35,48 @@ $ uname -r
 
 # Images
 
-![alt text](images/adapter1.jpg "Network Adapter #1")
+![[Image for Network Adapter #1]](images/adapter1.jpg "Network Adapter #1")
 
-![alt text](images/adapter2.jpg "Network Adapter #1")
+![[Image for Network Adapter #2]](images/adapter1.jpg "Network Adapter #1")
 
-![alt text](images/cloneVM.jpg "Cloning a VM")
+![[Cloning a VM]](images/cloneVM.jpg "Cloning a VM")
 
-![alt text](images/hostOnlyNetwork.jpg "Creating Host Only Network Adapter")
+![[Creating Host Only Network Adapter]](images/hostOnlyNetwork.jpg "Creating Host Only Network Adapter")
 
-adapter2.jpg
-cloneVM.jpg
-hostOnlyNetwork.jpg
 
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+![[Network Preferences]](images/networkPreferences.jpg "Network Preferences")
 
+## Create or Configure a Virtual Box Network Adapter
+
+From the Virtual Box Console you can create or configure Network Adapters on the Host computer that can be used to set up private networks between the Virtual Machines and the Host Machine.  We will create a network 192.168.10.xx
+
+This can be accomplished from the VirtualBox GUI 
+
+* Under "File => Preferences..."
+* From Pop-up Select "Network"
+* Select "Host-Only" Network Tab
+* Create or Select an existing "Virtual Box	Host-Only Network Adapter #4"
+* This brings up a configuration dialog box
+* Set the "IPv4 Address" to 192.168.10.1
+* Set the "IPv4 Network Mask" to 255.255.255.0
+
+
+![[Configuring Network Adapter]](images/configNetworkAdapter.jpg "Configuring Network Adapter")
+
+
+## Setting up the Static IP
+
+First note the network available network adapters
+
+	$ sudo ls /sys/class/net
+    enp0s3 enp0s8 lo
+    
+Now notice how they are bound
+
+	$ ifconfig
+    
+
+    
 ## Setting up the 
 If so, please refer to the instructions [Downgrading your Kernel Version](downgradingKernel.md)
 
