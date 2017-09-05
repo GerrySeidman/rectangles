@@ -1,10 +1,4 @@
-# AuriStor Setup Notes
-
-## TO-DO
-
-* Kerberos Client
-* DNS
-* Kerberos Server
+# Cluster Plan Overview #3
 
 Initially this is an inventory of what Gerry has done to get his local VM setup for Kerberos, AuriStor and Kubernetes  on his Windows Laptop.
 
@@ -17,6 +11,20 @@ Kubernetes The Hard Way is optimized for learning, which means taking the long r
 ## Target Audience
 
 The target audience for this tutorial is someone planning to support a production AuriStor environment cluster and wants to understand how everything fits together.
+
+
+| Type | Description | Machine Name(s) | Static IP(s) |
+| --- | --- | --- | --- |
+| DNS | DNS Server | dns1 | 192.168.10.110 |
+| Kerberos | Kerberos Server| krb1 | 192.168.10.120 |
+| AFS Database | AFS VDB/BOS/Protection | afsdb1  (+)| 192.168.10.130 (+) |
+| AFS File Server | AFS File Server | afsfs1 (+)| 192.168.10.140 (+) |
+| Kubernetes Master | Kubernetes Master & etcd | kubm1 (+) | 192.168.10.150 (+) |
+| Kubernetes Worker | Kubernetes Worker | kubw1 (+) | 192.168.10.160 (+)|
+
+> (+) In production there will be multiple machines for each of these servers.   In this tutorial we will only be running multiple file servers (afs2, afs3)
+
+> Note: In the above, every server running on a different machine. It is also possible to run multiple servers on the same machine.  While this makes sense in testing/local environments, for completeness in this tutorial we will run everything on different machines to stress the 'best practices' and correct configurations.
 
 
 ## Cluster Details
@@ -43,6 +51,16 @@ The network topology will include a local private network (Host-Only Adapter) fo
 * AFS1 - File Server for replication and testing
 * AFS2 - File Server for replication and testing
 * KUB* - This will initially be just test to access AFS from Kubernetes.  Later it will be a series of servers that stand up an AFS distributed file system within a Kubernetes cluster off of Docker images AND an operator for handling Kubernetes Persistent Volume Claims
+
+## Machine Setup
+
+Clone Stem VM
+
+Boot Machine
+
+```
+sudo sed -i -- 's/stem/dns1/g' /etc/
+
 
 ## Steps
 

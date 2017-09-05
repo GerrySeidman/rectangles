@@ -25,7 +25,7 @@ For this tutorial we are going to set up DNS and for our cluster use the domain 
 4. We will create a "Tutorial Stem" VM
 5. We will install Ubuntu onto the Tutorial Stem
 6. We will configure the Tutorial Stem's Host-Only adapter with the static IP 192.168.10.100 
-7. We will set the host name for the Tutorial Stem to 'stem'
+7. We will set the host name for the Tutorial Stem to 'stem1'
 8. We will set up Network Time Protocol (NTP)
 
 > For those familiar with setting up Ubuntu 16.04 and VirtualBox Networking, you can go straight to 6 & 7.    Of note is the specifying the DNS server in ```/etc/network/interfaces``` in anticipation of the later step of setting up DNS.
@@ -188,11 +188,11 @@ sudo apt install ntp
 ## Cloning and Configuring From Stem
 
 Blah blah VirtualBox Clone.  The `clone` will by still have the static IP address and host name 'stem1'
-
-sudo sed -i -- 's/stem1/<NEW>/g' /etc/hostname
-sudo sed -i -- 's/stem/stem1/g' /etc/hosts
-sudo sed -i -- 's/192.168.10.100/192.168.10.110/g' /etc/network/interfaces
-
+```
+sudo sed -i -- 's/stem1/HOSTNAME/g' /etc/hostname
+sudo sed -i -- 's/stem/HOSTNAME/g' /etc/hosts
+sudo sed -i -- 's/192.168.10.100/192.168.10.IP-ADDRESS/g' /etc/network/interfaces
+```
 
 
 
