@@ -26,6 +26,9 @@ For this tutorial we are going to set up DNS and for our cluster use the domain 
 5. We will install Ubuntu onto the Tutorial Stem
 6. We will configure the Tutorial Stem's Host-Only adapter with the static IP 192.168.10.100 
 7. We will set the host name for the Tutorial Stem to 'stem'
+8. We will set up Network Time Protocol (NTP)		
+
+> For those familiar with setting up Ubuntu 16.04 and VirtualBox Networking, you can go straight to 6 & 7.    Of note is the specifying the DNS server in ```/etc/network/interfaces``` in anticipation of the later step of setting up DNS.
 
 
 ## Linux Version for the Tutorial
@@ -67,18 +70,18 @@ Creating the VM is beyond the scope of this tutorial.  Be sure you create the Ub
 
 Once you've created the VM, upon starting it you will be prompted for the location of the Ubuntu ISO image so you may install the VM into the image.
 
-> We could use the images that I grabbed in <IMG:40> - <IMG:45>
-> 
-> ![[Image for Network Adapter #1]](images/adapter1.jpg "Network Adapter #1")
->
-> ![[Image for Network Adapter #2]](images/adapter1.jpg "Network Adapter #1")
-> 
-> ![[Cloning a VM]](images/cloneVM.jpg "Cloning a VM")
->
->![[Creating Host Only Network Adapter]](images/hostOnlyNetwork.jpg "Creating Host Only Network Adapter")
->
->![[Network Preferences]](images/networkPreferences.jpg "Network Preferences")
->
+```
+TODO:  We could use the images that I grabbed in <IMG:40> - <IMG:45>
+
+![[Image for Network Adapter #1]](images/adapter1.jpg "Network Adapter #1")
+![[Image for Network Adapter #2]](images/adapter1.jpg "Network Adapter #1")
+
+![[Cloning a VM]](images/cloneVM.jpg "Cloning a VM")
+
+![[Creating Host Only Network Adapter]](images/hostOnlyNetwork.jpg "Creating Host Only Network Adapter")
+
+> ![[Network Preferences]](images/networkPreferences.jpg "Network Preferences")
+```
 
 
 At this point you have a base install of Ubuntu.  The NAT network will be configured automatically by DHCP, but we will need to set up a static IP address for the Host-Only private network.
@@ -111,11 +114,14 @@ iface lo inet loopback
 auto enp0s3
 iface enp0s3 inet dhcp
 ```
+
 As you see, the adapter ```enp0s8``` is not configured in the file.  We add this by editing the file:
 
-```$ sudo vi /etc/network/interfaces```
+```
+$ sudo vi /etc/network/interfaces
+```
 
-Appending the below to the end of the file. Remember our unused adaptor was ```enp0s8```, you will have to use the name of your unused adapter if it is different. 
+Appending the below to the end of the file ```/etc/network/interfaces```.  Remember our unused adaptor was ```enp0s8```, you will have to use the name of your unused adapter if it is different. 
 
 ```
 #The host-only network interface
@@ -125,7 +131,7 @@ address 192.168.10.100
 netmask 255.255.255.0
 network 192.168.10.0
 broadcast 192.168.10.255
-dns-nameservers 192.168.10.102
+dns-nameservers 192.168.10.110
 dns-search test.gerry
 dns-domain test.gerry
 ```
@@ -155,10 +161,33 @@ ff02::2 ip6-allrouters
 In both of these files replace the old hostname ```ubuntu-1``` with ```stem```
 > This must be done as su, so ```sudo vi  /etc/hosts```
 
+```
+$ cat /etc/hostname
+stem
+
+$ cat /etc/hosts
+127.0.0.1       localhost
+127.0.1.1       stem
+
+# The following lines are desirable for IPv6 capable hosts
+::1     localhost ip6-localhost ip6-loopback
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+```
+
+## Setting up Network Time Protocol (NTP)
+
+The Kerberos protocol is sensitive to time differences between the KDC and a Kerberos client application.  As such it is necessary to  run a time synchronization service, such as NTP, on your KDC.
+
+Install NTP with 
+```
+sudo apt install ntp	
+```
+
 
 
 ## Linux Kernel Caveat
-The AuriStor package files (.deb) are available for most kernel versions While unlikley, it is possible that if the packages have not yet been built and are unavailable on the AuriStor repository.  
+The AuriStor package files (.deb) are available on the AuriStor repository for most kernel versions. While unlikley, it is possible that the packages have not yet been built for the Ubuntu Kernel Version you have installed.
 
 To find out your Linux Kernel version:  
     
@@ -168,11 +197,7 @@ $ uname -r
 4.4.0-87-generic
 ```
 
+Refer to the section [Getting the AuriStor Software]("getAuriStorSoftware.md") to see which kernel versions are available.
 
-
-	Caveat: At the time we did this example, the AuriStor .deb files were only built for kernel version 'linux-image-4.4.0-89-generic'
-
-
-> TO-DO: Go through GRUB steps here.
-
+If you do not find a matching package file, you will have to downgrade your kernel.  In structions can be found in [Downgrading your Kernel]("downgradingKernel.md")
 

@@ -1,5 +1,11 @@
 # AuriStor Setup Notes
 
+## TO-DO
+
+* Kerberos Client
+* DNS
+* Kerberos Server
+
 Initially this is an inventory of what Gerry has done to get his local VM setup for Kerberos, AuriStor and Kubernetes  on his Windows Laptop.
 
 Kubernetes The Hard Way is optimized for learning, which means taking the long route to ensure you understand each task required to bootstrap a Kubernetes cluster.
