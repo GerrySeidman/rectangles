@@ -1,11 +1,11 @@
-# Stem VM Setup #2
+# Setting up the Stem VM 
 
 ## Approach
 
 
-For this test environment, we will be setting up a all VMs as VirtualBox VMs on the local laptop.  
+For this tutorial environment, we will be setting up a all VMs as VirtualBox VMs on the local laptop.  
 
-We will first create a "Stem Cell" VM image.  This will be the basis for all the VMs we are using. They will be VirtualBox "link cloned" from this Stem image which has the common preparation before any machine specific setup. 
+We will first create a "Stem Cell" VM image.  The Stem will be the basis for all the VMs we are using. All other VMs will be VirtualBox "link cloned" from this Stem image. which has the common preparation before any machine specific setup. 
 
 	TO-DO: Eventually we want to automate this with Vagrant and Ansible (or other such tools).
     
@@ -15,7 +15,7 @@ The Stem Image will be configured with
 * A Host-Only adapter for a local private network shared by the VMs and the Host machine.  Each VM will have a unique static IP addresss. See ["Cluster Overview"](clusterOverview.md) for more details
 * A NAT Network adapter with access to the internet and an IP address obtained via DHCP.  This would not be 
 
-For this tutorial we are going to set up DNS and for our cluster use the domain name "test.gerry". 
+For this tutorial we are going to set up DNS and for our cluster use the domain name "play.gerry". 
 
 ## What we will do in this section
 
@@ -59,7 +59,7 @@ Below are the steps for creating the Host-Only Netw can be accomplished from the
 * Set the "IPv4 Address" to 192.168.10.1
 * Set the "IPv4 Network Mask" to 255.255.255.0
 
-![[Configuring Network Adapter]](images/configNetworkAdapter.jpg "Configuring Network Adapter")
+![[Configuring Network Adapter]](https://raw.githubusercontent.com/GerrySeidman/rectangles/tutorial/images/configNetworkAdapter.jpg "Configuring Network Adapter")
 
 > Note: This will appear as an adapter on your host machine.  You will be able to see it  by running the command  `ifconfig` on Linux, `ipconfig` on Windows on your host machine to lists all adapters on your host machine.
 
@@ -70,18 +70,22 @@ Creating the VM is beyond the scope of this tutorial.  Be sure you create the Ub
 
 Once you've created the VM, upon starting it you will be prompted for the location of the Ubuntu ISO image so you may install the VM into the image.
 
-```
-TODO:  We could use the images that I grabbed in <IMG:40> - <IMG:45>
 
-![[Image for Network Adapter #1]](images/adapter1.jpg "Network Adapter #1")
+----------
+
+
+![[Enabling the NAT adapter for the VM]](https://raw.githubusercontent.com/GerrySeidman/rectangles/tutorial/images/adapter1.jpg "Enabling the NAT adapter for the VM")
+
+![[Enabling the Host-Only adapter for the VM]](https://raw.githubusercontent.com/GerrySeidman/rectangles/tutorial/images/adapter2.jpg "Configuring Host-Only Network Adapter")
+
 ![[Image for Network Adapter #2]](images/adapter1.jpg "Network Adapter #1")
 
 ![[Cloning a VM]](images/cloneVM.jpg "Cloning a VM")
 
 ![[Creating Host Only Network Adapter]](images/hostOnlyNetwork.jpg "Creating Host Only Network Adapter")
 
-> ![[Network Preferences]](images/networkPreferences.jpg "Network Preferences")
-```
+ ![[Network Preferences]](images/networkPreferences.jpg "Network Preferences")
+
 
 
 At this point you have a base install of Ubuntu.  The NAT network will be configured automatically by DHCP, but we will need to set up a static IP address for the Host-Only private network.
@@ -132,11 +136,11 @@ netmask 255.255.255.0
 network 192.168.10.0
 broadcast 192.168.10.255
 dns-nameservers 192.168.10.110
-dns-search test.gerry
-dns-domain test.gerry
+dns-search play.gerry
+dns-domain play.gerry
 ```
 
-> Note: The last three lines are in anticipation of our setting up DNS.  The domain name for our private network will be ```test.gerry``` See  [Cluster Overview](clusterOverview.md) and [DNS Server](dnsServer.md) to understand
+> Note: The last three lines are in anticipation of our setting up DNS.  The domain name for our private network will be ```play.gerry``` See  [Cluster Overview](clusterOverview.md) and [DNS Server](dnsServer.md) to understand
 
 
 ## Setting Host Name
