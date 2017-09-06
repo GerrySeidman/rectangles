@@ -28,7 +28,7 @@ For this tutorial we are going to set up DNS and for our cluster use the domain 
 7. We will set the host name for the Tutorial Stem to 'stem1'
 8. We will set up Network Time Protocol (NTP)
 
-> For those familiar with setting up Ubuntu 16.04 and VirtualBox Networking, you can go straight to 6 & 7.    Of note is the specifying the DNS server in ```/etc/network/interfaces``` in anticipation of the later step of setting up DNS.
+> For those familiar with setting up Ubuntu 16.04 and VirtualBox Networking, you can go straight to Steps 6.    Of note is the specifying the DNS server in ```/etc/network/interfaces``` in anticipation of the later step of setting up DNS.
 
 
 ## Linux Version for the Tutorial
@@ -39,9 +39,6 @@ We will be using Ubuntu 16.04 for this tutorial.   Specifically, I used ubuntu-1
 
 Installing up VirtualBox is outside the scope of this Tutorial.  https://www.virtualbox.org
 
-## Getting Ubuntu ISO image
-
-You can obtain the Ubuntu 16.04 Server ISO image from: https://www.ubuntu.com/download/server
 
 ## Configure a VirtualBox Host-Only Network Adapter
 
@@ -66,26 +63,66 @@ Below are the steps for creating the Host-Only Netw can be accomplished from the
 
 ## Creating your Stem Ubuntu VM in VirtualBox
 
-Creating the VM is beyond the scope of this tutorial.  Be sure you create the Ubuntu Linux VM and use the iso you just downloaded.  Selecting all the defaults values are fine.  We can adjust memory limits later for the respective VMs we clone from this.
+Explaining details behind creating the VM is beyond the scope of this tutorial, but below are the screens that step you through it. 
 
-Once you've created the VM, upon starting it you will be prompted for the location of the Ubuntu ISO image so you may install the VM into the image.
+You can click on the "New" Icon on the Virtual Box Manager and follow the below steps.
+
+>  For now you can just select  the defaults since we are just setting up a playground.
 
 
-----------
+Naming and Operating System
+  ![[ xxxxx ]](https://raw.githubusercontent.com/GerrySeidman/rectangles/tutorial/images/40.jpg " xxxx")
 
+> While you've selected Linux/Ubuntu here, you don't actually install it until you first start the VM (described below)
+
+Memory Size
+![[ xxxxx ]](https://raw.githubusercontent.com/GerrySeidman/rectangles/tutorial/images/41.jpg " xxxx")
+
+Hard Disk 
+![[ xxxxx ]](https://raw.githubusercontent.com/GerrySeidman/rectangles/tutorial/images/42.jpg " xxxx")
+
+Select Hard Disk File Type
+![[ xxxxx ]](https://raw.githubusercontent.com/GerrySeidman/rectangles/tutorial/images/43.jpg " xxxx")
+
+Storage on physical hard disk
+![[ xxxxx ]](https://raw.githubusercontent.com/GerrySeidman/rectangles/tutorial/images/44.jpg " xxxx")
+
+File location and size
+![[ xxxxx ]](https://raw.githubusercontent.com/GerrySeidman/rectangles/tutorial/images/45.jpg " xxxx")
+
+
+## Configuring your Stem VM
+
+
+### Setting up the Network for your VM
+
+You now need to setup your VM to 'detect' two network adapters upon bootup.  You accomplish this by opening up the setup GUI for the STEM VM and select the Network Option
+
+### Adapter #1 - NAT Adapter
+
+In Tab Adapter 1: Make sure that it is enabled and Attached to the NAT
 
 ![[Enabling the NAT adapter for the VM]](https://raw.githubusercontent.com/GerrySeidman/rectangles/tutorial/images/adapter1.jpg "Enabling the NAT adapter for the VM")
 
+### Adapter #1 - Host-Only Adapter
+
+In Tab Adapter 2: Make sure that it is enabled and Attached to the Host-Only Network adapter that we configured earlier
+
 ![[Enabling the Host-Only adapter for the VM]](https://raw.githubusercontent.com/GerrySeidman/rectangles/tutorial/images/adapter2.jpg "Configuring Host-Only Network Adapter")
 
-![[Image for Network Adapter #2]](images/adapter1.jpg "Network Adapter #1")
 
-![[Cloning a VM]](images/cloneVM.jpg "Cloning a VM")
+
+## Starting Stem VM for the First Time
+
+It is when you start the VM for the first time that you will be prompted for the ISO image of the Ubuntu image.  If you don't already have it, you can download the Ubuntu 16.04 Server ISO image from: https://www.ubuntu.com/download/server
+
+
+ ![[ xxxxx ]](https://raw.githubusercontent.com/GerrySeidman/rectangles/tutorial/images/40.jpg " xxxx")
+
 
 ![[Creating Host Only Network Adapter]](images/hostOnlyNetwork.jpg "Creating Host Only Network Adapter")
 
  ![[Network Preferences]](images/networkPreferences.jpg "Network Preferences")
-
 
 
 At this point you have a base install of Ubuntu.  The NAT network will be configured automatically by DHCP, but we will need to set up a static IP address for the Host-Only private network.
@@ -187,20 +224,17 @@ Install NTP with
 ```
 sudo apt install ntp	
 ```
+## Update all packages
 
+Update all installed packages.  
 
-## Cloning and Configuring From Stem
-
-Blah blah VirtualBox Clone.  The `clone` will by still have the static IP address and host name 'stem1'
 ```
-sudo sed -i -- 's/stem1/HOSTNAME/g' /etc/hostname
-sudo sed -i -- 's/stem/HOSTNAME/g' /etc/hosts
-sudo sed -i -- 's/192.168.10.100/192.168.10.IP-ADDRESS/g' /etc/network/interfaces
+sudo apt update
 ```
+> Note: I am not sure if this/when this may be done automatically.   For example sometimes you get a 'locked' error.  I suspect that is because it is already running.
 
+## The Linux Kernel Version
 
-
-## Linux Kernel Caveat
 The AuriStor package files (.deb) are available on the AuriStor repository for most kernel versions. While unlikley, it is possible that the packages have not yet been built for the Ubuntu Kernel Version you have installed.
 
 To find out your Linux Kernel version:  
@@ -214,3 +248,5 @@ $ uname -r
 Refer to the section [Getting the AuriStor Software]("getAuriStorSoftware.md") to see which kernel versions are available.
 
 If you do not find a matching package file, you will have to downgrade your kernel.  In structions can be found in [Downgrading your Kernel]("downgradingKernel.md")
+
+## 
