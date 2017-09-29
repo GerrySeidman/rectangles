@@ -1,14 +1,12 @@
-# Kerberos 
-
 # Kerberos and Time
 
-The Kerberos protocol is sensitive to time differences between the KDC and a Kerberos client application.
+The Kerberos protocol is sensitive strikethrough textto time differences between the KDC and a Kerberos client application.
 
 On all machines install Network Time Protocol (NTP
 
 	sudo apt install ntp
 
-	
+
 
 # Kerberos Realm Names
 
@@ -30,3 +28,6 @@ To initialize the Kerberos database KDC you use the “krb5_util” command.
 You must specify your Kerberos realm name on the “krb5_util” command line.
 
 Kerberos realm names are upper case.
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbMTQ1NDY5OTAxM119
+-->

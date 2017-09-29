@@ -1,0 +1,10 @@
+zone "PLAY.GERRY" {
+        type master;
+        file "/etc/bind/play.gerry";
+};
+
+zone "10.168.192.IN-ADDR.ARPA" {
+        type master;
+        file "/etc/bind/10-168-192.info";
+};
+

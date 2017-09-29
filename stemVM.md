@@ -31,7 +31,7 @@ For this tutorial we are going to set up DNS and for our cluster use the domain 
 > For those familiar with setting up Ubuntu 16.04 and VirtualBox Networking, you can go straight to Steps 6.    Of note is the specifying the DNS server in ```/etc/network/interfaces``` in anticipation of the later step of setting up DNS.
 
 
-## Linux Version for the Tutorial
+## Linux Flavor and Version for the Tutorial
 
 We will be using Ubuntu 16.04 for this tutorial.   Specifically, I used ubuntu-16.04.2-server-amd64.iso to build my Stem VM image.
 
@@ -199,22 +199,29 @@ ff02::1 ip6-allnodes
 ff02::2 ip6-allrouters
 ```
 
-In both of these files replace the old hostname ```ubuntu-1``` with ```stem```
+In both of these files replace the old hostname ```ubuntu-1``` with ```stem1.play.gerry```
 > This must be done as su, so ```sudo vi  /etc/hosts```
 
 ```
 $ cat /etc/hostname
-stem
+stem1.play.gerry
 
 $ cat /etc/hosts
 127.0.0.1       localhost
-127.0.1.1       stem
+127.0.1.1       stem1.play.gerry
 
 # The following lines are desirable for IPv6 capable hosts
 ::1     localhost ip6-localhost ip6-loopback
 ff02::1 ip6-allnodes
 ff02::2 ip6-allrouters
 ```
+
+Edit `/etc/dhcp/dhclient.conf``
+
+Uncomment or just add the single line
+
+	prepend domain-name-servers 192.168.10.110;
+
 
 ## Setting up Network Time Protocol (NTP)
 
@@ -250,3 +257,6 @@ Refer to the section [Getting the AuriStor Software]("getAuriStorSoftware.md") t
 If you do not find a matching package file, you will have to downgrade your kernel.  In structions can be found in [Downgrading your Kernel]("downgradingKernel.md")
 
 ## 
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbMTIxNzI2Mjc0Ml19
+-->

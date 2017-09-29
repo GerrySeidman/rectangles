@@ -20,8 +20,9 @@ sudo reboot
 > Grr.. couldn't replicatate what Kris did, trying to follow
 > `https://www.digitalocean.com/community/tutorials/how-to-configure-bind-as-a-private-network-dns-server-on-ubuntu-16-04`
 
-sudo apt-get update
-sudo apt-get install bind9 bind9utils bind9-doc
+> DO NOT DO THIS BECAUSE OF GRUB ISSUE:    ```sudo apt-get update```
+
+sudo apt install bind9 bind9utils bind9-doc
 
 sudo systemctl daemon-reload
 
@@ -36,7 +37,7 @@ Did not do below
 Install Bind9
 
 ```
-sudo apt-get install bind9
+sudo apt install bind9
 ```
 
 Create `/etc/bind/play.gerry`
@@ -107,7 +108,7 @@ Create `/etc/bind/10-168-192.info`
 
 ```
 
-Edit `named.conf.local`
+Edit `/etc/bind/named.conf.local`
 
 ```
 //
@@ -127,6 +128,9 @@ zone "10.168.192.IN-ADDR.ARPA" {
         file "/etc/bind/10-168-192.info";
 };
 ```
+
+Then REBOOT machine
+	reboot
 
 Then start it with
 

@@ -1,5 +1,7 @@
 # AuriStor Getting Started Tutorial
 
+Reference this document: http://techpubs.spinlocksolutions.com/dklar/afs.html
+
 >### TO-DO
 * DNS
 * Kerberos Server

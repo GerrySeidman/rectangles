@@ -1,0 +1,50 @@
+// This is the primary configuration file for the BIND DNS server named.
+//
+// Please read /usr/share/doc/bind9/README.Debian.gz for information on the
+// structure of BIND configuration files in Debian, *BEFORE* you customize
+// this configuration file.
+//
+// If you are just adding zones, please do that in /etc/bind/named.conf.local
+
+include "/etc/bind/named.conf.options";
+include "/etc/bind/named.conf.local";
+include "/etc/bind/named.conf.default-zones";
+gerry@dns1:/etc/bind$ cat play.gerry
+;
+; zone file for play.gerry
+;
+@ IN SOA DNS1.PLAY.GERRY. GERRY.AURISTOR.COM. (
+        4203    ; Serial
+        10800   ; Refresh after 3 hours
+        3600    ; Retry after 1 hour
+        604800  ; Expire after 1 week
+        86400 ) ; Minimum TTL of 1 day
+;
+; Name servers
+              NS      DNS1.PLAY.GERRY.
+
+;
+; MX records
+;play.gerry. IN      MX      10 mail.test.gerry.
+
+;
+; Aliases
+
+;
+; static ips
+;
+GATEWAY         IN A    192.168.10.1
+DNS1            IN A    192.168.10.110
+KRB1            IN A    192.168.10.120
+AFSDB1          IN A    192.168.10.130
+AFSDB2          IN A    192.168.10.131
+AFSFS1          IN A    192.168.10.140
+AFSFS2          IN A    192.168.10.141
+AFSFS3          IN A    192.168.10.142
+MYMACHINE       IN A    192.168.10.88
+
+_kerberos._udp.PLAY.GERRY.     IN SRV 1  0 88  krb1.play.gerry.
+_kerberos._tcp.PLAY.GERRY.     IN SRV 1  0 88  krb1.play.gerry.
+_kerberos-adm._tcp.PLAY.GERRY. IN SRV 1  0 749 krb1.play.gerry.
+_kpasswd._udp.PLAY.GERRY.      IN SRV 1  0 464 krb1.play.gerry.
+

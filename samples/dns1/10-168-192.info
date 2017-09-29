@@ -1,0 +1,21 @@
+; Origin added to named not ending in a dot
+@ IN SOA DNS1.PLAY.GERRY. GERRY.AURISTOR.COM. (
+        271     ; Serial
+        10800   ; Refresh after 3 hours
+        3600    ; Retry after 1 hour
+        604800  ; Expire after 1 week
+        86400 ) ; Minimum TTL of 1 day
+;
+; Name servers
+                NS      DNS1.PLAY.GERRY.
+;
+1       IN PTR  GATEWAY.PLAY.GERRY.
+110     IN PTR  DNS1.PLAY.GERRY.
+120     IN PTR  KRB1.PLAY.GERRY.
+130     IN PTR  AFSDB1.PLAY.GERRY.
+131     IN PTR  AFSDB2.PLAY.GERRY.
+140     IN PTR  AFSFS1.PLAY.GERRY.
+141     IN PTR  AFSFS2.PLAY.GERRY.
+142     IN PTR  AFSFS3.PLAY.GERRY.
+88      IN PTR  MYMACHINE.PLAY.GERRY.
+
