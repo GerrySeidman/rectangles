@@ -41,7 +41,7 @@ AFSDB2          IN A    192.168.10.131
 AFSFS1          IN A    192.168.10.140
 AFSFS2          IN A    192.168.10.141
 AFSFS3          IN A    192.168.10.142
-MYMACHINE       IN A    192.168.10.88
+CLIENT          IN A    192.168.10.99
 
 _kerberos._udp.PLAY.GERRY.     IN SRV 1  0 88  krb1.play.gerry.
 _kerberos._tcp.PLAY.GERRY.     IN SRV 1  0 88  krb1.play.gerry.

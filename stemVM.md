@@ -1,6 +1,28 @@
 # Setting up the Stem VM 
 
-## Approach
+In this lab you well create a base Virtual Machine Image that will be used as the "Stem" from which all other VMs in this project will be cloned.
+
+The steps in this lab will be:
+
+1. Install VirtualBox 
+2. Created/configure a Virtual Box Host-Only Adapter
+3. Create a VM with the VirtualBox name "Tutorial Stem"
+4. Install the base Ubuntu Linux from downloaded ISO file onto "Tutorial Stem"
+5. Configure  the Tutorial Stem's Host-Only adapter with the static IP 192.168.10.100 
+6. Specify the DNS server to be used for the cluster's private network, `play.gerry`
+7. Have Set the host name for the Tutorial Stem to 'stem1'
+8. Have set up Network Time Protocol (NTP)  
+
+> For those familiar with setting up Ubuntu 16.04 and VirtualBox Networking, you can go straight to Steps 5.    Of note is the specifying the DNS server in `/etc/network/interfaces` in anticipation of the later step of setting up DNS.
+
+After completing this lab you will have a VirtualBox VM configured with
+* Ubuntu 16.04 installed on a machine with hostname `stem1.play.gerry`
+* Two network adaptors
+	* Private Host-only adapter with  static IP address 192.168.10.100
+	* NAT Network adapter for access to the internet
+* Network Time Protocol installed
+
+# Approach
 
 
 For this tutorial environment, we will be setting up a all VMs as VirtualBox VMs on the local laptop.  
@@ -16,19 +38,6 @@ The Stem Image will be configured with
 * A NAT Network adapter with access to the internet and an IP address obtained via DHCP.  This would not be 
 
 For this tutorial we are going to set up DNS and for our cluster use the domain name "play.gerry". 
-
-## What we will do in this section
-
-1. We will install VirtualBox  installed
-2. We will download the Ubuntu ISO image
-3. We will created/configured the Virtual Box Host-Only Adapter
-4. We will create a "Tutorial Stem" VM
-5. We will install Ubuntu onto the Tutorial Stem
-6. We will configure the Tutorial Stem's Host-Only adapter with the static IP 192.168.10.100 
-7. We will set the host name for the Tutorial Stem to 'stem1'
-8. We will set up Network Time Protocol (NTP)
-
-> For those familiar with setting up Ubuntu 16.04 and VirtualBox Networking, you can go straight to Steps 6.    Of note is the specifying the DNS server in ```/etc/network/interfaces``` in anticipation of the later step of setting up DNS.
 
 
 ## Linux Flavor and Version for the Tutorial
@@ -140,7 +149,7 @@ And you can see how these adaptors are bound with the ```ifconfig``` config.  Yo
 
 The configuration for binding these adapters is found in the file ```/etc/network/interfaces```
 
-``` 
+``` bash
 $ cat /etc/network/interfaces
 # This file describes the network interfaces available on your system
 # and how to activate them. For more information, see interfaces(5).
@@ -158,7 +167,7 @@ iface enp0s3 inet dhcp
 
 As you see, the adapter ```enp0s8``` is not configured in the file.  We add this by editing the file:
 
-```
+``` bash
 $ sudo vi /etc/network/interfaces
 ```
 
@@ -184,7 +193,7 @@ dns-domain play.gerry
 
 In Ubuntu, the hostname is specfied in two files ```/etc/hostname``` and ```/etc/hosts```
 
-```
+```bash
 $ cat /etc/hostname
 ubuntu-1
 
@@ -202,7 +211,7 @@ ff02::2 ip6-allrouters
 In both of these files replace the old hostname ```ubuntu-1``` with ```stem1.play.gerry```
 > This must be done as su, so ```sudo vi  /etc/hosts```
 
-```
+```bash
 $ cat /etc/hostname
 stem1.play.gerry
 
@@ -256,7 +265,16 @@ Refer to the section [Getting the AuriStor Software]("getAuriStorSoftware.md") t
 
 If you do not find a matching package file, you will have to downgrade your kernel.  In structions can be found in [Downgrading your Kernel]("downgradingKernel.md")
 
-## 
+
+## Links to Sample Files from this Lab
+
+* The following files will have been edited in this lab
+	* /etc/network/interfaces
+	* /etc/hosts
+	* /etc/hostname
+	* 
+
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTIxNzI2Mjc0Ml19
+eyJoaXN0b3J5IjpbLTM2NzA0NzY2N119
 -->

@@ -1,9 +1,24 @@
 
 # Setting up the DNS Server
 
-Clone VM and configure 
+In this lab you will set up the DNS server for this project
 
-```
+The steps in this lab will be:
+
+1. Create a clone VM for the DNS Server
+2. Install the DNS Server software, `bind9`
+3. Configure the DNS server for the private network `play.gerry`
+4. Create DNS entries for all the machines that will be used in this project
+
+After completing this lab:
+
+* DNS will be set up for all the machines in the project's cluster
+
+
+## Create a new VM for the DNS Server
+
+Clone VM and configure from the 
+``` bash
 export NEW_HOST=dns1
 export NEW_IP=192.168.10.110
 
@@ -14,31 +29,39 @@ sudo reboot
 ```
 
 
+# UGH!!!  WHICH OF THE BELOW Bind9 is IT 
+	##... MUST RETEST
+	
+## Setting up Bind9
 
-# Setting up Bind9
+ Ignore The below... Not needed... Delete from Docs after restest of cookbook.
+>> Grr.. couldn't replicatate what Kris did, trying to follow
+>> `https://www.digitalocean.com/community/tutorials/how-to-configure-bind-as-a-private-network-dns-server-on-ubuntu-16-04`
+>>
+>> DO NOT DO THIS  ```sudo apt-get update```  BECAUSE OF GRUB/Kernel ISSUE
 
-> Grr.. couldn't replicatate what Kris did, trying to follow
-> `https://www.digitalocean.com/community/tutorials/how-to-configure-bind-as-a-private-network-dns-server-on-ubuntu-16-04`
-
-> DO NOT DO THIS BECAUSE OF GRUB ISSUE:    ```sudo apt-get update```
-
+Execute the below three commands to setup Bind9
+```
 sudo apt install bind9 bind9utils bind9-doc
 
 sudo systemctl daemon-reload
 
 sudo systemctl restart bind9
+```
+ Ignore The below... Not needed... Delete from Docs after restest of cookbook.
+>>Did not do below (AND VERIFIED IT DIDN'T NEED DOING)
+>> sudo systemctl edit --full bind9
+>> 
+>> Add "-4" to the end of the ExecStart directive. It should look like the following:
 
-Did not do below
-> sudo systemctl edit --full bind9
-> 
-> Add "-4" to the end of the ExecStart directive. It should look like the following:
 
-
-Install Bind9
+## Install Bind9
 
 ```
 sudo apt install bind9
 ```
+
+## Configuring the ```play.gerry``` Domain
 
 Create `/etc/bind/play.gerry`
 
@@ -58,7 +81,7 @@ Create `/etc/bind/play.gerry`
 
 ;
 ; MX records
-;play.gerry. IN      MX      10 mail.test.gerry.
+;play.gerry. IN      MX      10 mail.play.gerry.
 
 ;
 ; Aliases
@@ -82,6 +105,8 @@ _kerberos-adm._tcp.PLAY.GERRY. IN SRV 1  0 749 krb1.play.gerry.
 _kpasswd._udp.PLAY.GERRY.      IN SRV 1  0 464 krb1.play.gerry.
 ```
 
+## Set up your DNS Lookup table
+
 Create `/etc/bind/10-168-192.info`
 
 ```
@@ -96,17 +121,17 @@ Create `/etc/bind/10-168-192.info`
 ; Name servers
                 NS      DNS1.PLAY.GERRY.
 ;
-1       IN PTR  GATEWAY.TEST.GERRY.
+1       IN PTR  GATEWAY.PLAY.GERRY.
 120     IN PTR  KRB1.PLAY.GERRY.
 130     IN PTR  AFSDB1.PLAY.GERRY.
 131     IN PTR  AFSDB2.PLAY.GERRY.
-140     IN PTR  AFSmFS1.PLAY.GERRY.
+140     IN PTR  AFSFS1.PLAY.GERRY.
 141     IN PTR  AFSFS2.PLAY.GERRY.
 142     IN PTR  AFSFS3.PLAY.GERRY.
-88      IN PTR  MYMACHINE.PLAY.GERRY.
-
-
+99      IN PTR  MYMACHINE.PLAY.GERRY.
 ```
+
+##  Tell Bind where to find Zone Files
 
 Edit `/etc/bind/named.conf.local`
 
@@ -129,11 +154,28 @@ zone "10.168.192.IN-ADDR.ARPA" {
 };
 ```
 
+## Reboot machine
+
 Then REBOOT machine
 	reboot
+
+## After Reboot, start the bind9 service
 
 Then start it with
 
 ```
 service bind9 start
 ```
+
+## Links to Sample Files from this Lab
+
+* The following files will have been edited in this lab
+	* /etc/network/interfaces
+	* /etc/hosts
+	* /etc/hostname
+	* 10-168-192.info
+	* named.conf.local
+
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTExNTgwMTgwMTBdfQ==
+-->

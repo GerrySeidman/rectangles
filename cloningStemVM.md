@@ -1,11 +1,20 @@
 
-
 # Cloning from the Stem
 
+In this lab you learn the steps to create a Clone of the Stem VM.  This is just descriptive of the tasks that will be applied to all new VMs created in this project
 
-1. Clone the VM in VirtualBox
-2. Configure the hostname and static IP address for this VM
-3. Reboot and let the VM come up with the new name and IP address
+The steps in this lab will be:
+
+1. Learn how to Clone the VM in VirtualBox
+2. Learn how to configure the hostname and static IP address for this VM
+
+After this lab 
+
+* You will know how to create clones from the Stem VM
+
+> In the below example, the specific steps are the ones used in creating the DNS server.   You can try this for practice as 
+
+
 
 ## Link Cloning the VM in VirtualBox
 
@@ -26,9 +35,9 @@ SSH into the
 
 To set the "clone" at the "stems" IP address, in our case 192.168.10.100
 
-Now we can configure the new host name and IP address:
+Now we can configure the new host name and IP address from those inherited from the clone of the `Stem VM`.    This is accomplished with the below commands which change the inherited hostname from the `stem1` to `dns1` and static IP address from `192.168.10.100` to  `192.168.10.110` in the appropriate configuration files.  
 
-```
+``` bash
 export NEW_HOST=dns1
 export NEW_IP=192.168.10.110
 
@@ -38,6 +47,11 @@ sudo sed -i -- "s/stem1/$NEW_HOST/g" /etc/hostname
 sudo reboot
 ```
 
-You will get the warning: `sudo: unable to resolve host stem1`  while you are resetting the host name.  That is normal.
+You likely will get the warning: `sudo: unable to resolve host stem1`  while you are resetting the host name, but before the reboot.  That is normal.
 
-> The machine now has the new name and is available at the new IP address.
+> These are the exact steps for preparing to set up the DNS Server which is continuted in  [Setting up the DNS Server](dnsServer.md)
+
+We will use the same technique for all of the other VMs for this project  (but with different values for `NEW_HOST` and `NEW_IP`
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTgyMzU3NjE0M119
+-->

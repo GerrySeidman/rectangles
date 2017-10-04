@@ -8,12 +8,17 @@ Reference this document: http://techpubs.spinlocksolutions.com/dklar/afs.html
 * AuriStor DB Server
 * AuriStor File Server
 * Client machine
+* Make sure all Sample Files are available
+* Does installing the AuriStor client automatically bring in the kerberos client? ???
+	* sudo apt install  krb5-user
+	* On client un-comment DNS-lookup false
+
 
 > Question: Do we want to install the Kerberos Client in the Stem image?  TBD: We'll see how much work it is to install on each machine...
 
 ## Zero to AuriStor
 
-The target audience for this tutorial is anyone planning to evaluate or support a production AuriStor environment cluster and wants to understand how everything fits together. While many of you will be intimately familiar with VMs, Linux, etc.,  this tutorial will assume nothing and walk through all the steps to create a AuriStor playground environment working locally as a collection of Virtual Machines running on your desktop/laptop.
+The target audience for this tutorial Stem"is anyone planning to evaluate or support a production AuriStor environment cluster and wants to understand how everything fits together. While many of you will be intimately familiar with VMs, Linux, etc.,  this tutorial will assume nothing and walk through all the steps to create a AuriStor playground environment working locally as a collection of Virtual Machines running on your desktop/laptop.
 
 ### Preparatory Steps
 
@@ -38,7 +43,7 @@ The network topology will include a local private network (Host-Only Adapter) fo
 | Kerberos | Kerberos Server| krb1.play.gerry | 192.168.10.120 |
 | Database Server | AuriStor VDB/BOS/Protection | afsdb1.play.gerry  (+) | 192.168.10.130 (+) |
 | File Server | AuriStor File Server | afsfs1.play.gerry (+) | 192.168.10.140 (+) |
-| Client | Access File System | mymachine.play.gerry| 192.168.10.88 |
+| Client | Access File System | client.play.gerry| 192.168.10.99 |
 
 
 > (+) In production there will be multiple machines for each of these servers.   In this tutorial we will only be running multiple file servers (afs2, afs3)
@@ -65,3 +70,6 @@ The network topology will include a local private network (Host-Only Adapter) fo
 * [Setting up the AuriStor Database Server](auristorDBServer.md)
 * [Setting up the AuriStor Client](auriStorClient.md)
 
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTQxOTE4ODc2NV19
+-->

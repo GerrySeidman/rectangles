@@ -5,9 +5,7 @@ The Kerberos protocol is sensitive strikethrough textto time differences between
 On all machines install Network Time Protocol (NTP
 
 	sudo apt install ntp
-
-
-
+	
 # Kerberos Realm Names
 
 You must choose your own Kerberos realm name.
@@ -28,6 +26,12 @@ To initialize the Kerberos database KDC you use the “krb5_util” command.
 You must specify your Kerberos realm name on the “krb5_util” command line.
 
 Kerberos realm names are upper case.
+
+## Kerberos References
+
+http://web.mit.edu/kerberos/krb5-devel/doc/admin/realm_config.html
+
+http://web.mit.edu/kerberos/krb5-devel/doc/admin/conf_files/kadm5_acl.html
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQ1NDY5OTAxM119
+eyJoaXN0b3J5IjpbMjA3ODM2OTMwMl19
 -->
