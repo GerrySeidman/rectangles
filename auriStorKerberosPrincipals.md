@@ -145,7 +145,7 @@ Entry for principal afs3-bos/afsfs3.play.gerry@PLAY.GERRY with kvno 2, encryptio
 
 
 ???? THIS ISN"T PROBABLY USAED BUT I HAVEN"T DELETED IT.... 
-kadmin:  ktadd -k ./bos.keytab -e "aes256-cts-hmac-sha1-96:normal aes128-cts-hmac-sha1-96:normal des3-hmac-sha1:normal arcfour-hmac-md5:normal" afs3-bos/afs1.play.gerry@PLAY.GERRY
+kadmin:  ktadd -k ./bos.keytab -e "aes256-cts-hmac-sha1-96:normal aes128-cts-hmac-sha1-96:normal des3-hmac-sha1:normal arcfour-hmac-md5:normal" afs3-bos/afsdb1.play.gerry@PLAY.GERRY
 Entry for principal afs3-bos/afs1.play.gerry@PLAY.GERRY with kvno 2, encryption type aes256-cts-hmac-sha1-96 added to keytab WRFILE:./bos.keytab.
 Entry for principal afs3-bos/afs1.play.gerry@PLAY.GERRY with kvno 2, encryption type aes128-cts-hmac-sha1-96 added to keytab WRFILE:./bos.keytab.
 Entry for principal afs3-bos/afs1.play.gerry@PLAY.GERRY with kvno 2, encryption type des3-cbc-sha1 added to keytab WRFILE:./bos.keytab                                                               .
@@ -162,5 +162,5 @@ bosdb1.keytab  bosfs1.keytab  bosfs2.keytab  bosfs3.keytab  bos.keytab  rxgk.key
 
 * No files were manually edited in this lab
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbOTYzMjA2OTM2XX0=
+eyJoaXN0b3J5IjpbLTk2NjI4MzkwXX0=
 -->

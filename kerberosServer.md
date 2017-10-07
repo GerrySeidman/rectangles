@@ -15,7 +15,7 @@ After completing this lab:
 
 
 
-##
+
 
 
 ## The Kerberos Realm and Kerberos Servers
@@ -26,9 +26,9 @@ If you are not familiar with Kerberos, please refer to the section [About Kerber
 
 Also recall that Network Time Protocol (NTP) was already installed in our  [Stem VM](stemVM.md)
 
-Once configured and installed there will be two running server processes
+Once configured and installed there will be two running service processes
 
-* Kerberos Key Distribution Center (KDC) ` krb5-kdc`
+* Kerberos Key Distribution Center (KDC) Service ` krb5-kdc`
 * Kerberos Admin Service`krb5-admin-server`
 
 This lab describes setting up the servers.  The next lab on 	`Kerberos Admin` shows how to bootstrap Kerberos and how to set up users/principals.
@@ -57,10 +57,11 @@ sudo reboot
 	sudo apt install krb5-kdc krb5-admin-server
 ```
 
-You will be prompted with the following screen:
+You will be prompted with the following screens:
 
 ![[InstallingKerberos]](https://raw.githubusercontent.com/GerrySeidman/rectangles/tutorial/images/installingKerberos.jpg "Installing Kerberos")
 
+![[InstallingKerberos]](https://raw.githubusercontent.com/GerrySeidman/rectangles/tutorial/images/configuringKerberos.jpg "Installing Kerberos")
 ## VMs and Random Number Generators
 
 VMs typically have slow (software based) random number generators (ie not hardware accelerated) which are used in key generation.  
@@ -116,9 +117,9 @@ IMPORTANT: It is important to store a copy of the password in a secure location.
 
 ### About Kerberos Administrator ACL 
 
-The users listed in the  ```/var/krb5kdc/kadm5.acl file``` can administer the Kerberos database, using the ```kadmin``` application. 
+The users listed in the  ```/etc/krb5kdc/kadm5.acl file``` can administer the Kerberos database, using the ```kadmin``` application. 
 
-The syntax of a line in the ```/var/krb5kdc/kadm5.acl``` file is:
+The syntax of a line in the ```/etc/krb5kdc/kadm5.acl``` file is:
  ```
  principal  permissions  [target_principal  [restrictions] ] 
  ```
@@ -131,9 +132,11 @@ You can optionally restrict the permissions granted to ```principal``` to one or
 
  If you restrict permissions granted to specific ```target_principal``` you can also specify a subset of administrative rights by adding flags in the ```restrictions``` field.
 
-For more  information about /var/krb5kdc/kadm5.acl see
+For more  information about /etc/krb5kdc/kadm5.acl see
 
 http://web.mit.edu/kerberos/krb5-devel/doc/admin/conf_files/kadm5_acl.html
+
+** GS QUESTION ** WHAT IS THE DIFFERENCE 
 
 ### Setting up  kadm5.acl 
 
@@ -151,7 +154,7 @@ Later on in this section we will create users/principals.
 
 ### Setting up the krb5.conf File
 
-A ```krb5.conf``` file will have been created, but it will require the following edits:
+A ```/etc/krb5.conf``` file will have been created, but it will require the following edits:
 
  - Add a [logging] section
  - Replace the [libdefaults] section
@@ -211,13 +214,6 @@ gerry@krb1:/etc$ cat krb5.conf
 
 
 [realms]
-        TEST.GERRY  = {
-                kdc = krb1.test.gerry
-                admin_server = krb1.test.gerry
-        }
-
-
-[realms]
         PLAY.GERRY  = {
                 kdc = krb1.play.gerry
                 admin_server = krb1.play.gerry
@@ -249,5 +245,5 @@ gerry@krb1:/etc$ cat krb5.conf
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE4MjY3MDA1ODldfQ==
+eyJoaXN0b3J5IjpbLTE0MTYyODE3MDZdfQ==
 -->

@@ -1,20 +1,5 @@
 # AuriStor Getting Started Tutorial
 
-Reference this document: http://techpubs.spinlocksolutions.com/dklar/afs.html
-
->### TO-DO
-* DNS
-* Kerberos Server
-* AuriStor DB Server
-* AuriStor File Server
-* Client machine
-* Make sure all Sample Files are available
-* Does installing the AuriStor client automatically bring in the kerberos client? ???
-	* sudo apt install  krb5-user
-	* On client un-comment DNS-lookup false
-
-
-> Question: Do we want to install the Kerberos Client in the Stem image?  TBD: We'll see how much work it is to install on each machine...
 
 ## Zero to AuriStor
 
@@ -54,22 +39,33 @@ The network topology will include a local private network (Host-Only Adapter) fo
 
 
 
-
-
-
 ## Steps
+
 
 * [Setting up the Stem VM](stemVM.md)
 * [Cloning a VM from Stem VM](cloningStemVM.md)
-* [Linux Kernel Caveat](downgradingKernel.md)
+	* [Linux Kernel Caveat](downgradingKernel.md)
 * [Setting up the DNS Server](dnsServer.md)
-* [Kerberos](kerbero.md)
+* [About Kerberos](aboutKerberos.md)
 * [Setting up the Kerberos Server](kerberosServer.md)
+* [Administering the Kerberos Server](kerberosAdmin.md)
+* [Setting up Kerberos Principals for the AuriStor Servers](auriStorKerberosPrincipals.md)
 * [Getting the AuriStor Software](getAuriStorSoftware.md)
-* [Setting up the AuriStor File Server](auriStorFileServer.md)
 * [Setting up the AuriStor Database Server](auristorDBServer.md)
+* [Setting up the AuriStor File Server](auriStorFileServer.md)
 * [Setting up the AuriStor Client](auriStorClient.md)
 
+# TODO NOTES
+### Are these still used?
+clusterOverview.md
+
+Questions
+* Question: Does installing the AuriStor client automatically bring in the kerberos client? ???
+	* sudo apt install  krb5-user
+	* On client un-comment DNS-lookup false
+> Question: Do we want to install the Kerberos Client in the Stem image?  TBD: We'll see how much work it is to install on each machine...
+
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTQxOTE4ODc2NV19
+eyJoaXN0b3J5IjpbLTU3NjE2Mzk4OV19
 -->

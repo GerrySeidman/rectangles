@@ -1,6 +1,6 @@
 # Kerberos and Time
 
-The Kerberos protocol is sensitive strikethrough textto time differences between the KDC and a Kerberos client application.
+The Kerberos protocol is sensitive 	to time differences between the KDC and a Kerberos client application.
 
 On all machines install Network Time Protocol (NTP
 
@@ -32,6 +32,9 @@ Kerberos realm names are upper case.
 http://web.mit.edu/kerberos/krb5-devel/doc/admin/realm_config.html
 
 http://web.mit.edu/kerberos/krb5-devel/doc/admin/conf_files/kadm5_acl.html
+
+ http://techpubs.spinlocksolutions.com/dklar/afs.html
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjA3ODM2OTMwMl19
+eyJoaXN0b3J5IjpbMTI5MjgwMTk2N119
 -->

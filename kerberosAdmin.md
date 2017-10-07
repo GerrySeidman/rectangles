@@ -34,6 +34,7 @@ WARNING: no policy specified for gerry@PLAY.GERRY; defaulting to no policy
 Enter password for principal "gerry@PLAY.GERRY":         <<< ENTER PASSWORD >>>
 Re-enter password for principal "gerry@PLAY.GERRY":		 <<< RE-ENTER PASSWORD >>>
 Principal "gerry@PLAY.GERRY" created.
+
 kadmin.local:  addprinc gerry/admin
 WARNING: no policy specified for gerry/admin@PLAY.GERRY; defaulting to no policy
 Enter password for principal "gerry/admin@PLAY.GERRY":		<<< ENTER PASSWORD >>>
@@ -47,8 +48,8 @@ kadmin.local:  exit
 Now we need to restart Kerberos 
 
 ``` bash 
-root@krb1:/etc/krb5kdc# systemctl restart  krb5-kdc
-root@krb1:/etc/krb5kdc# systemctl restart  krb5-admin-server
+root@krb1:/etc/krb5kdc# sudo systemctl restart  krb5-kdc
+root@krb1:/etc/krb5kdc# sudo systemctl restart  krb5-admin-server
 ``` 
 
 #  Verifying KDC is properly running
@@ -190,5 +191,5 @@ l## Links to Sample Files from this Lab
 
 * No files were manually edited in this lab
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNzY2Mjg1MTQyXX0=
+eyJoaXN0b3J5IjpbMTI1MDk5ODc2OF19
 -->

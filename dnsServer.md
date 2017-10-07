@@ -28,33 +28,6 @@ sudo sed -i -- "s/stem1/$NEW_HOST/g" /etc/hostname
 sudo reboot
 ```
 
-
-# UGH!!!  WHICH OF THE BELOW Bind9 is IT 
-	##... MUST RETEST
-	
-## Setting up Bind9
-
- Ignore The below... Not needed... Delete from Docs after restest of cookbook.
->> Grr.. couldn't replicatate what Kris did, trying to follow
->> `https://www.digitalocean.com/community/tutorials/how-to-configure-bind-as-a-private-network-dns-server-on-ubuntu-16-04`
->>
->> DO NOT DO THIS  ```sudo apt-get update```  BECAUSE OF GRUB/Kernel ISSUE
-
-Execute the below three commands to setup Bind9
-```
-sudo apt install bind9 bind9utils bind9-doc
-
-sudo systemctl daemon-reload
-
-sudo systemctl restart bind9
-```
- Ignore The below... Not needed... Delete from Docs after restest of cookbook.
->>Did not do below (AND VERIFIED IT DIDN'T NEED DOING)
->> sudo systemctl edit --full bind9
->> 
->> Add "-4" to the end of the ExecStart directive. It should look like the following:
-
-
 ## Install Bind9
 
 ```
@@ -97,15 +70,21 @@ AFSDB2          IN A    192.168.10.131
 AFSFS1          IN A    192.168.10.140
 AFSFS2          IN A    192.168.10.141
 AFSFS3          IN A    192.168.10.142
-MYMACHINE       IN A    192.168.10.88
+CLIENT          IN A    192.168.10.99
 
 _kerberos._udp.PLAY.GERRY.     IN SRV 1  0 88  krb1.play.gerry.
 _kerberos._tcp.PLAY.GERRY.     IN SRV 1  0 88  krb1.play.gerry.
 _kerberos-adm._tcp.PLAY.GERRY. IN SRV 1  0 749 krb1.play.gerry.
 _kpasswd._udp.PLAY.GERRY.      IN SRV 1  0 464 krb1.play.gerry.
-```
 
-## Set up your DNS Lookup table
+_afs3-vlserver._udp.PLAY.GERRY.    IN SRV 0 7003 afsdb1.play.gerry.
+_afs3-vlserver._udp.PLAY.GERRY.      IN SRV 1  0 7003 afsdb1.play.gerry.
+
+
+
+``` 
+
+## Set up your Reverse DNS Lookup table
 
 Create `/etc/bind/10-168-192.info`
 
@@ -128,7 +107,7 @@ Create `/etc/bind/10-168-192.info`
 140     IN PTR  AFSFS1.PLAY.GERRY.
 141     IN PTR  AFSFS2.PLAY.GERRY.
 142     IN PTR  AFSFS3.PLAY.GERRY.
-99      IN PTR  MYMACHINE.PLAY.GERRY.
+99      IN PTR  CLIENT.PLAY.GERRY.
 ```
 
 ##  Tell Bind where to find Zone Files
@@ -167,6 +146,7 @@ Then start it with
 service bind9 start
 ```
 
+
 ## Links to Sample Files from this Lab
 
 * The following files will have been edited in this lab
@@ -176,6 +156,48 @@ service bind9 start
 	* 10-168-192.info
 	* named.conf.local
 
+# DELTE BELOW... FALSE STARTS
+
+# UGH!!!  WHICH OF THE BELOW Bind9 is IT 
+	##... MUST RETEST
+	
+## Setting up Bind9
+
+ Ignore The below... Not needed... Delete from Docs after restest of cookbook.
+>> Grr.. couldn't replicatate what Kris did, trying to follow
+>> `https://www.digitalocean.com/community/tutorials/how-to-configure-bind-as-a-private-network-dns-server-on-ubuntu-16-04`
+>>
+>> DO NOT DO THIS  ```sudo apt-get update```  BECAUSE OF GRUB/Kernel ISSUE
+
+Execute the below three commands to setup Bind9
+```
+sudo apt install bind9 bind9utils bind9-doc
+
+sudo systemctl daemon-reload
+
+sudo systemctl restart bind9
+```
+ Ignore The below... Not needed... Delete from Docs after restest of cookbook.
+>>Did not do below (AND VERIFIED IT DIDN'T NEED DOING)
+>> sudo systemctl edit --full bind9
+>> 
+>> Add "-4" to the end of the ExecStart directive. It should look like the following:
+
+## Perhaps better Install of Bind9
+
+```
+sudo apt install bind9 bind9utils bind9-doc
+
+sudo systemctl daemon-reload
+
+sudo systemctl restart bind9
+
+````
+
+BETTER STILL:  Now TRYING
+``` bash
+sudo systemctl restart bind9
+```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTExNTgwMTgwMTBdfQ==
+eyJoaXN0b3J5IjpbLTM1NDg3NDI1XX0=
 -->

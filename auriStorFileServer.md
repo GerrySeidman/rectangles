@@ -1,6 +1,7 @@
 # Setting up the AuriStor File Server
 
-
+# INCOMPLETE SECTION
+## I DO NOT KNOW HOW TO SET UP JUST A FILE SERVER
 
 ## Clone and prepare AuriStor File Server VM
 
@@ -30,3 +31,6 @@ apt install krb5-user
 ```
 > When Prompted for the Kerberos Realm Name, enter ```PLAY.GERRY```
 
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbMTIyODQ2MDg4NF19
+-->
