@@ -186,6 +186,10 @@ gerry@afsdb1:/etc/yfs/server$ cat yfs-server.conf
 ```
 ## Configure yfs-client.conf
 
+the correct way to do it. add a [cells] section for a local cell to /etc/yfs/yfs-client.conf; it will use the same cell configuration as the one specified for the local cell in /etc/yfs/server/yfs-server.conf
+
+
+
 ``` bash
 gerry@afsdb1:/etc/yfs/server$ sudo vi /etc/yfs/yfs-client.conf
 gerry@afsdb1:/etc/yfs/server$ cat /etc/yfs/yfs-client.conf
@@ -327,11 +331,74 @@ systemctl status auristorfs-fileserver
 
 THE BELOW IS TO RESTART THE BOS SREVER SO IT IS IN A GOOD STATE, then configure then restart
 
-???
 
-:~$ sudo 
-bos create -server afsdb1.play.gerry -type simple -instance ptserver -cmd /usr/lib/yfs/ptserver -localauth
+sudo bos create -server afsdb1.play.gerry -type simple -instance ptserver -cmd /usr/lib/yfs/ptserver -localauth
+
+sudo bos create -server afsdb1.play.gerry -type simple -instance vlserver -cmd /usr/lib/yfs/vlserver -localauth
+
+sudo bos status -server afsdb1.play.gerry -localauth
+
+``` bash
+gerry@afsdb1:/etc/yfs/server$ sudo bos status -server afsdb1.play.gerry -localauth
+Instance ptserver, currently running normally.
+Instance vlserver, currently running normally.
+
+# Create Users
+
+sudo pts createuser gerry.admin -localauth
+sudo pts adduser gerry.admin system:administrators -localauth
+```
+
+## For each AFS server we are setting up a BOS superuser
+``` bash
+sudo bos adduser afsdb1.play.gerry -user gerry.admin@PLAY.GERRY -rxkad -localauth
+sudo bos adduser afsdb1.play.gerry -user gerry/admin@PLAY.GERRY -localauth
+```
+NOTE: The above `/` in the second command is not a type (? is that so ?)
+
+
+# Client stuff (should be a new section)
+
+Configure the client `yfs-client.conf`
+
+sudo fs newcell play.gerry afsdb1.play.gerry
+kinit gerry@PLAY.GERRY
+aklog
+
+## File Server
+
+sudo bos create -server afsdb1.play.gerry -type dafs -instance dafs -cmd "/usr/lib/yfs/fileserver" "/usr/lib/yfs/volserver" "/usr/lib/yfs/salvageserver" "/usr/lib/yfs/salvager" -localauth
+
+sudo bos create -server afsdb1.play.gerry -type dafs -instance dafs -cmd "/usr/lib/yfs/fileserver" "/usr/lib/yfs/volserver" "/usr/lib/yfs/salvageserver" "/usr/lib/yfs/salvager" -localauth
+
+# Install Kerberos Client on DB Server
+
+sudo apt install  krb5-user
+
+
+## Set up partitions
+
+Create `root.cell` 
+
+
+kinit gerry/admin@PLAY.GERRY
+
+
+
+vos create -server afsdb1.play.gerry  -partition /vicepa -name root.cell
+
+
+POKING: 
+
+Adding to DNS:
+	_afs3-prserver._udp.PLAY.GERRY.      IN SRV 1  0 7002 afsdb1.play.gerry.
+
+
+NOTE:
+	vos examine -id <volume name or ID>
+
+
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTgxMTE3MTkxNF19
+eyJoaXN0b3J5IjpbLTEyMTkyOTM2MDVdfQ==
 -->

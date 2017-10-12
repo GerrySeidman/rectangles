@@ -77,10 +77,8 @@ _kerberos._tcp.PLAY.GERRY.     IN SRV 1  0 88  krb1.play.gerry.
 _kerberos-adm._tcp.PLAY.GERRY. IN SRV 1  0 749 krb1.play.gerry.
 _kpasswd._udp.PLAY.GERRY.      IN SRV 1  0 464 krb1.play.gerry.
 
-_afs3-vlserver._udp.PLAY.GERRY.    IN SRV 0 7003 afsdb1.play.gerry.
-_afs3-vlserver._udp.PLAY.GERRY.      IN SRV 1  0 7003 afsdb1.play.gerry.
-
-
+_afs3-vlserver._udp.PLAY.GERRY. IN SRV 1  0 7003 afsdb1.play.gerry.
+_afs3-prserver._udp.PLAY.GERRY. IN SRV 1  0 7003 afsdb1.play.gerry.
 
 ``` 
 
@@ -199,5 +197,5 @@ BETTER STILL:  Now TRYING
 sudo systemctl restart bind9
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTM1NDg3NDI1XX0=
+eyJoaXN0b3J5IjpbMTg4NjMxODc3Ml19
 -->

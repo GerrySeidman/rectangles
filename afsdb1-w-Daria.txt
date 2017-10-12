@@ -1,0 +1,167 @@
+login as: gerry
+gerry@192.168.10.130's password:
+Welcome to Ubuntu 16.04.3 LTS (GNU/Linux 4.4.0-87-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+54 packages can be updated.
+25 updates are security updates.
+
+
+Last login: Sun Oct  8 20:32:59 2017 from 192.168.10.1
+gerry@afsdb1:~$
+gerry@afsdb1:~$
+gerry@afsdb1:~$ cd
+gerry@afsdb1:~$ sudo bash
+[sudo] password for gerry:
+root@afsdb1:~# cd^C
+root@afsdb1:~# ^C
+root@afsdb1:~# cd keytabs
+root@afsdb1:~/keytabs# ls
+bosdb1.keytab  bosfs1.keytab  bosfs2.keytab  bosfs3.keytab  bos.keytab  rxgk.keytab  rxkad.keytab
+root@afsdb1:~/keytabs# cp bosdb1.keytab /etc/yfs/server/bos.keytab
+root@afsdb1:~/keytabs# service yfs-server restart
+Failed to restart yfs-server.service: Unit yfs-server.service not found.
+root@afsdb1:~/keytabs# systemctl restart yfs-server
+Failed to restart yfs-server.service: Unit yfs-server.service not found.
+root@afsdb1:~/keytabs# systemctl restart yfs-server.service
+Failed to restart yfs-server.service: Unit yfs-server.service not found.
+root@afsdb1:~/keytabs# ps -aux | fgrep yfs
+yfsserv+  1199  0.0  0.1 258520  5288 ?        Ssl  13:56   0:00 /usr/sbin/bosserver -nofork -pidfiles=/var/run/yfs
+yfsserv+  1259  0.0  0.1 330172  6920 ?        Sl   13:56   0:00 /usr/lib/yfs/ptserver
+yfsserv+  1260  0.0  0.1 330708  6268 ?        Sl   13:56   0:00 /usr/lib/yfs/vlserver
+yfsserv+  1261  0.0  0.5 460980 21520 ?        Sl   13:56   0:00 /usr/lib/yfs/fileserver
+yfsserv+  1262  0.0  0.2 259428  8380 ?        Sl   13:56   0:00 /usr/lib/yfs/volserver
+yfsserv+  1263  0.0  0.1 338756  6988 ?        Sl   13:56   0:00 /usr/lib/yfs/salvageserver
+root      2017  0.0  0.0  14224   936 pts/0    S+   14:03   0:00 grep -F --color=auto yfs
+root@afsdb1:~/keytabs# systemctl restart auristorfs-server.service
+root@afsdb1:~/keytabs# vos create -server afsdb1.play.gerry  -partition /vicepa -name root.cell
+vos: Cannot list partitions on server afsdb1.play.gerry:7005 : Insufficient privilege for volume operation
+root@afsdb1:~/keytabs# kinit gerry/admin@^C
+root@afsdb1:~/keytabs# vos create -server afsdb1.play.gerry  -partition /vicepa -name root.cell -localauth
+vos: Could not register volume root.cell with the location service : Illegal server number (out of range)
+root@afsdb1:~/keytabs# tokens
+
+Tokens held by the Cache Manager:
+
+   --End of list--
+root@afsdb1:~/keytabs# kinit gerry/admin@PLAY.GERRY
+Password for gerry/admin@PLAY.GERRY:
+root@afsdb1:~/keytabs# aklog
+root@afsdb1:~/keytabs# tokens
+
+Tokens held by the Cache Manager:
+
+User's (AFS ID 1) rxkad tokens for play.gerry [Expires Oct 10 00:05]
+   --End of list--
+root@afsdb1:~/keytabs# vos create -server afsdb1.play.gerry  -partition /vicepa -name root.cell
+vos: Could not register volume root.cell with the location service : Illegal server number (out of range)
+root@afsdb1:~/keytabs# bos status localhost -local
+Instance ptserver, currently running normally.
+Instance vlserver, currently running normally.
+Instance dafs, currently running normally.
+    Auxiliary status is: file server running.
+root@afsdb1:~/keytabs# vos partinfo localhost -local
+Free space on server afsdb1.play.gerry:7005 partition /vicepa: 33180272 K blocks out of total 34620000
+root@afsdb1:~/keytabs# vos listaddrs -localauth
+[10.0.2.15]:7005
+AFSDB1.PLAY.GERRY:7005
+root@afsdb1:~/keytabs# ping afs.^C
+root@afsdb1:~/keytabs# ping afsdb1.play.gerry
+PING afsdb1.play.gerry (127.0.1.1) 56(84) bytes of data.
+64 bytes from afsdb1.play.gerry (127.0.1.1): icmp_seq=1 ttl=64 time=0.029 ms
+64 bytes from afsdb1.play.gerry (127.0.1.1): icmp_seq=2 ttl=64 time=0.039 ms
+^C
+--- afsdb1.play.gerry ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 999ms
+rtt min/avg/max/mdev = 0.029/0.034/0.039/0.005 ms
+root@afsdb1:~/keytabs# ping afsdb1^C
+root@afsdb1:~/keytabs# cat /etc/hosts
+127.0.0.1       localhost
+127.0.1.1       afsdb1.play.gerry
+
+# The following lines are desirable for IPv6 capable hosts
+::1     localhost ip6-localhost ip6-loopback
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+root@afsdb1:~/keytabs# vi /etc/hosts
+root@afsdb1:~/keytabs# vos listaddrs -localauth
+[10.0.2.15]:7005
+AFSDB1.PLAY.GERRY:7005
+root@afsdb1:~/keytabs# systemctl restart auristorfs-server.service
+root@afsdb1:~/keytabs# vos create -server afsdb1.play.gerry  -partition /vicepa -name root.cell
+Volume 1048587 created on server [10.0.2.15]:7005 partition /vicepa, NAME: root.cell
+root@afsdb1:~/keytabs# cd /etc/hosts^C
+root@afsdb1:~/keytabs# cat /etc/hosts
+127.0.0.1       localhost
+
+# The following lines are desirable for IPv6 capable hosts
+::1     localhost ip6-localhost ip6-loopback
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+root@afsdb1:~/keytabs# ls ..
+auriSoft  keytabs
+root@afsdb1:~/keytabs# ^C
+root@afsdb1:~/keytabs# scp *^C
+root@afsdb1:~/keytabs# pwd
+/home/gerry/keytabs
+root@afsdb1:~/keytabs# cd ..
+root@afsdb1:~# cd auriSoft/
+root@afsdb1:~/auriSoft# scp gerry@afsfs1/home/gerry/auriSoft *
+libkauristor1_0.1591-1.20170805gitdebian~auristor_amd64.deb: Not a directory
+root@afsdb1:~/auriSoft# scp gerry@afsfs1/home/gerry/auriSoft ,
+cp: cannot stat 'gerry@afsfs1/home/gerry/auriSoft': No such file or directory
+root@afsdb1:~/auriSoft# scp gerry@afsfs1:/home/gerry/auriSoft *
+libkauristor1_0.1591-1.20170805gitdebian~auristor_amd64.deb: Not a directory
+root@afsdb1:~/auriSoft# ls
+auristorfs-client_0.1591-1.20170805gitdebian~auristor_amd64.deb
+auristorfs-common_0.1591-1.20170805gitdebian~auristor_amd64.deb
+auristorfs-dbserver_0.1591-1.20170805gitdebian~auristor_amd64.deb
+auristorfs-doc_0.1591-1.20170805gitdebian~auristor_all.deb
+auristorfs-fileserver_0.1591-1.20170805gitdebian~auristor_amd64.deb
+auristorfs-fuse_0.1591-1.20170805gitdebian~auristor_amd64.deb
+auristorfs-modules3-4.4.0-87-generic_0.1591-1.20170805gitdebian~auristor_amd64.deb
+auristorfs-server_0.1591-1.20170805gitdebian~auristor_amd64.deb
+auristorSoftware.zip
+libauristorfs-dev_0.1591-1.20170805gitdebian~auristor_amd64.deb
+libkauristor1_0.1591-1.20170805gitdebian~auristor_amd64.deb
+root@afsdb1:~/auriSoft# scp * gerry@afsfs1:/home/gerry/auriSoft
+The authenticity of host 'afsfs1 (192.168.10.140)' can't be established.
+ECDSA key fingerprint is SHA256:NxX6SK28GzHcQdZW38+KIfIFbpXfNtUvRGjozajvEVI.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added 'afsfs1,192.168.10.140' (ECDSA) to the list of known hosts.
+gerry@afsfs1's password:
+auristorfs-client_0.1591-1.20170805gitdebian~auristor_amd64.deb                                    100%  936KB 936.2KB/s   00:00
+auristorfs-common_0.1591-1.20170805gitdebian~auristor_amd64.deb                                    100% 1342KB   1.3MB/s   00:00
+auristorfs-dbserver_0.1591-1.20170805gitdebian~auristor_amd64.deb                                  100%  178KB 178.4KB/s   00:00
+auristorfs-doc_0.1591-1.20170805gitdebian~auristor_all.deb                                         100% 3863KB   3.8MB/s   00:01
+auristorfs-fileserver_0.1591-1.20170805gitdebian~auristor_amd64.deb                                100%  327KB 327.0KB/s   00:00
+auristorfs-fuse_0.1591-1.20170805gitdebian~auristor_amd64.deb                                      100% 6606     6.5KB/s   00:00
+auristorfs-modules3-4.4.0-87-generic_0.1591-1.20170805gitdebian~auristor_amd64.deb                 100%  377KB 377.1KB/s   00:00
+auristorfs-server_0.1591-1.20170805gitdebian~auristor_amd64.deb                                    100%   75KB  75.5KB/s   00:00
+auristorSoftware.zip                                                                               100% 8724KB   8.5MB/s   00:00
+libauristorfs-dev_0.1591-1.20170805gitdebian~auristor_amd64.deb                                    100% 1228KB   1.2MB/s   00:00
+libkauristor1_0.1591-1.20170805gitdebian~auristor_amd64.deb                                        100%   11KB  10.8KB/s   00:00
+root@afsdb1:~/auriSoft#  sudo dpkg -i auristorfs-modules*`uname -r`*.deb^C
+root@afsdb1:~/auriSoft# ls
+auristorfs-client_0.1591-1.20170805gitdebian~auristor_amd64.deb
+auristorfs-common_0.1591-1.20170805gitdebian~auristor_amd64.deb
+auristorfs-dbserver_0.1591-1.20170805gitdebian~auristor_amd64.deb
+auristorfs-doc_0.1591-1.20170805gitdebian~auristor_all.deb
+auristorfs-fileserver_0.1591-1.20170805gitdebian~auristor_amd64.deb
+auristorfs-fuse_0.1591-1.20170805gitdebian~auristor_amd64.deb
+auristorfs-modules3-4.4.0-87-generic_0.1591-1.20170805gitdebian~auristor_amd64.deb
+auristorfs-server_0.1591-1.20170805gitdebian~auristor_amd64.deb
+auristorSoftware.zip
+libauristorfs-dev_0.1591-1.20170805gitdebian~auristor_amd64.deb
+libkauristor1_0.1591-1.20170805gitdebian~auristor_amd64.deb
+root@afsdb1:~/auriSoft# cd ..
+root@afsdb1:~# cd keytabs
+root@afsdb1:~/keytabs# ls
+bosdb1.keytab  bosfs1.keytab  bosfs2.keytab  bosfs3.keytab  bos.keytab  rxgk.keytab  rxkad.keytab
+root@afsdb1:~/keytabs# cd /etc/yfs
+root@afsdb1:/etc/yfs# ls
+cacheinfo.conf  cmstate.dat  server  thiscell.conf  yfs-client.conf
+

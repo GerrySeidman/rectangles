@@ -1,5 +1,18 @@
 # Setting up Kerberos Principals for AuriStor Servers
 
+### FIXING????
+
+kadmin: addprinc -randkey afs3-bos/play.gerry@PLAY.GERRY
+
+kadmin ktadd -k ./bos.keytab -e "aes256-cts-hmac-sha1-96:normal aes128-cts-hmac-sha1-96:normal des3-hmac-sha1:normal arcfour-hmac-md5:normal" afs3-bos/play.gerry@PLAY.GERRY
+
+Then the following worked:
+
+sudo bos create -server afsdb1.play.gerry -type simple -instance ptserver -cmd /usr/lib/yfs/ptserver -localauth
+
+
+### AFTER FIXING
+
 We will be setting up Kerberos Principals for for use by the AuriStor Servers.  Some of these principals have historical names
 
 The steps in this lab will be:
@@ -162,5 +175,5 @@ bosdb1.keytab  bosfs1.keytab  bosfs2.keytab  bosfs3.keytab  bos.keytab  rxgk.key
 
 * No files were manually edited in this lab
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTk2NjI4MzkwXX0=
+eyJoaXN0b3J5IjpbLTE0NzAyMDIzNjBdfQ==
 -->

@@ -1,0 +1,331 @@
+login as: gerry
+gerry@192.168.10.140's password:
+Welcome to Ubuntu 16.04.3 LTS (GNU/Linux 4.4.0-87-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+54 packages can be updated.
+25 updates are security updates.
+
+
+Last login: Mon Oct  9 14:22:49 2017
+gerry@afsfs1:~$ uname -r
+4.4.0-87-generic
+gerry@afsfs1:~$ sudo dpkg -i auristorfs-modules*`uname -r`*.deb
+[sudo] password for gerry:
+dpkg: error processing archive auristorfs-modules*4.4.0-87-generic*.deb (--install):
+ cannot access archive: No such file or directory
+Errors were encountered while processing:
+ auristorfs-modules*4.4.0-87-generic*.deb
+gerry@afsfs1:~$ mkdir software
+gerry@afsfs1:~$ scp gerry@afsdb1:/gerry/home/auriStorSoftware/* .
+The authenticity of host 'afsdb1 (192.168.10.130)' can't be established.
+ECDSA key fingerprint is SHA256:NxX6SK28GzHcQdZW38+KIfIFbpXfNtUvRGjozajvEVI.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added 'afsdb1,192.168.10.130' (ECDSA) to the list of known hosts.
+gerry@afsdb1's password:
+scp: /gerry/home/auriStorSoftware/*: No such file or directory
+gerry@afsfs1:~$ scp gerry@afsdb1:/gerry/home/auriSoft/* .
+gerry@afsdb1's password:
+scp: /gerry/home/auriSoft/*: No such file or directory
+gerry@afsfs1:~$ mkdir auriSoft
+gerry@afsfs1:~$ cd auriSoft
+gerry@afsfs1:~/auriSoft$  sudo dpkg -i auristorfs-modules*`uname -r`*.deb
+Selecting previously unselected package auristorfs-modules3-4.4.0-87-generic.
+(Reading database ... 59796 files and directories currently installed.)
+Preparing to unpack auristorfs-modules3-4.4.0-87-generic_0.1591-1.20170805gitdebian~auristor_amd64.deb ...
+Unpacking auristorfs-modules3-4.4.0-87-generic (0.1591-1.20170805gitdebian~auristor) ...
+Setting up auristorfs-modules3-4.4.0-87-generic (0.1591-1.20170805gitdebian~auristor) ...
+gerry@afsfs1:~/auriSoft$ sudo dpkg -i auristorfs-common*
+Selecting previously unselected package auristorfs-common.
+(Reading database ... 59807 files and directories currently installed.)
+Preparing to unpack auristorfs-common_0.1591-1.20170805gitdebian~auristor_amd64.deb ...
+Unpacking auristorfs-common (0.1591-1.20170805gitdebian~auristor) ...
+Setting up auristorfs-common (0.1591-1.20170805gitdebian~auristor) ...
+Processing triggers for libc-bin (2.23-0ubuntu9) ...
+Processing triggers for man-db (2.7.5-1) ...
+gerry@afsfs1:~/auriSoft$ sudo dpkg -i auristorfs-client*
+Selecting previously unselected package auristorfs-client.
+(Reading database ... 59996 files and directories currently installed.)
+Preparing to unpack auristorfs-client_0.1591-1.20170805gitdebian~auristor_amd64.deb ...
+Unpacking auristorfs-client (0.1591-1.20170805gitdebian~auristor) ...
+Setting up auristorfs-client (0.1591-1.20170805gitdebian~auristor) ...
+update-alternatives: using /usr/bin/pagsh.yfs to provide /usr/bin/pagsh (pagsh) in auto mode
+Processing triggers for ureadahead (0.100.0-19) ...
+Processing triggers for man-db (2.7.5-1) ...
+gerry@afsfs1:~/auriSoft$ sudo dpkg -i  auristorfs-server*
+Selecting previously unselected package auristorfs-server.
+(Reading database ... 60155 files and directories currently installed.)
+Preparing to unpack auristorfs-server_0.1591-1.20170805gitdebian~auristor_amd64.deb ...
+Unpacking auristorfs-server (0.1591-1.20170805gitdebian~auristor) ...
+Setting up auristorfs-server (0.1591-1.20170805gitdebian~auristor) ...
+Processing triggers for ureadahead (0.100.0-19) ...
+Processing triggers for man-db (2.7.5-1) ...
+gerry@afsfs1:~/auriSoft$ sudo dpkg -i  auristorfs-fileserver*
+Selecting previously unselected package auristorfs-fileserver.
+(Reading database ... 60177 files and directories currently installed.)
+Preparing to unpack auristorfs-fileserver_0.1591-1.20170805gitdebian~auristor_amd64.deb ...
+Unpacking auristorfs-fileserver (0.1591-1.20170805gitdebian~auristor) ...
+Setting up auristorfs-fileserver (0.1591-1.20170805gitdebian~auristor) ...
+Processing triggers for man-db (2.7.5-1) ...
+gerry@afsfs1:~/auriSoft$ sudo bash
+root@afsfs1:~/auriSoft# cd /etc/yfs
+root@afsfs1:/etc/yfs# cd server
+root@afsfs1:/etc/yfs/server# wget http://192.168.1.1:8080/yfs-server.conf
+--2017-10-09 14:30:59--  http://192.168.1.1:8080/yfs-server.conf
+Connecting to 192.168.1.1:8080... ^C
+root@afsfs1:/etc/yfs/server# wget http://192.168.10.1:8080/yfs-server.conf
+--2017-10-09 14:31:06--  http://192.168.10.1:8080/yfs-server.conf
+Connecting to 192.168.10.1:8080... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 639 [text/plain]
+Saving to: ‘yfs-server.conf’
+
+yfs-server.conf                   100%[==========================================================>]     639  --.-KB/s    in 0s
+
+2017-10-09 14:31:06 (56.6 MB/s) - ‘yfs-server.conf’ saved [639/639]
+
+root@afsfs1:/etc/yfs/server# cd ..
+root@afsfs1:/etc/yfs# wget http://192.168.10.1:8080/yfs-client.conf
+--2017-10-09 14:31:14--  http://192.168.10.1:8080/yfs-client.conf
+Connecting to 192.168.10.1:8080... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 467 [text/plain]
+Saving to: ‘yfs-client.conf.1’
+
+yfs-client.conf.1                 100%[==========================================================>]     467  --.-KB/s    in 0s
+
+2017-10-09 14:31:14 (47.1 MB/s) - ‘yfs-client.conf.1’ saved [467/467]
+
+root@afsfs1:/etc/yfs# ls
+cacheinfo.conf  cmstate.dat  server  thiscell.conf  yfs-client.conf  yfs-client.conf.1
+root@afsfs1:/etc/yfs# rm yfs-client.*
+root@afsfs1:/etc/yfs# wget http://192.168.10.1:8080/yfs-client.conf
+--2017-10-09 14:31:27--  http://192.168.10.1:8080/yfs-client.conf
+Connecting to 192.168.10.1:8080... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 467 [text/plain]
+Saving to: ‘yfs-client.conf’
+
+yfs-client.conf                   100%[==========================================================>]     467  --.-KB/s    in 0s
+
+2017-10-09 14:31:27 (56.0 MB/s) - ‘yfs-client.conf’ saved [467/467]
+
+root@afsfs1:/etc/yfs# ls
+cacheinfo.conf  cmstate.dat  server  thiscell.conf  yfs-client.conf
+root@afsfs1:/etc/yfs# cd^C
+root@afsfs1:/etc/yfs# ls
+cacheinfo.conf  cmstate.dat  server  thiscell.conf  yfs-client.conf
+root@afsfs1:/etc/yfs# id yfsid yfsserver^C
+root@afsfs1:/etc/yfs# id yfsserver
+id: ‘yfsserver’: no such user
+root@afsfs1:/etc/yfs# sudo useradd -r -s /bin/nologin yfsserver
+root@afsfs1:/etc/yfs# id yfsserver
+uid=999(yfsserver) gid=999(yfsserver) groups=999(yfsserver)
+root@afsfs1:/etc/yfs# sudo chown -R yfsserver: /etc/yfs/server
+root@afsfs1:/etc/yfs# mkdir /vicepa
+root@afsfs1:/etc/yfs# sudo chown -R yfsserver: /vicepa/
+root@afsfs1:/etc/yfs# ls /var/log/yfs
+root@afsfs1:/etc/yfs# sudo chown -R yfsserver: /var/log/yfs
+root@afsfs1:/etc/yfs# sudo mkdir /var/run/yfs/
+root@afsfs1:/etc/yfs# sudo chown yfsserver: /var/run/yfs/
+root@afsfs1:/etc/yfs# cd server
+root@afsfs1:/etc/yfs/server# ls
+thiscell.conf  yfs-server.conf
+root@afsfs1:/etc/yfs/server# ls
+thiscell.conf  yfs-server.conf
+root@afsfs1:/etc/yfs/server# cp /home/gerry/KeyF* .
+root@afsfs1:/etc/yfs/server# ls
+KeyFile  KeyFileExt  thiscell.conf  yfs-server.conf
+root@afsfs1:/etc/yfs/server# cp /home/gerry/U*
+cp: missing destination file operand after '/home/gerry/UserListExt'
+Try 'cp --help' for more information.
+root@afsfs1:/etc/yfs/server# cp /home/gerry/U* .
+root@afsfs1:/etc/yfs/server# ls
+KeyFile  KeyFileExt  thiscell.conf  UserListExt  yfs-server.conf
+root@afsfs1:/etc/yfs/server# sudo systemctl restart auristorfs-server
+root@afsfs1:/etc/yfs/server#
+root@afsfs1:/etc/yfs/server# sudo bos create -server afsdb1.play.gerry -type dafs -instance dafs -cmd "/usr/lib/yfs/fileserver" "/usr/lib/yfs/volserver" "/usr/lib/yfs/salvageserver" "/usr/lib/yfs/salvager" -localauth^C
+root@afsfs1:/etc/yfs/server# ls^C
+root@afsfs1:/etc/yfs/server# ^C
+root@afsfs1:/etc/yfs/server#
+root@afsfs1:/etc/yfs/server#
+root@afsfs1:/etc/yfs/server#
+root@afsfs1:/etc/yfs/server# sudo bos create -server afsdb1.play.gerry -type dafs -instance dafs -cmd "/usr/lib/yfs/fileserver" "/usr/lib/yfs/volserver" "/usr/lib/yfs/salvageserver" "/usr/lib/yfs/salvager" -localauth
+^C
+root@afsfs1:/etc/yfs/server# sudo bos create -server afsfs1.play.gerry -type dafs -instance dafs -cmd "/usr/lib/yfs/fileserver" "/usr/lib/yfs/volserver" "/usr/lib/yfs/salvageserver" "/usr/lib/yfs/salvager" -localauth
+bos: No route to host (connecting to AFSFS1.PLAY.GERRY)
+root@afsfs1:/etc/yfs/server# ping afsfs1
+PING AFSFS1.PLAY.GERRY (192.168.10.140) 56(84) bytes of data.
+64 bytes from AFSFS1.PLAY.GERRY (192.168.10.140): icmp_seq=1 ttl=64 time=0.074 ms
+64 bytes from AFSFS1.PLAY.GERRY (192.168.10.140): icmp_seq=2 ttl=64 time=0.105 ms
+64 bytes from AFSFS1.PLAY.GERRY (192.168.10.140): icmp_seq=3 ttl=64 time=0.042 ms
+^C
+--- AFSFS1.PLAY.GERRY ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2004ms
+rtt min/avg/max/mdev = 0.042/0.073/0.105/0.027 ms
+root@afsfs1:/etc/yfs/server# cat \etc\hosts
+cat: etchosts: No such file or directory
+root@afsfs1:/etc/yfs/server# cat /etc/hosts
+127.0.0.1       localhost
+
+# The following lines are desirable for IPv6 capable hosts
+::1     localhost ip6-localhost ip6-loopback
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+root@afsfs1:/etc/yfs/server# bos status localhost
+bos: running unauthenticated
+root@afsfs1:/etc/yfs/server# kadm^C
+root@afsfs1:/etc/yfs/server# a^[[2~^[[3^C
+root@afsfs1:/etc/yfs/server# ^C
+root@afsfs1:/etc/yfs/server# kinit gerry/admin@PLAY.GERRY
+The program 'kinit' can be found in the following packages:
+ * heimdal-clients
+ * krb5-user
+Try: apt install <selected package>
+root@afsfs1:/etc/yfs/server# ^C
+root@afsfs1:/etc/yfs/server# apt install krb5-user
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+The following additional packages will be installed:
+  krb5-config libgssrpc4 libkadm5clnt-mit9 libkadm5srv-mit9 libkdb5-8
+Suggested packages:
+  krb5-doc
+The following NEW packages will be installed:
+  krb5-config krb5-user libgssrpc4 libkadm5clnt-mit9 libkadm5srv-mit9 libkdb5-8
+0 upgraded, 6 newly installed, 0 to remove and 50 not upgraded.
+Need to get 302 kB of archives.
+After this operation, 1,296 kB of additional disk space will be used.
+Do you want to continue? [Y/n] Y
+Get:1 http://us.archive.ubuntu.com/ubuntu xenial/main amd64 krb5-config all 2.3 [23.4 kB]
+Get:2 http://us.archive.ubuntu.com/ubuntu xenial-updates/main amd64 libgssrpc4 amd64 1.13.2+dfsg-5ubuntu2 [54.5 kB]
+Get:3 http://us.archive.ubuntu.com/ubuntu xenial-updates/main amd64 libkadm5clnt-mit9 amd64 1.13.2+dfsg-5ubuntu2 [36.7 kB]
+Get:4 http://us.archive.ubuntu.com/ubuntu xenial-updates/main amd64 libkdb5-8 amd64 1.13.2+dfsg-5ubuntu2 [37.1 kB]
+Get:5 http://us.archive.ubuntu.com/ubuntu xenial-updates/main amd64 libkadm5srv-mit9 amd64 1.13.2+dfsg-5ubuntu2 [51.3 kB]
+Get:6 http://us.archive.ubuntu.com/ubuntu xenial-updates/universe amd64 krb5-user amd64 1.13.2+dfsg-5ubuntu2 [98.7 kB]
+Fetched 302 kB in 0s (371 kB/s)
+Preconfiguring packages ...
+Selecting previously unselected package krb5-config.
+(Reading database ... 60227 files and directories currently installed.)
+Preparing to unpack .../krb5-config_2.3_all.deb ...
+Unpacking krb5-config (2.3) ...
+Selecting previously unselected package libgssrpc4:amd64.
+Preparing to unpack .../libgssrpc4_1.13.2+dfsg-5ubuntu2_amd64.deb ...
+Unpacking libgssrpc4:amd64 (1.13.2+dfsg-5ubuntu2) ...
+Selecting previously unselected package libkadm5clnt-mit9:amd64.
+Preparing to unpack .../libkadm5clnt-mit9_1.13.2+dfsg-5ubuntu2_amd64.deb ...
+Unpacking libkadm5clnt-mit9:amd64 (1.13.2+dfsg-5ubuntu2) ...
+Selecting previously unselected package libkdb5-8:amd64.
+Preparing to unpack .../libkdb5-8_1.13.2+dfsg-5ubuntu2_amd64.deb ...
+Unpacking libkdb5-8:amd64 (1.13.2+dfsg-5ubuntu2) ...
+Selecting previously unselected package libkadm5srv-mit9:amd64.
+Preparing to unpack .../libkadm5srv-mit9_1.13.2+dfsg-5ubuntu2_amd64.deb ...
+Unpacking libkadm5srv-mit9:amd64 (1.13.2+dfsg-5ubuntu2) ...
+Selecting previously unselected package krb5-user.
+Preparing to unpack .../krb5-user_1.13.2+dfsg-5ubuntu2_amd64.deb ...
+Unpacking krb5-user (1.13.2+dfsg-5ubuntu2) ...
+Processing triggers for libc-bin (2.23-0ubuntu9) ...
+Processing triggers for man-db (2.7.5-1) ...
+Setting up krb5-config (2.3) ...
+Setting up libgssrpc4:amd64 (1.13.2+dfsg-5ubuntu2) ...
+Setting up libkadm5clnt-mit9:amd64 (1.13.2+dfsg-5ubuntu2) ...
+Setting up libkdb5-8:amd64 (1.13.2+dfsg-5ubuntu2) ...
+Setting up libkadm5srv-mit9:amd64 (1.13.2+dfsg-5ubuntu2) ...
+Setting up krb5-user (1.13.2+dfsg-5ubuntu2) ...
+Processing triggers for libc-bin (2.23-0ubuntu9) ...
+root@afsfs1:/etc/yfs/server# kinit gerry/admin@PLAY.GERRy
+kinit: Client 'gerry/admin@PLAY.GERRy' not found in Kerberos database while getting initial credentials
+root@afsfs1:/etc/yfs/server# kinit gerry/admin@PLAY.GERRY
+Password for gerry/admin@PLAY.GERRY:
+root@afsfs1:/etc/yfs/server# aklog
+root@afsfs1:/etc/yfs/server# tokens
+
+Tokens held by the Cache Manager:
+
+User's (AFS ID 1) rxkad tokens for play.gerry [Expires Oct 10 00:41]
+   --End of list--
+root@afsfs1:/etc/yfs/server# bos status localhost
+bos: No route to host (connecting to AFSFS1.PLAY.GERRY)
+root@afsfs1:/etc/yfs/server# ps auxww|grep -i bosserver
+yfsserv+  5840  0.0  0.1 332252  4988 ?        Ssl  14:38   0:00 /usr/sbin/bosserver -nofork -pidfiles=/var/run/yfs
+root      6336  0.0  0.0  14224  1012 pts/0    S+   14:42   0:00 grep --color=auto -i bosserver
+root@afsfs1:/etc/yfs/server# ps auxww|grep -i bosserver
+yfsserv+  5840  0.0  0.1 332252  4988 ?        Ssl  14:38   0:00 /usr/sbin/bosserver -nofork -pidfiles=/var/run/yfs
+root      6343  0.0  0.0  14224   944 pts/0    S+   14:42   0:00 grep --color=auto -i bosserver
+root@afsfs1:/etc/yfs/server# ps auxww|grep -i bosserver
+yfsserv+  5840  0.0  0.1 332252  4988 ?        Ssl  14:38   0:00 /usr/sbin/bosserver -nofork -pidfiles=/var/run/yfs
+root      6350  0.0  0.0  14224  1028 pts/0    S+   14:43   0:00 grep --color=auto -i bosserver
+root@afsfs1:/etc/yfs/server# bos status localhost
+bos: No route to host (connecting to AFSFS1.PLAY.GERRY)
+root@afsfs1:/etc/yfs/server# bos status localhost^C
+root@afsfs1:/etc/yfs/server# bos status 192.168.10.140
+bos: No route to host (connecting to 192.168.10.140)
+root@afsfs1:/etc/yfs/server# sudo systemctl restart auristorfs-server
+root@afsfs1:/etc/yfs/server# bos status localhost
+bos: No route to host (connecting to AFSFS1.PLAY.GERRY)
+root@afsfs1:/etc/yfs/server# sudo bos status -server afsfs1.play.gerry -localauth
+bos: No route to host (connecting to AFSFS1.PLAY.GERRY)
+root@afsfs1:/etc/yfs/server# vos^C
+root@afsfs1:/etc/yfs/server# sudo bos status -server afsfs1.play.gerry -localauth
+bos: No route to host (connecting to AFSFS1.PLAY.GERRY)
+root@afsfs1:/etc/yfs/server# ifconfig
+enp0s3    Link encap:Ethernet  HWaddr 08:00:27:70:3a:fe
+          inet addr:10.0.2.15  Bcast:10.0.2.255  Mask:255.255.255.0
+          inet6 addr: fe80::a00:27ff:fe70:3afe/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:1785 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:1611 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:451161 (451.1 KB)  TX bytes:137664 (137.6 KB)
+
+enp0s8    Link encap:Ethernet  HWaddr 08:00:27:c1:c6:aa
+          inet addr:192.168.10.140  Bcast:192.168.10.255  Mask:255.255.255.0
+          inet6 addr: fe80::a00:27ff:fec1:c6aa/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:26588 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:3476 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:19699975 (19.6 MB)  TX bytes:459789 (459.7 KB)
+
+lo        Link encap:Local Loopback
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:65536  Metric:1
+          RX packets:54 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:54 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1
+          RX bytes:6452 (6.4 KB)  TX bytes:6452 (6.4 KB)
+
+root@afsfs1:/etc/yfs/server# ifconfig
+enp0s3    Link encap:Ethernet  HWaddr 08:00:27:70:3a:fe
+          inet addr:10.0.2.15  Bcast:10.0.2.255  Mask:255.255.255.0
+          inet6 addr: fe80::a00:27ff:fe70:3afe/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:1785 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:1611 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:451161 (451.1 KB)  TX bytes:137664 (137.6 KB)
+
+enp0s8    Link encap:Ethernet  HWaddr 08:00:27:c1:c6:aa
+          inet addr:192.168.10.140  Bcast:192.168.10.255  Mask:255.255.255.0
+          inet6 addr: fe80::a00:27ff:fec1:c6aa/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:26624 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:3499 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:19703009 (19.7 MB)  TX bytes:467613 (467.6 KB)
+
+lo        Link encap:Local Loopback
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:65536  Metric:1
+          RX packets:54 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:54 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1
+          RX bytes:6452 (6.4 KB)  TX bytes:6452 (6.4 KB)
+
+root@afsfs1:/etc/yfs/server#
+

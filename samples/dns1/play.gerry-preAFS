@@ -38,5 +38,4 @@ _kpasswd._udp.PLAY.GERRY.      IN SRV 1  0 464 krb1.play.gerry.
 
 _afs3-vlserver._udp.PLAY.GERRY.      IN SRV 1  0 7003 afsdb1.play.gerry.
 
-_afs3-prserver._udp.PLAY.GERRY.      IN SRV 1  0 7002 afsdb1.play.gerry.
 

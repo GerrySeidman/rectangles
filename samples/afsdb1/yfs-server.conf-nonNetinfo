@@ -10,8 +10,6 @@
                                 type = dbserver
                         }
            }
-	netrestrict = 10.0.2.15
-	netinfo = 192.168.10.130
 }
 
 [cells]

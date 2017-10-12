@@ -1,0 +1,1187 @@
+login as: gerry
+gerry@192.168.10.130's password:
+Welcome to Ubuntu 16.04.3 LTS (GNU/Linux 4.4.0-96-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+9 packages can be updated.
+9 updates are security updates.
+
+
+Last login: Tue Oct 10 14:23:07 2017 from 192.168.10.1
+gerry@afsdb1:~$ hostname
+afsdb1.play.gerry
+gerry@afsdb1:~$ uname -r
+4.4.0-96-generic
+gerry@afsdb1:~$
+gerry@afsdb1:~$
+gerry@afsdb1:~$ fg^C
+gerry@afsdb1:~$ cdow^C
+gerry@afsdb1:~$ hostname
+afsdb1.play.gerry
+gerry@afsdb1:~$ ling afsdb1
+No command 'ling' found, did you mean:
+ Command 'king' from package 'king' (universe)
+ Command 'bing' from package 'bing' (universe)
+ Command 'wing' from package 'wing' (universe)
+ Command 'line' from package 'util-linux' (main)
+ Command 'jing' from package 'jing' (universe)
+ Command 'ping' from package 'inetutils-ping' (universe)
+ Command 'ping' from package 'iputils-ping' (main)
+ Command 'link' from package 'coreutils' (main)
+ Command 'ring' from package 'alliance' (universe)
+ Command 'ding' from package 'ding' (universe)
+ling: command not found
+gerry@afsdb1:~$ ping ^C
+gerry@afsdb1:~$ ping dns1
+PING DNS1.PLAY.GERRY (192.168.10.110) 56(84) bytes of data.
+64 bytes from DNS1.PLAY.GERRY (192.168.10.110): icmp_seq=1 ttl=64 time=0.128 ms
+64 bytes from DNS1.PLAY.GERRY (192.168.10.110): icmp_seq=2 ttl=64 time=0.293 ms
+^C
+--- DNS1.PLAY.GERRY ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 999ms
+rtt min/avg/max/mdev = 0.128/0.210/0.293/0.083 ms
+gerry@afsdb1:~$ ping afsdb1
+PING AFSDB1.PLAY.GERRY (192.168.10.130) 56(84) bytes of data.
+64 bytes from AFSDB1.PLAY.GERRY (192.168.10.130): icmp_seq=1 ttl=64 time=0.212 ms
+c64 bytes from AFSDB1.PLAY.GERRY (192.168.10.130): icmp_seq=2 ttl=64 time=0.045 ms
+^C
+--- AFSDB1.PLAY.GERRY ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1001ms
+rtt min/avg/max/mdev = 0.045/0.128/0.212/0.084 ms
+gerry@afsdb1:~$ ling afsdb1
+No command 'ling' found, did you mean:
+ Command 'jing' from package 'jing' (universe)
+ Command 'wing' from package 'wing' (universe)
+ Command 'bing' from package 'bing' (universe)
+ Command 'ping' from package 'iputils-ping' (main)
+ Command 'ping' from package 'inetutils-ping' (universe)
+ Command 'ring' from package 'alliance' (universe)
+ Command 'king' from package 'king' (universe)
+ Command 'ding' from package 'ding' (universe)
+ Command 'line' from package 'util-linux' (main)
+ Command 'link' from package 'coreutils' (main)
+ling: command not found
+gerry@afsdb1:~$ ^C
+gerry@afsdb1:~$ ^C
+gerry@afsdb1:~$ ^C
+gerry@afsdb1:~$ ping afsdb1
+PING AFSDB1.PLAY.GERRY (192.168.10.130) 56(84) bytes of data.
+64 bytes from AFSDB1.PLAY.GERRY (192.168.10.130): icmp_seq=1 ttl=64 time=0.015 ms
+64 bytes from AFSDB1.PLAY.GERRY (192.168.10.130): icmp_seq=2 ttl=64 time=0.041 ms
+^C
+--- AFSDB1.PLAY.GERRY ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 999ms
+rtt min/avg/max/mdev = 0.015/0.028/0.041/0.013 ms
+gerry@afsdb1:~$ ^C
+gerry@afsdb1:~$ ^C
+gerry@afsdb1:~$ uname -r
+4.4.0-96-generic
+gerry@afsdb1:~$ cd software
+-bash: cd: software: No such file or directory
+gerry@afsdb1:~$ mkdir software
+gerry@afsdb1:~$ mkdir keytabs
+gerry@afsdb1:~$ ls
+keytabs  software
+gerry@afsdb1:~$ cd keytabs
+gerry@afsdb1:~/keytabs$ ls
+bosdb1.keytab  bosfs1.keytab  bosfs2.keytab  bosfs3.keytab  rxgk.keytab  rxkad.keytab
+gerry@afsdb1:~/keytabs$ cd ..
+gerry@afsdb1:~$ cd software
+gerry@afsdb1:~/software$ sudo dpkg -i auristorfs-modules*`uname -r`*.deb
+[sudo] password for gerry:
+Selecting previously unselected package auristorfs-modules3-4.4.0-96-generic.
+(Reading database ... 92156 files and directories currently installed.)
+Preparing to unpack auristorfs-modules3-4.4.0-96-generic_0.1621-1.20171006gitdebian-auristor_amd64.deb ...
+Unpacking auristorfs-modules3-4.4.0-96-generic (0.1621-1.20171006gitdebian~auristor) ...
+Setting up auristorfs-modules3-4.4.0-96-generic (0.1621-1.20171006gitdebian~auristor) ...
+gerry@afsdb1:~/software$
+gerry@afsdb1:~/software$ sudo dpkg -i auristorfs-common*
+Selecting previously unselected package auristorfs-common.
+(Reading database ... 92167 files and directories currently installed.)
+Preparing to unpack auristorfs-common_0.1621-1.20171005gitdebian-auristor_amd64.deb ...
+Unpacking auristorfs-common (0.1621-1.20171005gitdebian~auristor) ...
+Setting up auristorfs-common (0.1621-1.20171005gitdebian~auristor) ...
+Processing triggers for libc-bin (2.23-0ubuntu9) ...
+Processing triggers for man-db (2.7.5-1) ...
+gerry@afsdb1:~/software$ sudo dpkg -i auristorfs-client*
+Selecting previously unselected package auristorfs-client.
+(Reading database ... 92356 files and directories currently installed.)
+Preparing to unpack auristorfs-client_0.1621-1.20171005gitdebian-auristor_amd64.deb ...
+Unpacking auristorfs-client (0.1621-1.20171005gitdebian~auristor) ...
+Setting up auristorfs-client (0.1621-1.20171005gitdebian~auristor) ...
+update-alternatives: using /usr/bin/pagsh.yfs to provide /usr/bin/pagsh (pagsh) in auto mode
+Processing triggers for ureadahead (0.100.0-19) ...
+Processing triggers for man-db (2.7.5-1) ...
+gerry@afsdb1:~/software$ sudo dpkg -i  auristorfs-server*
+Selecting previously unselected package auristorfs-server.
+(Reading database ... 92516 files and directories currently installed.)
+Preparing to unpack auristorfs-server_0.1621-1.20171005gitdebian-auristor_amd64.deb ...
+Unpacking auristorfs-server (0.1621-1.20171005gitdebian~auristor) ...
+Setting up auristorfs-server (0.1621-1.20171005gitdebian~auristor) ...
+Processing triggers for ureadahead (0.100.0-19) ...
+Processing triggers for man-db (2.7.5-1) ...
+gerry@afsdb1:~/software$ sudo dpkg -i  auristorfs-fileserver*
+Selecting previously unselected package auristorfs-fileserver.
+(Reading database ... 92538 files and directories currently installed.)
+Preparing to unpack auristorfs-fileserver_0.1621-1.20171005gitdebian-auristor_amd64.deb ...
+Unpacking auristorfs-fileserver (0.1621-1.20171005gitdebian~auristor) ...
+Setting up auristorfs-fileserver (0.1621-1.20171005gitdebian~auristor) ...
+Processing triggers for man-db (2.7.5-1) ...
+gerry@afsdb1:~/software$ sudo dpkg -i  auristorfs-db*
+Selecting previously unselected package auristorfs-dbserver.
+(Reading database ... 92588 files and directories currently installed.)
+Preparing to unpack auristorfs-dbserver_0.1621-1.20171005gitdebian-auristor_amd64.deb ...
+Unpacking auristorfs-dbserver (0.1621-1.20171005gitdebian~auristor) ...
+Setting up auristorfs-dbserver (0.1621-1.20171005gitdebian~auristor) ...
+Processing triggers for man-db (2.7.5-1) ...
+gerry@afsdb1:~/software$ sudo dpkg -i  auristorfs-doc*
+Selecting previously unselected package auristorfs-doc.
+(Reading database ... 92614 files and directories currently installed.)
+Preparing to unpack auristorfs-doc_0.1621-1.20171005gitdebian-auristor_all.deb ...
+Unpacking auristorfs-doc (0.1621-1.20171005gitdebian~auristor) ...
+Setting up auristorfs-doc (0.1621-1.20171005gitdebian~auristor) ...
+gerry@afsdb1:~/software$ sudo cd /etc/yfs/server
+sudo: cd: command not found
+gerry@afsdb1:~/software$ sudo
+usage: sudo -h | -K | -k | -V
+usage: sudo -v [-AknS] [-g group] [-h host] [-p prompt] [-u user]
+usage: sudo -l [-AknS] [-g group] [-h host] [-p prompt] [-U user] [-u user] [command]
+usage: sudo [-AbEHknPS] [-r role] [-t type] [-C num] [-g group] [-h host] [-p prompt] [-u user] [VAR=value] [-i|-s] [<command>]
+usage: sudo -e [-AknS] [-r role] [-t type] [-C num] [-g group] [-h host] [-p prompt] [-u user] file ...
+gerry@afsdb1:~/software$ sudo bash
+root@afsdb1:~/software# cd /etc/yfs/server
+root@afsdb1:/etc/yfs/server# ls
+BosConfig  bosserver.rxbind  thiscell.conf  yfs-server.conf
+root@afsdb1:/etc/yfs/server# cat yfs-server.conf
+include /etc/yfs/server/thiscell.conf
+[defaults]
+root@afsdb1:/etc/yfs/server# rm yfs-server.conf
+root@afsdb1:/etc/yfs/server# wget http://192.168.10.1:8080/yfs-server.conf
+--2017-10-10 15:07:48--  http://192.168.10.1:8080/yfs-server.conf
+Connecting to 192.168.10.1:8080... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 639 [text/plain]
+Saving to: ‘yfs-server.conf’
+
+yfs-server.conf                              100%[===========================================================================================>]     639  --.-KB/s    in 0s
+
+2017-10-10 15:07:48 (92.1 MB/s) - ‘yfs-server.conf’ saved [639/639]
+
+root@afsdb1:/etc/yfs/server# ls -l
+total 16
+-rw-r--r-- 1 yfsserver yfsserver  62 Oct 10 15:05 BosConfig
+-rw-r--r-- 1 yfsserver yfsserver  11 Oct 10 15:05 bosserver.rxbind
+-rw-r--r-- 1 yfsserver yfsserver  33 Oct 10 15:05 thiscell.conf
+-rw-r--r-- 1 root      root      639 Oct  6 10:18 yfs-server.conf
+root@afsdb1:/etc/yfs/server# cd ..
+root@afsdb1:/etc/yfs# ls
+cacheinfo.conf  cmstate.dat  server  thiscell.conf  yfs-client.conf
+root@afsdb1:/etc/yfs# cat yfs-client.conf
+include /etc/yfs/cacheinfo.conf
+include /etc/yfs/thiscell.conf
+include /usr/share/yfs/cellservdb.conf
+
+# Any tuning can be done here
+
+[defaults]
+root@afsdb1:/etc/yfs# ls -l
+total 20
+-rw-r--r-- 1 root      root       109 Oct 10 15:05 cacheinfo.conf
+-rw------- 1 root      root        64 Oct 10 15:05 cmstate.dat
+drwxr-xr-x 2 yfsserver yfsserver 4096 Oct 10 15:07 server
+-rw-r--r-- 1 root      root        33 Oct 10 15:05 thiscell.conf
+-rw-r--r-- 1 root      root       145 Oct  4 10:05 yfs-client.conf
+root@afsdb1:/etc/yfs# more yfs-client.conf
+include /etc/yfs/cacheinfo.conf
+include /etc/yfs/thiscell.conf
+include /usr/share/yfs/cellservdb.conf
+
+# Any tuning can be done here
+
+[defaults]
+root@afsdb1:/etc/yfs# wget^C
+root@afsdb1:/etc/yfs#
+root@afsdb1:/etc/yfs# rm yfs-client.conf
+root@afsdb1:/etc/yfs# wget http://192.168.10.1:8080/
+--2017-10-10 15:08:40--  http://192.168.10.1:8080/
+Connecting to 192.168.10.1:8080... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+Saving to: ‘index.html’
+
+index.html                                       [ <=>                                                                                        ]  69.00K  --.-KB/s    in 0s
+
+2017-10-10 15:08:40 (265 MB/s) - ‘index.html’ saved [70660]
+
+root@afsdb1:/etc/yfs# wget http://192.168.10.1:8080/yfs-client.conf
+--2017-10-10 15:08:43--  http://192.168.10.1:8080/yfs-client.conf
+Connecting to 192.168.10.1:8080... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 467 [text/plain]
+Saving to: ‘yfs-client.conf’
+
+yfs-client.conf                              100%[===========================================================================================>]     467  --.-KB/s    in 0s
+
+2017-10-10 15:08:43 (66.4 MB/s) - ‘yfs-client.conf’ saved [467/467]
+
+root@afsdb1:/etc/yfs# ls
+cacheinfo.conf  cmstate.dat  index.html  server  thiscell.conf  yfs-client.conf
+root@afsdb1:/etc/yfs# rm index.html
+root@afsdb1:/etc/yfs# cat thiscell.conf
+[defaults]
+thiscell = play.gerry
+root@afsdb1:/etc/yfs# more yfs-client.conf
+include /etc/yfs/cacheinfo.conf
+include /etc/yfs/thiscell.conf
+include /usr/share/yfs/cellservdb.conf
+
+# Any tuning can be done here
+
+[defaults]
+
+
+[cells]
+        play.gerry = {
+                description = "PLAY.GERRY play cell"
+                servers = {
+                        afsdb1.play.gerry = {
+                                address = 192.168.10.130
+                                type = dbserver
+                        }
+                }
+        }
+
+
+
+root@afsdb1:/etc/yfs# more server/yfs-server.conf
+[kerberos]
+        local_realms = PLAY.GERRY
+
+[defaults]
+        thiscell = play.gerry
+        databases = {
+                servers = {
+                        afsdb1.play.gerry = {
+                                address = 192.168.10.130
+                                type = dbserver
+                        }
+           }
+}
+
+[cells]
+        test.gerry = {
+                description = "PLAY.GERRY play cell"
+                servers = {
+                        afs1db.play.gerry = {
+                                address = 192.168.10.130
+                                type = dbserver
+                        }
+                }
+}
+root@afsdb1:/etc/yfs# cd ~
+root@afsdb1:~# pwd
+/home/gerry
+root@afsdb1:~# cd keytabs
+root@afsdb1:~/keytabs# sudo asetkey add rxkad_krb5 2 all rxkad.keytab afs/play.gerry@PLAY.GERRY^C
+root@afsdb1:~/keytabs# exit
+exit
+gerry@afsdb1:~/software$ sudo asetkey add rxkad_krb5 2 all rxkad.keytab afs/play.gerry@PLAY.GERRY
+asetkey: No such file or directory while extracting AFS service key
+gerry@afsdb1:~/software$ cd ..
+gerry@afsdb1:~$ cd keytabs
+gerry@afsdb1:~/keytabs$ sudo asetkey add rxkad_krb5 2 all rxkad.keytab afs/play.gerry@PLAY.GERRY
+gerry@afsdb1:~/keytabs$ sudo cp bosdb1.keytab /etc/yfs/server/bos.keytab
+gerry@afsdb1:~/keytabs$ sudo cp rxgk.keytab /etc/yfs/server
+gerry@afsdb1:~/keytabs$ sudo asetkey add yfs-rxgk 1 aes256-cts-hmac-sha1-96 random
+gerry@afsdb1:~/keytabs$ ls
+bosdb1.keytab  bosfs1.keytab  bosfs2.keytab  bosfs3.keytab  rxgk.keytab  rxkad.keytab
+gerry@afsdb1:~/keytabs$ ^C
+gerry@afsdb1:~/keytabs$ history
+    1  shutdown now
+    2  ifconfig
+    3  shutdown now
+    4  cat /etc/network/interfaces
+    5  cat /etc/hosts
+    6  ifconfig
+    7  shutdown now
+    8  reboot
+    9  sudo vi /etc/network/interfaces
+   10  cat /etc/hostname
+   11  sudo vi cat /etc/hostname
+   12  sudo vi /etc/hostname
+   13  vi /etc/hosts
+   14  sudo vi /etc/hosts
+   15  hostname
+   16  cat /etc/hostname
+   17  reboot
+   18  sudo reboot
+   19  ifconfig
+   20  sudo vi /etc/network/interfaces
+   21  vi /etc/hostname
+   22  sudo vi /etc/hostname
+   23  cat /etc/hostname
+   24  shutdown now
+   25  sudo shutdown now
+   26  uname -r
+   27  sudo apt install ntp
+   28  hostname
+   29  apt status
+   30  ping stem1
+   31  ping stem1.play.gerry
+   32  ping stem1
+   33  hostname
+   34  shutdown now
+   35  ping stem1
+   36  ping stem1.play.gerry
+   37  uname -r
+   38  shutdown now
+   39  ps
+   40  ifconfig
+   41  sudo vi /etc/network/interfaces
+   42  cat /etc/network/interfaces
+   43  shutdown now
+   44  sudo shutdown now
+   45  shutdown now
+   46  uname -t
+   47  uname -r
+   48  cat /etc/hostname
+   49  cat /etc/hosts
+   50  exit
+   51  sudo shutdown now
+   52  ifconfig
+   53  sudo ls
+   54  export NEW_HOST=afsdb1
+   55  export NEW_IP=192.168.10.130
+   56  sudo sed -i -- "s/192.168.10.100/$NEW_IP/g" /etc/network/interfaces
+   57  sudo sed -i -- "s/stem1/$NEW_HOST/g" /etc/hostname
+   58  sudo reboot
+   59  ```
+   60  hostname
+   61  uname -r
+   62  hostname
+   63  ling afsdb1
+   64  ping dns1
+   65  ping afsdb1
+   66  ling afsdb1
+   67  ping afsdb1
+   68  uname -r
+   69  cd software
+   70  mkdir software
+   71  mkdir keytabs
+   72  ls
+   73  cd keytabs
+   74  ls
+   75  cd ..
+   76  cd software
+   77  sudo dpkg -i auristorfs-modules*`uname -r`*.deb
+   78  sudo dpkg -i auristorfs-common*
+   79  sudo dpkg -i auristorfs-client*
+   80  sudo dpkg -i  auristorfs-server*
+   81  sudo dpkg -i  auristorfs-fileserver*
+   82  sudo dpkg -i  auristorfs-db*
+   83  sudo dpkg -i  auristorfs-doc*
+   84  sudo cd /etc/yfs/server
+   85  sudo
+   86  sudo bash
+   87  sudo asetkey add rxkad_krb5 2 all rxkad.keytab afs/play.gerry@PLAY.GERRY
+   88  cd ..
+   89  cd keytabs
+   90  sudo asetkey add rxkad_krb5 2 all rxkad.keytab afs/play.gerry@PLAY.GERRY
+   91  sudo cp bosdb1.keytab /etc/yfs/server/bos.keytab
+   92  sudo cp rxgk.keytab /etc/yfs/server
+   93  sudo asetkey add yfs-rxgk 1 aes256-cts-hmac-sha1-96 random
+   94  ls
+   95  history
+gerry@afsdb1:~/keytabs$ dir
+bosdb1.keytab  bosfs1.keytab  bosfs2.keytab  bosfs3.keytab  rxgk.keytab  rxkad.keytab
+gerry@afsdb1:~/keytabs$ ^C
+gerry@afsdb1:~/keytabs$ history | fgrep asetk
+   87  sudo asetkey add rxkad_krb5 2 all rxkad.keytab afs/play.gerry@PLAY.GERRY
+   90  sudo asetkey add rxkad_krb5 2 all rxkad.keytab afs/play.gerry@PLAY.GERRY
+   93  sudo asetkey add yfs-rxgk 1 aes256-cts-hmac-sha1-96 random
+   97  history | fgrep asetk
+gerry@afsdb1:~/keytabs$ sudo mkdir /vicepa
+gerry@afsdb1:~/keytabs$ sudo touch /vicepa/AlwaysAttach
+gerry@afsdb1:~/keytabs$ sudo apt install attr
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+The following NEW packages will be installed:
+  attr
+0 upgraded, 1 newly installed, 0 to remove and 5 not upgraded.
+Need to get 25.5 kB of archives.
+After this operation, 143 kB of additional disk space will be used.
+Get:1 http://us.archive.ubuntu.com/ubuntu xenial/main amd64 attr amd64 1:2.4.47-2 [25.5 kB]
+Fetched 25.5 kB in 0s (83.7 kB/s)
+Selecting previously unselected package attr.
+(Reading database ... 93251 files and directories currently installed.)
+Preparing to unpack .../attr_1%3a2.4.47-2_amd64.deb ...
+Unpacking attr (1:2.4.47-2) ...
+Processing triggers for man-db (2.7.5-1) ...
+Setting up attr (1:2.4.47-2) ...
+gerry@afsdb1:~/keytabs$ sudo touch /vicepa/xattr-test
+gerry@afsdb1:~/keytabs$ sudo setfattr -n user.foo -v bar /vicepa/xattr-test
+gerry@afsdb1:~/keytabs$ getfattr -n user.foo /vicepa/xattr-test
+getfattr: Removing leading '/' from absolute path names
+# file: vicepa/xattr-test
+user.foo="bar"
+
+gerry@afsdb1:~/keytabs$ sudo rm /vicepa/xattr-test
+gerry@afsdb1:~/keytabs$  sudo useradd -r -s /bin/nologin yfsserver
+useradd: user 'yfsserver' already exists
+gerry@afsdb1:~/keytabs$ id yfserver
+id: ‘yfserver’: no such user
+gerry@afsdb1:~/keytabs$ id yfsserver
+uid=112(yfsserver) gid=118(yfsserver) groups=118(yfsserver)
+gerry@afsdb1:~/keytabs$ ls -l /etc/yfs
+total 20
+-rw-r--r-- 1 root      root       109 Oct 10 15:05 cacheinfo.conf
+-rw------- 1 root      root        64 Oct 10 15:05 cmstate.dat
+drwxr-xr-x 2 yfsserver yfsserver 4096 Oct 10 15:10 server
+-rw-r--r-- 1 root      root        33 Oct 10 15:05 thiscell.conf
+-rw-r--r-- 1 root      root       467 Oct  8 20:45 yfs-client.conf
+gerry@afsdb1:~/keytabs$ cd /yfs
+-bash: cd: /yfs: No such file or directory
+gerry@afsdb1:~/keytabs$ cd /etc/yfs
+gerry@afsdb1:/etc/yfs$ ls -
+ls: cannot access '-': No such file or directory
+gerry@afsdb1:/etc/yfs$ -ls -l
+No command '-ls' found, did you mean:
+ Command 'ls' from package 'coreutils' (main)
+ Command 'ils' from package 'sleuthkit' (universe)
+ Command 'ols' from package 'speech-tools' (universe)
+ Command 'jls' from package 'sleuthkit' (universe)
+ Command 'fls' from package 'sleuthkit' (universe)
+ Command 'bls' from package 'bareos-tools' (universe)
+ Command 'bls' from package 'bacula-sd' (universe)
+ Command 'als' from package 'atool' (universe)
+ Command 'i-ls' from package 'integrit' (universe)
+ Command 'hls' from package 'hfsutils' (main)
+-ls: command not found
+gerry@afsdb1:/etc/yfs$ ls
+cacheinfo.conf  cmstate.dat  server  thiscell.conf  yfs-client.conf
+gerry@afsdb1:/etc/yfs$ ls -l
+total 20
+-rw-r--r-- 1 root      root       109 Oct 10 15:05 cacheinfo.conf
+-rw------- 1 root      root        64 Oct 10 15:05 cmstate.dat
+drwxr-xr-x 2 yfsserver yfsserver 4096 Oct 10 15:10 server
+-rw-r--r-- 1 root      root        33 Oct 10 15:05 thiscell.conf
+-rw-r--r-- 1 root      root       467 Oct  8 20:45 yfs-client.conf
+gerry@afsdb1:/etc/yfs$ ls /etc/yfs/server
+BosConfig  bos.keytab  bosserver.rxbind  KeyFile  KeyFileExt  rxgk.keytab  thiscell.conf  yfs-server.conf
+gerry@afsdb1:/etc/yfs$ ls -l /etc/yfs/server
+total 32
+-rw-r--r-- 1 yfsserver yfsserver  62 Oct 10 15:05 BosConfig
+-rw------- 1 root      root      330 Oct 10 15:10 bos.keytab
+-rw-r--r-- 1 yfsserver yfsserver  11 Oct 10 15:05 bosserver.rxbind
+-rw------- 1 root      root        4 Oct 10 15:11 KeyFile
+-rw------- 1 root      root      224 Oct 10 15:11 KeyFileExt
+-rw------- 1 root      root      322 Oct 10 15:10 rxgk.keytab
+-rw-r--r-- 1 yfsserver yfsserver  33 Oct 10 15:05 thiscell.conf
+-rw-r--r-- 1 root      root      639 Oct 10 15:11 yfs-server.conf
+gerry@afsdb1:/etc/yfs$ sudo chown -R yfsserver: /etc/yfs/server
+gerry@afsdb1:/etc/yfs$ ls -l /etc/yfs/server
+total 32
+-rw-r--r-- 1 yfsserver yfsserver  62 Oct 10 15:05 BosConfig
+-rw------- 1 yfsserver yfsserver 330 Oct 10 15:10 bos.keytab
+-rw-r--r-- 1 yfsserver yfsserver  11 Oct 10 15:05 bosserver.rxbind
+-rw------- 1 yfsserver yfsserver   4 Oct 10 15:11 KeyFile
+-rw------- 1 yfsserver yfsserver 224 Oct 10 15:11 KeyFileExt
+-rw------- 1 yfsserver yfsserver 322 Oct 10 15:10 rxgk.keytab
+-rw-r--r-- 1 yfsserver yfsserver  33 Oct 10 15:05 thiscell.conf
+-rw-r--r-- 1 yfsserver yfsserver 639 Oct 10 15:11 yfs-server.conf
+gerry@afsdb1:/etc/yfs$ ls -l /vicepa/
+total 0
+-rw-r--r-- 1 root root 0 Oct 10 15:18 AlwaysAttach
+gerry@afsdb1:/etc/yfs$ ls -l /
+total 91
+drwxr-xr-x   2 root root  2048 Dec 31  1969 afs
+drwxr-xr-x   2 root root  4096 Oct  9 23:21 bin
+drwxr-xr-x   4 root root  1024 Oct  9 23:39 boot
+drwxr-xr-x  20 root root  3960 Oct 10 14:23 dev
+drwxr-xr-x  90 root root  4096 Oct 10 15:05 etc
+drwxr-xr-x   3 root root  4096 Sep 23 15:42 home
+lrwxrwxrwx   1 root root    32 Oct  9 23:36 initrd.img -> boot/initrd.img-4.4.0-96-generic
+lrwxrwxrwx   1 root root    32 Sep 23 15:22 initrd.img.old -> boot/initrd.img-4.4.0-87-generic
+drwxr-xr-x  22 root root  4096 Oct  9 23:34 lib
+drwxr-xr-x   2 root root  4096 Sep 23 15:18 lib64
+drwx------   2 root root 16384 Sep 23 15:18 lost+found
+drwxr-xr-x   3 root root  4096 Sep 23 15:18 media
+drwxr-xr-x   2 root root  4096 Aug  1 07:16 mnt
+drwxr-xr-x   2 root root  4096 Aug  1 07:16 opt
+dr-xr-xr-x 124 root root     0 Oct 10 14:24 proc
+drwx------   2 root root  4096 Sep 23 15:18 root
+drwxr-xr-x  23 root root   880 Oct 10 15:03 run
+drwxr-xr-x   2 root root 12288 Oct 10 15:04 sbin
+drwxr-xr-x   2 root root  4096 Apr 29 04:38 snap
+drwxr-xr-x   2 root root  4096 Aug  1 07:16 srv
+dr-xr-xr-x  13 root root     0 Oct 10 14:23 sys
+drwxrwxrwt   7 root root  4096 Oct 10 15:22 tmp
+drwxr-xr-x  10 root root  4096 Sep 23 15:18 usr
+drwxr-xr-x  13 root root  4096 Sep 23 15:38 var
+drwxr-xr-x   2 root root  4096 Oct 10 15:18 vicepa
+lrwxrwxrwx   1 root root    29 Oct  9 23:36 vmlinuz -> boot/vmlinuz-4.4.0-96-generic
+lrwxrwxrwx   1 root root    29 Sep 23 15:22 vmlinuz.old -> boot/vmlinuz-4.4.0-87-generic
+gerry@afsdb1:/etc/yfs$ sudo chown -R yfsserver: /etc/yfs/server
+gerry@afsdb1:/etc/yfs$ sudo chown -R yfsserver: /vicepa/
+gerry@afsdb1:/etc/yfs$ sudo chown -R yfsserver: /var/log/yfs
+gerry@afsdb1:/etc/yfs$ sudo mkdir /var/run/yfs/
+gerry@afsdb1:/etc/yfs$ sudo chown yfsserver: /var/run/yfs/
+gerry@afsdb1:/etc/yfs$ sudo systemctl restart auristorfs-server
+gerry@afsdb1:/etc/yfs$ sudo bos create -server afsdb1.play.gerry -type simple -instance ptserver -cmd /usr/lib/yfs/ptserver -localauth
+gerry@afsdb1:/etc/yfs$ sudo bos create -server afsdb1.play.gerry -type simple -instance vlserver -cmd /usr/lib/yfs/vlserver -localauth
+gerry@afsdb1:/etc/yfs$ sudo bos status -server afsdb1.play.gerry -localauth
+Instance ptserver, currently running normally.
+Instance vlserver, currently running normally.
+gerry@afsdb1:/etc/yfs$ sudo bos status -server afsdb1.play.gerry -localauth
+Instance ptserver, currently running normally.
+Instance vlserver, currently running normally.
+gerry@afsdb1:/etc/yfs$ sudo bos adduser afsdb1.play.gerry -user gerry/admin@PLAY.GERRY -rxkad -localauth
+gerry@afsdb1:/etc/yfs$ sudo bos adduser afsdb1.play.gerry -user gerry/admin@PLAY.GERRY -localauth
+gerry@afsdb1:/etc/yfs$ sudo pts createuser gerry.admin -localauth
+User gerry.admin has id 1
+gerry@afsdb1:/etc/yfs$ sudo pts adduser gerry.admin system:administrators -localauth
+gerry@afsdb1:/etc/yfs$ sudo fs newcell play.gerry afsdb1.play.gerry
+gerry@afsdb1:/etc/yfs$ kinit gerry@PLAY.GERRY
+The program 'kinit' can be found in the following packages:
+ * heimdal-clients
+ * krb5-user
+Try: sudo apt install <selected package>
+gerry@afsdb1:/etc/yfs$  sudo apt install  krb5-user
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+The following additional packages will be installed:
+  krb5-config libgssrpc4 libkadm5clnt-mit9 libkadm5srv-mit9 libkdb5-8
+Suggested packages:
+  krb5-doc
+The following NEW packages will be installed:
+  krb5-config krb5-user libgssrpc4 libkadm5clnt-mit9 libkadm5srv-mit9 libkdb5-8
+0 upgraded, 6 newly installed, 0 to remove and 5 not upgraded.
+Need to get 302 kB of archives.
+After this operation, 1,296 kB of additional disk space will be used.
+Do you want to continue? [Y/n] Y
+Get:1 http://us.archive.ubuntu.com/ubuntu xenial/main amd64 krb5-config all 2.3 [23.4 kB]
+Get:2 http://us.archive.ubuntu.com/ubuntu xenial-updates/main amd64 libgssrpc4 amd64 1.13.2+dfsg-5ubuntu2 [54.5 kB]
+Get:3 http://us.archive.ubuntu.com/ubuntu xenial-updates/main amd64 libkadm5clnt-mit9 amd64 1.13.2+dfsg-5ubuntu2 [36.7 kB]
+Get:4 http://us.archive.ubuntu.com/ubuntu xenial-updates/main amd64 libkdb5-8 amd64 1.13.2+dfsg-5ubuntu2 [37.1 kB]
+Get:5 http://us.archive.ubuntu.com/ubuntu xenial-updates/main amd64 libkadm5srv-mit9 amd64 1.13.2+dfsg-5ubuntu2 [51.3 kB]
+Get:6 http://us.archive.ubuntu.com/ubuntu xenial-updates/universe amd64 krb5-user amd64 1.13.2+dfsg-5ubuntu2 [98.7 kB]
+Fetched 302 kB in 0s (1,436 kB/s)
+Preconfiguring packages ...
+Selecting previously unselected package krb5-config.
+(Reading database ... 93264 files and directories currently installed.)
+Preparing to unpack .../krb5-config_2.3_all.deb ...
+Unpacking krb5-config (2.3) ...
+Selecting previously unselected package libgssrpc4:amd64.
+Preparing to unpack .../libgssrpc4_1.13.2+dfsg-5ubuntu2_amd64.deb ...
+Unpacking libgssrpc4:amd64 (1.13.2+dfsg-5ubuntu2) ...
+Selecting previously unselected package libkadm5clnt-mit9:amd64.
+Preparing to unpack .../libkadm5clnt-mit9_1.13.2+dfsg-5ubuntu2_amd64.deb ...
+Unpacking libkadm5clnt-mit9:amd64 (1.13.2+dfsg-5ubuntu2) ...
+Selecting previously unselected package libkdb5-8:amd64.
+Preparing to unpack .../libkdb5-8_1.13.2+dfsg-5ubuntu2_amd64.deb ...
+Unpacking libkdb5-8:amd64 (1.13.2+dfsg-5ubuntu2) ...
+Selecting previously unselected package libkadm5srv-mit9:amd64.
+Preparing to unpack .../libkadm5srv-mit9_1.13.2+dfsg-5ubuntu2_amd64.deb ...
+Unpacking libkadm5srv-mit9:amd64 (1.13.2+dfsg-5ubuntu2) ...
+Selecting previously unselected package krb5-user.
+Preparing to unpack .../krb5-user_1.13.2+dfsg-5ubuntu2_amd64.deb ...
+Unpacking krb5-user (1.13.2+dfsg-5ubuntu2) ...
+Processing triggers for libc-bin (2.23-0ubuntu9) ...
+Processing triggers for man-db (2.7.5-1) ...
+Setting up krb5-config (2.3) ...
+Setting up libgssrpc4:amd64 (1.13.2+dfsg-5ubuntu2) ...
+Setting up libkadm5clnt-mit9:amd64 (1.13.2+dfsg-5ubuntu2) ...
+Setting up libkdb5-8:amd64 (1.13.2+dfsg-5ubuntu2) ...
+Setting up libkadm5srv-mit9:amd64 (1.13.2+dfsg-5ubuntu2) ...
+Setting up krb5-user (1.13.2+dfsg-5ubuntu2) ...
+Processing triggers for libc-bin (2.23-0ubuntu9) ...
+gerry@afsdb1:/etc/yfs$ ls
+cacheinfo.conf  cmstate.dat  server  thiscell.conf  yfs-client.conf
+gerry@afsdb1:/etc/yfs$ cat yfs-client.conf
+include /etc/yfs/cacheinfo.conf
+include /etc/yfs/thiscell.conf
+include /usr/share/yfs/cellservdb.conf
+
+# Any tuning can be done here
+
+[defaults]
+
+
+[cells]
+        play.gerry = {
+                description = "PLAY.GERRY play cell"
+                servers = {
+                        afsdb1.play.gerry = {
+                                address = 192.168.10.130
+                                type = dbserver
+                        }
+                }
+        }
+
+
+
+gerry@afsdb1:/etc/yfs$ kinit gerry@PLAY.GERRY
+Password for gerry@PLAY.GERRY:
+kinit: Password incorrect while getting initial credentials
+gerry@afsdb1:/etc/yfs$ kinit gerry@PLAY.GERRY
+Password for gerry@PLAY.GERRY:
+gerry@afsdb1:/etc/yfs$ aklog
+gerry@afsdb1:/etc/yfs$ sudo bos create -server afsdb1.play.gerry -type dafs -instance dafs -cmd "/usr/lib/yfs/fileserver" "/usr/lib/yfs/volserver" "/usr/lib/yfs/salvageserver" "/usr/lib/yfs/salvager" -localauth
+gerry@afsdb1:/etc/yfs$ kinit gerry/admin@PLAY.GERRY
+Password for gerry/admin@PLAY.GERRY:
+gerry@afsdb1:/etc/yfs$ vos create -server afsdb1.play.gerry  -partition /vicepa -name root.cell
+vos: Cannot list partitions on server [10.0.2.15]:7005 : Insufficient privilege for volume operation
+gerry@afsdb1:/etc/yfs$ ping afsdb1
+PING AFSDB1.PLAY.GERRY (192.168.10.130) 56(84) bytes of data.
+64 bytes from AFSDB1.PLAY.GERRY (192.168.10.130): icmp_seq=1 ttl=64 time=0.015 ms
+64 bytes from AFSDB1.PLAY.GERRY (192.168.10.130): icmp_seq=2 ttl=64 time=0.039 ms
+^C
+--- AFSDB1.PLAY.GERRY ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 999ms
+rtt min/avg/max/mdev = 0.015/0.027/0.039/0.012 ms
+gerry@afsdb1:/etc/yfs$ cat /hosts
+cat: /hosts: No such file or directory
+gerry@afsdb1:/etc/yfs$ cat /etc/hosts
+127.0.0.1       localhost
+
+# The following lines are desirable for IPv6 capable hosts
+::1     localhost ip6-localhost ip6-loopback
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+gerry@afsdb1:/etc/yfs$ ks server
+ks: command not found
+gerry@afsdb1:/etc/yfs$ ls server
+BosConfig  bos.keytab  bosserver.rxbind  KeyFile  KeyFileExt  rxgk.keytab  thiscell.conf  UserListExt  yfs-server.conf
+gerry@afsdb1:/etc/yfs$ vos create -server afsdb1.play.gerry  -partition /vicepa -name root.cell
+vos: Cannot list partitions on server [10.0.2.15]:7005 : Insufficient privilege for volume operation
+gerry@afsdb1:/etc/yfs$ vos listparts
+vos: Unrecognized operation 'listparts'; type 'vos help' for list
+gerry@afsdb1:/etc/yfs$ vos help
+vos: Commands are:
+addsite         add a replication site
+apropos         search by help text
+backup          make backup of a volume
+backupsys       en masse backups
+changeloc       Change a RW volume's location and update the location service
+convertROtoRW   convert a RO volume into a RW volume (after loss of old RW volume)
+copy            copy a volume
+create          create a new volume
+delentry        delist the volume from the location service
+dump            dump a volume
+eachfs          FileServer iterator interface
+eachvol         General VLDB query interface
+endtrans        end a volserver transaction
+examine         everything about the volume
+help            get help on commands
+interactive     enter interactive mode
+listfs          list all file servers registered with the location service
+listloc         list volumes known to the location service
+listmaxacl      list the volume maximum access list
+listpart        list partitions
+listseclevels   list the volume security classes and levels
+listvol         list volumes on server (bypass the location service)
+lock            lock a volume
+move            move a volume
+offline         force the volume status to offline
+online          force the volume status to online
+partinfo        list partition information
+quit            exit program
+release         release a volume
+remove          delete a volume
+removefs        deregister a file server from the location service
+remsite         remove a replication site
+rename          rename a volume
+restore         restore a volume
+setfields       change volume info fields
+setmaxacl       set the volume maximum access list
+setquota        set the volume maximum quota
+setseclevels    set the volume security classes and levels
+size            obtain various sizes of the volume.
+sleep           pause for a bit
+source          read commands from file
+splitvolume     split a volume at a certain directory
+status          report on volser status
+syncfs          synchronize a file server with the location service
+syncloc         synchronize the location service with a file server
+unlock          release volume lock
+unlockall       unlock all locked volumes
+zap             delete the volume, don't contact the location service
+gerry@afsdb1:/etc/yfs$ vos listvol
+vos: Missing required parameter '-server'
+gerry@afsdb1:/etc/yfs$ vos listvol -server afsdb1.play.gerry
+vos: Cannot list partitions on server [10.0.2.15]:7005 : Insufficient privilege for volume operation
+gerry@afsdb1:/etc/yfs$ pts
+pts: Type 'pts help' or 'pts help <topic>' for help
+gerry@afsdb1:/etc/yfs$ pts help
+pts: Commands are:
+adduser         add a user to a group
+apropos         search by help text
+chown           change ownership of a group
+creategroup     create a new group
+createuser      create a new user
+delete          delete a user or group from database
+examine         examine an entry
+help            get help on commands
+interactive     enter interactive mode
+listentries     list users/groups in the protection database
+listmax         list max id
+listowned       list groups owned by an entry or zero id gets orphaned groups
+membership      list membership of a user or group
+quit            exit program
+removeuser      remove a user from a group
+rename          rename user or group
+setaccess       set permissions for an entry
+setfields       set fields for an entry
+setmax          set max id
+sleep           pause for a bit
+source          read commands from file
+whoami          report current identity
+gerry@afsdb1:/etc/yfs$ listactive^C
+gerry@afsdb1:/etc/yfs$ pts listactive
+pts: Unrecognized operation 'listactive'; type 'pts help' for list
+gerry@afsdb1:/etc/yfs$ systemctl restart auristorfs-server.service
+==== AUTHENTICATING FOR org.freedesktop.systemd1.manage-units ===
+Authentication is required to restart 'auristorfs-server.service'.
+Authenticating as: Gerry,,, (gerry)
+Password:
+gerry@afsdb1:/etc/yfs$ ^C
+gerry@afsdb1:/etc/yfs$ ^C
+gerry@afsdb1:/etc/yfs$ sudo systemctl restart auristorfs-server.service
+gerry@afsdb1:/etc/yfs$ vos create -server afsdb1.play.gerry  -partition /vicepa -name root.cell
+vos: Cannot list partitions on server [10.0.2.15]:7005 : Insufficient privilege for volume operation
+gerry@afsdb1:/etc/yfs$ ^C
+gerry@afsdb1:/etc/yfs$ ping afsdb1.play.gerry
+PING AFSDB1.PLAY.GERRY (192.168.10.130) 56(84) bytes of data.
+64 bytes from AFSDB1.PLAY.GERRY (192.168.10.130): icmp_seq=1 ttl=64 time=0.070 ms
+64 bytes from AFSDB1.PLAY.GERRY (192.168.10.130): icmp_seq=2 ttl=64 time=0.043 ms
+64 bytes from AFSDB1.PLAY.GERRY (192.168.10.130): icmp_seq=3 ttl=64 time=0.024 ms
+^C
+--- AFSDB1.PLAY.GERRY ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2000ms
+rtt min/avg/max/mdev = 0.024/0.045/0.070/0.020 ms
+gerry@afsdb1:/etc/yfs$ kinit gerry/admin@vos create -server afsdb1.play.gerry  -partition /vicepa -name root.cell -localauth^C
+gerry@afsdb1:/etc/yfs$ vos create -server afsdb1.play.gerry  -partition /vicepa -name root.cell -localauth^C
+gerry@afsdb1:/etc/yfs$ sudo vos create -server afsdb1.play.gerry  -partition /vicepa -name root.cell -localauth
+Volume 1048578 created on server [10.0.2.15]:7005 partition /vicepa, NAME: root.cell
+gerry@afsdb1:/etc/yfs$ tokens
+
+Tokens held by the Cache Manager:
+
+User's (AFS ID 32766) rxkad tokens for play.gerry [Expires Oct 11 01:30]
+   --End of list--
+gerry@afsdb1:/etc/yfs$ kinit kinit gerry/admin@PLAY.GERRY^C
+gerry@afsdb1:/etc/yfs$ kinit gerry/admin@PLAY.GERRY
+Password for gerry/admin@PLAY.GERRY:
+gerry@afsdb1:/etc/yfs$ aklog
+gerry@afsdb1:/etc/yfs$ tokens
+
+Tokens held by the Cache Manager:
+
+User's (AFS ID 1) rxkad tokens for play.gerry [Expires Oct 11 01:38]
+   --End of list--
+gerry@afsdb1:/etc/yfs$ vos create -server afsdb1.play.gerry  -partition /vicepa -name root.cell
+vos: Cannot list partitions on server [10.0.2.15]:7005 : Insufficient privilege for volume operation
+gerry@afsdb1:/etc/yfs$ bos status localhost -localauth
+bos: Unable to find any suitable keys for localauth
+gerry@afsdb1:/etc/yfs$ bos status localhost -local
+bos: Unable to find any suitable keys for localauth
+gerry@afsdb1:/etc/yfs$ sudo bos status localhost -local
+Instance ptserver, currently running normally.
+Instance vlserver, currently running normally.
+Instance dafs, currently running normally.
+    Auxiliary status is: file server running.
+gerry@afsdb1:/etc/yfs$
+gerry@afsdb1:/etc/yfs$ vos create -server afsdb1.play.gerry  -partition /vicepa -name root.cell
+vos: Cannot list partitions on server [10.0.2.15]:7005 : Insufficient privilege for volume operation
+gerry@afsdb1:/etc/yfs$ sudo vos create -server afsdb1.play.gerry  -partition /vicepa -name root.cell
+vos: Cannot list partitions on server [10.0.2.15]:7005 : Insufficient privilege for volume operation
+gerry@afsdb1:/etc/yfs$
+gerry@afsdb1:/etc/yfs$ vos partinfo localhost -local
+vos: Unable to find any suitable keys for localauth
+gerry@afsdb1:/etc/yfs$ sudo vos partinfo localhost -local
+Free space on server [10.0.2.15]:7005 partition /vicepa: 32817520 K blocks out of total 34620000
+gerry@afsdb1:/etc/yfs$ vos listaddrs -localauth
+vos: Unable to find any suitable keys for localauth
+gerry@afsdb1:/etc/yfs$ sudo vos listaddrs -localauth
+[10.0.2.15]:7005
+AFSDB1.PLAY.GERRY:7005
+gerry@afsdb1:/etc/yfs$ vos listaddrs -localauth
+vos: Unable to find any suitable keys for localauth
+gerry@afsdb1:/etc/yfs$ sudo vos listaddrs -localauth
+[10.0.2.15]:7005
+AFSDB1.PLAY.GERRY:7005
+gerry@afsdb1:/etc/yfs$ sudo bash
+root@afsdb1:/etc/yfs# vos listaddrs -localauth
+[10.0.2.15]:7005
+AFSDB1.PLAY.GERRY:7005
+root@afsdb1:/etc/yfs# tokens
+
+Tokens held by the Cache Manager:
+
+   --End of list--
+root@afsdb1:/etc/yfs# kinit gerry/admin@PLAY.GERRY
+Password for gerry/admin@PLAY.GERRY:
+root@afsdb1:/etc/yfs# aklog
+root@afsdb1:/etc/yfs# tokens
+
+Tokens held by the Cache Manager:
+
+User's (AFS ID 1) rxkad tokens for play.gerry [Expires Oct 11 01:41]
+   --End of list--
+root@afsdb1:/etc/yfs# vos listaddrs -localauth
+[10.0.2.15]:7005
+AFSDB1.PLAY.GERRY:7005
+root@afsdb1:/etc/yfs# systemctl restart auristorfs-server.service
+root@afsdb1:/etc/yfs# vos create -server afsdb1.play.gerry  -partition /vicepa -name root.cell
+vos: Cannot list partitions on server [10.0.2.15]:7005 : Insufficient privilege for volume operation
+root@afsdb1:/etc/yfs# kinitkinit gerry/admin@PLAY.GERRY
+kinitkinit: command not found
+root@afsdb1:/etc/yfs# kinit gerry/admin@PLAY.GERRY
+Password for gerry/admin@PLAY.GERRY:
+root@afsdb1:/etc/yfs# aklog
+root@afsdb1:/etc/yfs# vos create -server afsdb1.play.gerry  -partition /vicepa -name root.cell
+vos: Cannot list partitions on server [10.0.2.15]:7005 : Insufficient privilege for volume operation
+root@afsdb1:/etc/yfs# vos create -server afsdb1.play.gerry  -partition /vicepa -name root.cell -localauth
+vos: Volume root.cell already exists
+root@afsdb1:/etc/yfs# cat /etc/hosts
+127.0.0.1       localhost
+
+# The following lines are desirable for IPv6 capable hosts
+::1     localhost ip6-localhost ip6-loopback
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+root@afsdb1:/etc/yfs# cd /var/log
+root@afsdb1:/var/log# ls
+alternatives.log  auth.log       btmp          dmesg     faillog  installer  lastlog  ntpstats  unattended-upgrades  yfs
+apt               bootstrap.log  dist-upgrade  dpkg.log  fsck     kern.log   lxd      syslog    wtmp
+root@afsdb1:/var/log# cd yfs
+root@afsdb1:/var/log/yfs# ls
+BosLog  FileLog  PtLog  SalsrvLog  VLLog  VolserLog
+root@afsdb1:/var/log/yfs# ls -l
+total 32
+-rw-r--r-- 1 yfsserver yfsserver  2942 Oct 10 15:42 BosLog
+-rw-r--r-- 1 yfsserver yfsserver 10643 Oct 10 15:42 FileLog
+-rw-r--r-- 1 yfsserver yfsserver   852 Oct 10 15:42 PtLog
+-rw-r--r-- 1 yfsserver yfsserver  1114 Oct 10 15:42 SalsrvLog
+-rw-r--r-- 1 yfsserver yfsserver  1129 Oct 10 15:42 VLLog
+-rw-r--r-- 1 yfsserver yfsserver  1624 Oct 10 15:42 VolserLog
+root@afsdb1:/var/log/yfs#
+root@afsdb1:/var/log/yfs# cat VLLog
+Tue Oct 10 15:23:48 2017 Ubik: I am the coordinator - single server
+Tue Oct 10 15:23:48 2017 Using [192.168.10.130]:7003 as my primary address
+Tue Oct 10 15:23:48 2017 Starting AuriStor vlserver uid 112 @(#) AuriStor 0.162-1~auristor-debian built  2017-10-05  (/usr/lib/yfs/vlserver)
+Tue Oct 10 15:30:37 2017 Can't read VLDB header, re-initialising...
+Tue Oct 10 15:30:39 2017 The following fileserver is being registered in the VLDB:
+Tue Oct 10 15:30:39 2017       [10.0.2.15 192.168.10.130]
+Tue Oct 10 15:30:39 2017    It will create a new entry in the VLDB.
+Tue Oct 10 15:35:54 2017 Ubik: I am the coordinator - single server
+Tue Oct 10 15:35:54 2017 Using [192.168.10.130]:7003 as my primary address
+Tue Oct 10 15:35:54 2017 Starting AuriStor vlserver uid 112 @(#) AuriStor 0.162-1~auristor-debian built  2017-10-05  (/usr/lib/yfs/vlserver)
+Tue Oct 10 15:42:01 2017 Ubik: I am the coordinator - single server
+Tue Oct 10 15:42:01 2017 Using [192.168.10.130]:7003 as my primary address
+Tue Oct 10 15:42:01 2017 Starting AuriStor vlserver uid 112 @(#) AuriStor 0.162-1~auristor-debian built  2017-10-05  (/usr/lib/yfs/vlserver)
+root@afsdb1:/var/log/yfs# cat VolserLog
+Tue Oct 10 15:30:37 2017 The system supports a max of 4064 open files and we are starting 1024 threads (ihandle fd cache is 1872)
+Tue Oct 10 15:30:37 2017 Overriding -s command line parameter with 2049
+Tue Oct 10 15:30:37 2017 Overriding -l command line parameter with 2049
+Tue Oct 10 15:30:37 2017 VReadPartHeader failure (2) for partition /vicepa
+Tue Oct 10 15:30:37 2017 Waiting for fileserver to initialize or upgrade partition /vicepa
+Tue Oct 10 15:30:38 2017 VReadPartHeader failure (2) for partition /vicepa
+Tue Oct 10 15:30:39 2017 VReadPartHeader failure (2) for partition /vicepa
+Tue Oct 10 15:30:40 2017 Finished waiting for fileserver
+Tue Oct 10 15:30:40 2017 Starting AuriStor volserver uid 112 @(#) AuriStor 0.162-1~auristor-debian built  2017-10-05  (/usr/lib/yfs/volserver)
+Tue Oct 10 15:35:54 2017 The system supports a max of 4064 open files and we are starting 1024 threads (ihandle fd cache is 1872)
+Tue Oct 10 15:35:54 2017 Overriding -s command line parameter with 2049
+Tue Oct 10 15:35:54 2017 Overriding -l command line parameter with 2049
+Tue Oct 10 15:35:58 2017 Starting AuriStor volserver uid 112 @(#) AuriStor 0.162-1~auristor-debian built  2017-10-05  (/usr/lib/yfs/volserver)
+Tue Oct 10 15:42:01 2017 The system supports a max of 4064 open files and we are starting 1024 threads (ihandle fd cache is 1872)
+Tue Oct 10 15:42:01 2017 Overriding -s command line parameter with 2049
+Tue Oct 10 15:42:01 2017 Overriding -l command line parameter with 2049
+Tue Oct 10 15:42:05 2017 Starting AuriStor volserver uid 112 @(#) AuriStor 0.162-1~auristor-debian built  2017-10-05  (/usr/lib/yfs/volserver)
+root@afsdb1:/var/log/yfs# ls
+BosLog  FileLog  PtLog  SalsrvLog  VLLog  VolserLog
+root@afsdb1:/var/log/yfs#
+root@afsdb1:/var/log/yfs# cat PtLog
+Tue Oct 10 15:23:40 2017 Ubik: I am the coordinator - single server
+Tue Oct 10 15:23:40 2017 Using [192.168.10.130]:7002 as my primary address
+Tue Oct 10 15:23:40 2017 Starting AuriStor ptserver uid 112 @(#) AuriStor 0.162-1~auristor-debian built  2017-10-05  (/usr/lib/yfs/ptserver)
+Tue Oct 10 15:35:54 2017 Ubik: I am the coordinator - single server
+Tue Oct 10 15:35:54 2017 Using [192.168.10.130]:7002 as my primary address
+Tue Oct 10 15:35:54 2017 Starting AuriStor ptserver uid 112 @(#) AuriStor 0.162-1~auristor-debian built  2017-10-05  (/usr/lib/yfs/ptserver)
+Tue Oct 10 15:42:01 2017 Ubik: I am the coordinator - single server
+Tue Oct 10 15:42:01 2017 Using [192.168.10.130]:7002 as my primary address
+Tue Oct 10 15:42:01 2017 Starting AuriStor ptserver uid 112 @(#) AuriStor 0.162-1~auristor-debian built  2017-10-05  (/usr/lib/yfs/ptserver)
+root@afsdb1:/var/log/yfs# fgrep 2.15 *
+VLLog:Tue Oct 10 15:30:39 2017       [10.0.2.15 192.168.10.130]
+root@afsdb1:/var/log/yfs# cat VLLog
+Tue Oct 10 15:23:48 2017 Ubik: I am the coordinator - single server
+Tue Oct 10 15:23:48 2017 Using [192.168.10.130]:7003 as my primary address
+Tue Oct 10 15:23:48 2017 Starting AuriStor vlserver uid 112 @(#) AuriStor 0.162-1~auristor-debian built  2017-10-05  (/usr/lib/yfs/vlserver)
+Tue Oct 10 15:30:37 2017 Can't read VLDB header, re-initialising...
+Tue Oct 10 15:30:39 2017 The following fileserver is being registered in the VLDB:
+Tue Oct 10 15:30:39 2017       [10.0.2.15 192.168.10.130]
+Tue Oct 10 15:30:39 2017    It will create a new entry in the VLDB.
+Tue Oct 10 15:35:54 2017 Ubik: I am the coordinator - single server
+Tue Oct 10 15:35:54 2017 Using [192.168.10.130]:7003 as my primary address
+Tue Oct 10 15:35:54 2017 Starting AuriStor vlserver uid 112 @(#) AuriStor 0.162-1~auristor-debian built  2017-10-05  (/usr/lib/yfs/vlserver)
+Tue Oct 10 15:42:01 2017 Ubik: I am the coordinator - single server
+Tue Oct 10 15:42:01 2017 Using [192.168.10.130]:7003 as my primary address
+Tue Oct 10 15:42:01 2017 Starting AuriStor vlserver uid 112 @(#) AuriStor 0.162-1~auristor-debian built  2017-10-05  (/usr/lib/yfs/vlserver)
+root@afsdb1:/var/log/yfs# sudo pts createuser gerry.admin -localauth
+pts: Could not create user gerry.admin : Entry for name already exists
+root@afsdb1:/var/log/yfs# sudo pts adduser gerry.admin system:administrators -localauth
+pts: Could not add user 1 to group -204 : Entry for id already exists
+root@afsdb1:/var/log/yfs# kadmbos ^C
+root@afsdb1:/var/log/yfs# bos apropos
+bos : Missing required parameter '-topic'
+root@afsdb1:/var/log/yfs# bos apropos adduser
+adduser: add users to super-user list
+root@afsdb1:/var/log/yfs# vos create -server afsdb1.play.gerry  -partition /vicepa -name user.gerry
+vos: Cannot list partitions on server [10.0.2.15]:7005 : Insufficient privilege for volume operation
+root@afsdb1:/var/log/yfs# vos create -server afsdb1.play.gerry  -partition /vicepa -name user.gerry -local
+Volume 1048581 created on server [10.0.2.15]:7005 partition /vicepa, NAME: user.gerry
+root@afsdb1:/var/log/yfs# systemctl restart auristorfs-server.service
+root@afsdb1:/var/log/yfs# systemctl restart auristorfs-server.service^C
+root@afsdb1:/var/log/yfs# kinit gerry/admin@PLAY.GERRY
+Password for gerry/admin@PLAY.GERRY:
+root@afsdb1:/var/log/yfs# aklog
+root@afsdb1:/var/log/yfs# tokens
+
+Tokens held by the Cache Manager:
+
+User's (AFS ID 1) rxkad tokens for play.gerry [Expires Oct 11 02:02]
+   --End of list--
+root@afsdb1:/var/log/yfs# vos create -server afsdb1.play.gerry  -partition /vicepa user.bear
+vos: Too many values after switch -partition
+root@afsdb1:/var/log/yfs# vos create -server afsdb1.play.gerry  -partition /vicepa -name user.bear
+vos: Cannot list partitions on server [10.0.2.15]:7005 : Insufficient privilege for volume operation
+root@afsdb1:/var/log/yfs# vos create -server afsdb1.play.gerrxy  -partition /vicepa -name user.bear
+vos: No matching file server for host 'afsdb1.play.gerrxy'
+
+root@afsdb1:/var/log/yfs# vos create -server afsdb1.play.gerry  -partition /vicepa -name user.bear
+vos: Cannot list partitions on server [10.0.2.15]:7005 : Insufficient privilege for volume operation
+root@afsdb1:/var/log/yfs# vos listaddrs -localauth
+[10.0.2.15]:7005
+AFSDB1.PLAY.GERRY:7005
+root@afsdb1:/var/log/yfs# vos help
+vos: Commands are:
+addsite         add a replication site
+apropos         search by help text
+backup          make backup of a volume
+backupsys       en masse backups
+changeloc       Change a RW volume's location and update the location service
+convertROtoRW   convert a RO volume into a RW volume (after loss of old RW volume)
+copy            copy a volume
+create          create a new volume
+delentry        delist the volume from the location service
+dump            dump a volume
+eachfs          FileServer iterator interface
+eachvol         General VLDB query interface
+endtrans        end a volserver transaction
+examine         everything about the volume
+help            get help on commands
+interactive     enter interactive mode
+listfs          list all file servers registered with the location service
+listloc         list volumes known to the location service
+listmaxacl      list the volume maximum access list
+listpart        list partitions
+listseclevels   list the volume security classes and levels
+listvol         list volumes on server (bypass the location service)
+lock            lock a volume
+move            move a volume
+offline         force the volume status to offline
+online          force the volume status to online
+partinfo        list partition information
+quit            exit program
+release         release a volume
+remove          delete a volume
+removefs        deregister a file server from the location service
+remsite         remove a replication site
+rename          rename a volume
+restore         restore a volume
+setfields       change volume info fields
+setmaxacl       set the volume maximum access list
+setquota        set the volume maximum quota
+setseclevels    set the volume security classes and levels
+size            obtain various sizes of the volume.
+sleep           pause for a bit
+source          read commands from file
+splitvolume     split a volume at a certain directory
+status          report on volser status
+syncfs          synchronize a file server with the location service
+syncloc         synchronize the location service with a file server
+unlock          release volume lock
+unlockall       unlock all locked volumes
+zap             delete the volume, don't contact the location service
+root@afsdb1:/var/log/yfs# vos listaddrs -localauth^C
+root@afsdb1:/var/log/yfs# vos listfss -localauth
+vos: Unrecognized operation 'listfss'; type 'vos help' for list
+root@afsdb1:/var/log/yfs# vos listfs -localauth
+UUID: cedaef9b-7cdf-4c44-b468-2317f47e9280
+[10.0.2.15]:7005
+AFSDB1.PLAY.GERRY:7005
+
+root@afsdb1:/var/log/yfs# kinit gerry/xadmin@PLAY.GERRY
+kinit: Client 'gerry/xadmin@PLAY.GERRY' not found in Kerberos database while getting initial credentials
+root@afsdb1:/var/log/yfs# kinit gerry/admin@PLAY.GERRY
+Password for gerry/admin@PLAY.GERRY:
+root@afsdb1:/var/log/yfs# vos create -server afsdb1.play.gerry  -partition /vicepa -name root.cell
+vos: Cannot list partitions on server [10.0.2.15]:7005 : Insufficient privilege for volume operation
+root@afsdb1:/var/log/yfs# aklog
+root@afsdb1:/var/log/yfs# tokens
+
+Tokens held by the Cache Manager:
+
+User's (AFS ID 1) rxkad tokens for play.gerry [Expires Oct 11 02:10]
+   --End of list--
+root@afsdb1:/var/log/yfs# vos create -server afsdb1.play.gerry  -partition /vicepa -name root.cell
+vos: Cannot list partitions on server [10.0.2.15]:7005 : Insufficient privilege for volume operation
+root@afsdb1:/var/log/yfs# vos partinfo localhost -local
+Free space on server [10.0.2.15]:7005 partition /vicepa: 32817444 K blocks out of total 34620000
+root@afsdb1:/var/log/yfs# vos listaddrs -localauth
+[10.0.2.15]:7005
+AFSDB1.PLAY.GERRY:7005
+root@afsdb1:/var/log/yfs# systemctl restart auristorfs-server.service
+root@afsdb1:/var/log/yfs#  vos create -server afsdb1.play.gerry  -partition /vicepa -name root.cell
+vos: Cannot list partitions on server [10.0.2.15]:7005 : Insufficient privilege for volume operation
+root@afsdb1:/var/log/yfs# ^Cdo reboot now
+root@afsdb1:/var/log/yfs# listvol         list volumes on server (bypass the location service)
+bash: syntax error near unexpected token `('
+root@afsdb1:/var/log/yfs# lock            lock a volume
+size            obtain various sizes of the volume.
+sleep           pause for a bit
+source          read commands from file
+splitvolume     split a volume at a certain directory
+status          report on volser status
+syncfs          synchronize a file server with the location service
+syncloc         synchronize the location service with a file server
+unlock          release volume lock
+unlockall       unlock all locked volumes
+zap             delete the volume, don't contact the location service
+root@afsdb1:/var/log/yfs# vos listaddrs -localauth^C
+root@afsdb1:/var/log/yfs# vos listfss -localauth
+vos: Unrecognized operation 'listfss'; type 'vos help' for list
+root@afsdb1:/var/log/yfs# vos listfs -localauth
+UUID: cedaef9b-7cdf-4c44-b468-2317f47e9280
+[10.0.2.15]:7005
+AFSDB1.PLAY.GERRY:7005
+
+root@afsdb1:/var/log/yfs# kinit gerry/xadmin@PLAY.GERRY
+kinit: Client 'gerry/xadmin@PLAY.GERRY' not found in Kerberos database while getting initial credentials
+root@afsdb1:/var/log/yfs# kinit gerry/admin@PLAY.GERRY
+Password for gerry/admin@PLAY.GERRY:
+root@afsdb1:/var/log/yfs# vos create -server afsdb1.play.gerry  -partition /vicepa -name root.cell
+vos: Cannot list partitions on server [10.0.2.15]:7005 : Insufficient privilege for volume operation
+root@afsdb1:/var/log/yfs# aklog
+root@afsdb1:/var/log/yfs# tokens
+
+Tokens held by the Cache Manager:
+
+User's (AFS ID 1) rxkad tokens for play.gerry [Expires Oct 11 02:10]
+   --End of list--
+root@afsdb1:/var/log/yfs# vos create -server afsdb1.play.gerry  -partition /vicepa -name root.cell
+vos: Cannot list partitions on server [10.0.2.15]:7005 : Insufficient privilege for volume operation
+root@afsdb1:/var/log/yfs# vos partinfo localhost -local
+Free space on server [10.0.2.15]:7005 partition /vicepa: 32817444 K blocks out of total 34620000
+root@afsdb1:/var/log/yfs# vos listaddrs -localauth
+[10.0.2.15]:7005
+AFSDB1.PLAY.GERRY:7005
+root@afsdb1:/var/log/yfs# systemctl restart auristorfs-server.service
+root@afsdb1:/var/log/yfs#  vos create -server afsdb1.play.gerry  -partition /vicepa -name root.cell
+vos: Cannot list partitions on server [10.0.2.15]:7005 : Insufficient privilege for volume operation
+root@afsdb1:/var/log/yfs# ^Cdo reboot now
+root@afsdb1:/var/log/yfs#
+No command 'lock' found, did you mean:
+ Command 'flock' from package 'util-linux' (main)
+ Command 'slock' from package 'suckless-tools' (universe)
+ Command 'rlock' from package 'ruby-lockfile' (universe)
+ Command 'vlock' from package 'vlock' (universe)
+ Command 'look' from package 'bsdmainutils' (main)
+ Command 'clock' from package 'xview-clients' (universe)
+ Command 'wlock' from package 'sendfile' (universe)
+ Command 'mock' from package 'mock' (universe)
+ Command 'loch' from package 'therion-viewer' (universe)
+ Command 'mlock' from package 'mlock' (universe)
+lock: command not found
+root@afsdb1:/var/log/yfs# move            move a volume
+No command 'move' found, did you mean:
+ Command 'more' from package 'util-linux' (main)
+ Command 'fmove' from package 'embassy-phylip' (multiverse)
+ Command 'jove' from package 'jove' (universe)
+ Command 'mmove' from package 'mtools' (main)
+ Command 'love' from package 'love' (universe)
+ Command 'mova' from package 'mova' (universe)
+ Command 'qmove' from package 'torque-client' (universe)
+ Command 'qmove' from package 'torque-client-x11' (universe)
+ Command 'lmove' from package 'suck' (universe)
+move: command not found
+root@afsdb1:/var/log/yfs# offline         force the volume status to offline
+offline: command not found
+root@afsdb1:/var/log/yfs# online          force the volume status to online
+online: command not found
+root@afsdb1:/var/log/yfs# partinfo        list partition information
+partinfo: command not found
+root@afsdb1:/var/log/yfs# quit            exit program
+No command 'quit' found, did you mean:
+ Command 'quot' from package 'quota' (main)
+ Command 'luit' from package 'x11-utils' (main)
+ Command 'quiz' from package 'bsdgames' (universe)
+ Command 'qgit' from package 'qgit' (universe)
+ Command 'quilt' from package 'quilt' (universe)
+quit: command not found
+root@afsdb1:/var/log/yfs# release         release a volume
+The program 'release' is currently not installed. You can install it by typing:
+apt install bikeshed
+root@afsdb1:/var/log/yfs# remove          delete a volume
+remove: command not found
+root@afsdb1:/var/log/yfs# removefs        deregister a file server from the location service
+removefs: command not found
+root@afsdb1:/var/log/yfs# remsite         remove a replication site
+remsite: command not found
+root@afsdb1:/var/log/yfs# rename          rename a volume
+Ambiguous call resolved as CORE::rename(), qualify as such or use & at (eval 4) line 1.
+Not enough arguments for rename at (user-supplied code) line 3, at EOF
+root@afsdb1:/var/log/yfs# restore         restore a volume
+The program 'restore' is currently not installed. You can install it by typing:
+apt install dump
+root@afsdb1:/var/log/yfs# setfields       change volume info fields
+setfields: command not found
+root@afsdb1:/var/log/yfs# setmaxacl       set the volume maximum access list
+setmaxacl: command not found
+root@afsdb1:/var/log/yfs# setquota        set the volume maximum quota
+The program 'setquota' is currently not installed. You can install it by typing:
+apt install quota
+root@afsdb1:/var/log/yfs# setseclevels    set the volume security classes and levels
+setseclevels: command not found
+root@afsdb1:/var/log/yfs# size            obtain various sizes of the volume.
+The program 'size' can be found in the following packages:
+ * binutils
+ * binutils-multiarch
+Try: apt install <selected package>
+root@afsdb1:/var/log/yfs# sleep           pause for a bit
+sleep: invalid time interval ‘pause’
+sleep: invalid time interval ‘for’
+sleep: invalid time interval ‘a’
+sleep: invalid time interval ‘bit’
+Try 'sleep --help' for more information.
+root@afsdb1:/var/log/yfs# source          read commands from file
+bash: read: No such file or directory
+root@afsdb1:/var/log/yfs# splitvolume     split a volume at a certain directory
+splitvolume: command not found
+root@afsdb1:/var/log/yfs# status          report on volser status
+The program 'status' is currently not installed. You can install it by typing:
+apt install upstart
+root@afsdb1:/var/log/yfs# syncfs          synchronize a file server with the location service
+^C
+root@afsdb1:/var/log/yfs# status          report on volser status^C
+root@afsdb1:/var/log/yfs# login as: gerry
+Password:
+
+Login incorrect
+afsdb1.play.gerry login:
+
