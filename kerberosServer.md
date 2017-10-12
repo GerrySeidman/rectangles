@@ -45,7 +45,6 @@ export NEW_HOST=krb1
 export NEW_IP=192.168.10.120
 
 sudo sed -i -- "s/192.168.10.100/$NEW_IP/g" /etc/network/interfaces
-sudo sed -i -- "s/stem1/$NEW_HOST/g" /etc/hosts
 sudo sed -i -- "s/stem1/$NEW_HOST/g" /etc/hostname
 sudo reboot
 ```
@@ -62,6 +61,7 @@ You will be prompted with the following screens:
 ![[InstallingKerberos]](https://raw.githubusercontent.com/GerrySeidman/rectangles/tutorial/images/installingKerberos.jpg "Installing Kerberos")
 
 ![[InstallingKerberos]](https://raw.githubusercontent.com/GerrySeidman/rectangles/tutorial/images/configuringKerberos.jpg "Installing Kerberos")
+
 ## VMs and Random Number Generators
 
 VMs typically have slow (software based) random number generators (ie not hardware accelerated) which are used in key generation.  
@@ -136,7 +136,6 @@ For more  information about /etc/krb5kdc/kadm5.acl see
 
 http://web.mit.edu/kerberos/krb5-devel/doc/admin/conf_files/kadm5_acl.html
 
-** GS QUESTION ** WHAT IS THE DIFFERENCE 
 
 ### Setting up  kadm5.acl 
 
@@ -239,11 +238,12 @@ gerry@krb1:/etc$ cat krb5.conf
 	* /etc/network/interfaces
 	* /etc/hosts
 	* /etc/hostname
-	* kadm5.acl
-	* krb5.conf
+	*  /etc/krb5kdc/kadm5.acl
+	*  /etc/krb5.conf
+	
 
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE0MTYyODE3MDZdfQ==
+eyJoaXN0b3J5IjpbLTEzMTg3OTc1NV19
 -->

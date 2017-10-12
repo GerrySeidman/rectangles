@@ -12,24 +12,18 @@ export NEW_HOST=afsdb1
 export NEW_IP=192.168.10.130
 
 sudo sed -i -- "s/192.168.10.100/$NEW_IP/g" /etc/network/interfaces
-sudo sed -i -- "s/stem1/$NEW_HOST/g" /etc/hosts
 sudo sed -i -- "s/stem1/$NEW_HOST/g" /etc/hostname
 sudo reboot
 ```
 
+## Get the AuriStor Software
 
-## On AFS-1 
+Steps found in gettingAuriStorSoftware.md
+
 
 ## Install the AuriStor Modules package
 
-The module package is Ubuntu kernel specific.     Confirm that you have downloaded the correct version before proceeding
 
-``` bash
-gerry@afsdb1:~/auristorSoftware$ uname -r
-4.4.0-87-generic
-gerry@afsdb1:~/auristorSoftware$ echo auristorfs-modules*`uname -r`*.deb
-auristorfs-modules3-4.4.0-87-generic_0.1591-1.20170805gitdebian~auristor_amd64.deb
-```
 Now install the Module Package
 
 ``` bash
@@ -104,7 +98,7 @@ gerry@afsdb1:~/auristorSoftware$
 ## Install AuriStor File Server Package
 
 ``` bash
-gerry@afsdb1:~/auristorSoftware$ dpkg -i  auristorfs-fileserver*
+gerry@afsdb1:~/auristorSoftware$ sudo dpkg -i  auristorfs-fileserver*
 [sudo] password for gerry:
 Selecting previously unselected package auristorfs-server.
 (Reading database ... 60155 files and directories currently installed.)
@@ -143,15 +137,6 @@ Setting up auristorfs-doc (0.1591-1.20170805gitdebian~auristor) ...
 gerry@afsdb1:~/auriSoftware$
 ```
 
-## SKIPPED
->NOTE: WE did not install the following.  Matt didn’t have it in his notes, they may only be for development….   CHECK WITH DARIA
-
->>>	libauristorfs-dev_0.1591-1.20170805gitdebian~auristor_amd64.deb
->>>	libkauristor1_0.1591-1.20170805gitdebian~auristor_amd64.deb
-
->Neither did we install the FUSE
-
->>>>auristorfs-fuse_0.1591-1.20170805gitdebian~auristor_amd64.deb
 
 ## Configure yfs-server.conf
 
@@ -239,6 +224,7 @@ gerry@afsdb1:~/keytabs$ sudo cp rxgk.keytab /etc/yfs/server
 
 gerry@afsdb1:~/keytabs$ sudo asetkey add yfs-rxgk 1 aes256-cts-hmac-sha1-96 random
 ```
+
 # Create your Vice Partition
 
 Your Vice Partition is where the actual data is stored for the AuriStor volumes
@@ -246,8 +232,6 @@ Your Vice Partition is where the actual data is stored for the AuriStor volumes
 NOTE: We will do this off the root, but it typically would be a mount point
 
 ``` bash
-
-gerry@afsdb1:~$ sudo bash
 root@afsdb1:~# sudo mkdir /vicepa
 root@afsdb1:~# sudo touch /vicepa/AlwaysAttach
 ```
@@ -278,7 +262,9 @@ Setting up attr (1:2.4.47-2) ...
 In the `\vicepa' 
 ```
 gerry@afsdb1:/vicepa$ sudo touch /vicepa/xattr-test
+
 gerry@afsdb1:/vicepa$ sudo setfattr -n user.foo -v bar /vicepa/xattr-test
+
 gerry@afsdb1:/vicepa$ getfattr -n user.foo /vicepa/xattr-test
 # file: xattr-test
 user.foo="bar"
@@ -287,20 +273,17 @@ gerry@afsdb1:/vicepa$ sudo rm /vicepa/xattr-test
 gerry@afsdb1:/vicepa$
 ```
 
-# Create a user
+# Create a user `yfsserver`
 
+Upon installation, a user `yfsserver`  is created
 
-We are going to create a local Linux user ‘yfsserver’ who will be running all the AFS servers.
-
+This is the equivalent of `sudo useradd -r -s /bin/nologin yfsserver`
 
 ``` bash
-gerry@afsdb1:/vicepa$ sudo useradd -r -s /bin/nologin yfsserver
-
 gerry@afsdb1:/vicepa$ id yfsserver
-uid=999(yfsserver) gid=999(yfsserver) groups=999(yfsserver)
+uid=999(yfsserver) gid=999(yfsserver) groups=999(yfsserver)`
 ```
-
-Transfer ownership to this user
+## Transfer ownership to this `yfsserver`
 
 ``` bash
 
@@ -311,25 +294,13 @@ gerry@afsdb1:/vicepa$ sudo chown -R yfsserver: /var/log/yfs
 
 gerry@afsdb1:/vicepa$ sudo mkdir /var/run/yfs/
 gerry@afsdb1:/vicepa$ sudo chown yfsserver: /var/run/yfs/
-gerry@afsdb1:/vicepa$ sudo chown -R yfsserver: /var/lib/yfs
 ```
 
 ## Start Servers
 
+
 ``` bash
 sudo systemctl restart auristorfs-server
-```
- ### NEED(??? Don't think so) 
-``` bash
-systemctl restart auristorfs-fileserver
-                                           @@@@ THE ABOVE GENERATES AN ERROR
-systemctl status auristorfs-fileserver
-(journalctl -xe to troubleshoot)
-```
-
-## Ensure BOS Server running 
-
-THE BELOW IS TO RESTART THE BOS SREVER SO IT IS IN A GOOD STATE, then configure then restart
 
 
 sudo bos create -server afsdb1.play.gerry -type simple -instance ptserver -cmd /usr/lib/yfs/ptserver -localauth
@@ -337,43 +308,49 @@ sudo bos create -server afsdb1.play.gerry -type simple -instance ptserver -cmd /
 sudo bos create -server afsdb1.play.gerry -type simple -instance vlserver -cmd /usr/lib/yfs/vlserver -localauth
 
 sudo bos status -server afsdb1.play.gerry -localauth
-
-``` bash
-gerry@afsdb1:/etc/yfs/server$ sudo bos status -server afsdb1.play.gerry -localauth
 Instance ptserver, currently running normally.
 Instance vlserver, currently running normally.
-
-# Create Users
-
-sudo pts createuser gerry.admin -localauth
-sudo pts adduser gerry.admin system:administrators -localauth
 ```
+# Create BOS Super-Users
 
+
+```
 ## For each AFS server we are setting up a BOS superuser
 ``` bash
+
+## YES THIS IS . for the first and / for the second   Silly Kerberos 4 vs Kerberos 5
+
 sudo bos adduser afsdb1.play.gerry -user gerry.admin@PLAY.GERRY -rxkad -localauth
 sudo bos adduser afsdb1.play.gerry -user gerry/admin@PLAY.GERRY -localauth
+
 ```
 NOTE: The above `/` in the second command is not a type (? is that so ?)
 
+# Create users in the AFS PTS
+
+sudo pts createuser gerry.admin -localauth
+sudo pts adduser gerry.admin system:administrators -localauth
+
+sudo pts createuser gerry -localauth
 
 # Client stuff (should be a new section)
 
-Configure the client `yfs-client.conf`
+## Install Kerberos Client on DB Server
+```  bash
+ sudo apt install  krb5-user
+ ```
 
+```
 sudo fs newcell play.gerry afsdb1.play.gerry
 kinit gerry@PLAY.GERRY
 aklog
+```
 
 ## File Server
 
 sudo bos create -server afsdb1.play.gerry -type dafs -instance dafs -cmd "/usr/lib/yfs/fileserver" "/usr/lib/yfs/volserver" "/usr/lib/yfs/salvageserver" "/usr/lib/yfs/salvager" -localauth
 
 sudo bos create -server afsdb1.play.gerry -type dafs -instance dafs -cmd "/usr/lib/yfs/fileserver" "/usr/lib/yfs/volserver" "/usr/lib/yfs/salvageserver" "/usr/lib/yfs/salvager" -localauth
-
-# Install Kerberos Client on DB Server
-
-sudo apt install  krb5-user
 
 
 ## Set up partitions
@@ -384,21 +361,38 @@ Create `root.cell`
 kinit gerry/admin@PLAY.GERRY
 
 
-
+``` bash
 vos create -server afsdb1.play.gerry  -partition /vicepa -name root.cell
+```
+This is the same as
+``` bash
+vos create afs1.test.gerry a root.cell -localauth
+
+fs lq .
+```
+SeT ACL so anyone can read root
+``` bash
+fs sa . system:anyuser rl
+```
+
+vos create afsdb1.play.gerry vicepa user.gerry
+
+fs mkmount gerry user.gerry
+
+fs la gerry
+
+pts ex gerry
+
+fs setacl gerry gerry all system:administrators read -clear
 
 
-POKING: 
+## Misc Commands
 
-Adding to DNS:
-	_afs3-prserver._udp.PLAY.GERRY.      IN SRV 1  0 7002 afsdb1.play.gerry.
+vos listaddrs
 
+vos listfs
 
-NOTE:
-	vos examine -id <volume name or ID>
-
-
-
+service auristor-server restart
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyMTkyOTM2MDVdfQ==
+eyJoaXN0b3J5IjpbMTgyNzM0NjcwNF19
 -->

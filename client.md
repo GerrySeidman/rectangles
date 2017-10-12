@@ -9,7 +9,6 @@ export NEW_HOST=client
 export NEW_IP=192.168.10.99
 
 sudo sed -i -- "s/192.168.10.100/$NEW_IP/g" /etc/network/interfaces
-sudo sed -i -- "s/stem1/$NEW_HOST/g" /etc/hosts
 sudo sed -i -- "s/stem1/$NEW_HOST/g" /etc/hostname
 sudo reboot
 ```
@@ -26,8 +25,12 @@ It will automatically pick up the Kerberos Realm `PLAY.GERRY` from DNS.
 
 ![[InstallingKerberos]](https://raw.githubusercontent.com/GerrySeidman/rectangles/tutorial/images/installingKerberosClient.jpg "Installing Kerberos")
 
->>**@@@@ DOUBLE CHECK IF IF THIS IS SUFFICIENT OR IF WE HAVE TO COPY/EDIT FILES.  I may have done so with my test 'client machine'**
 
+
+
+## Setting up the krb5.conf File
+
+Install a copy of `krb5.conf` onto`/etc/krb5.conf	`
 
 # Install AuriStor
 
@@ -35,6 +38,18 @@ sudo dpkg -i auristorfs-common*
 sudo dpkg -i auristorfs-client*
 
 
+## Links to Sample Files from this Lab
+
+* The following files will have been edited in this lab:
+	* /etc/network/interfaces
+	* /etc/hosts
+	* /etc/hostname
+	*  /etc/krb5.conf
+	
+
+
+
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMzgwMDk4OTk3XX0=
+eyJoaXN0b3J5IjpbLTIwNjI4MDk2MTldfQ==
 -->

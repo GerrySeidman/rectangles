@@ -70,6 +70,8 @@ Below are the steps for creating the Host-Only Netw can be accomplished from the
 > Note: This will appear as an adapter on your host machine.  You will be able to see it  by running the command  `ifconfig` on Linux, `ipconfig` on Windows on your host machine to lists all adapters on your host machine.
 
 
+### TODO:  NEED TO SHOW HOW TO CREATE  THE NATNETWORK
+
 ## Creating your Stem Ubuntu VM in VirtualBox
 
 Explaining details behind creating the VM is beyond the scope of this tutorial, but below are the screens that step you through it. 
@@ -189,14 +191,23 @@ dns-domain play.gerry
 > Note: The last three lines are in anticipation of our setting up DNS.  The domain name for our private network will be ```play.gerry``` See  [Cluster Overview](clusterOverview.md) and [DNS Server](dnsServer.md) to understand
 
 
-## Setting Host Name
+## Setting `/etc/hostname	`
 
-In Ubuntu, the hostname is specfied in two files ```/etc/hostname``` and ```/etc/hosts```
+In anticipation of setting up DNS for the domain `play.gerry` we will set up this Stem VM to have the name `stem1.play.gerry`.  To do this, simply replace the name of this machine in the single line in the `/etc/hostname` file
 
 ```bash
 $ cat /etc/hostname
 ubuntu-1
+$ sudo vi /etc/hosts
+$ cat /etc/hostname
+stem1.play.gerry
+````
 
+## The `/etc/hosts`
+
+Since we are relying on DNS resolution, we remove the non-localhost mapping for the default name
+
+``` bash
 $ cat /etc/hosts
 gerry@afs1:~$ cat /etc/hosts
 127.0.0.1       localhost
@@ -208,22 +219,18 @@ ff02::1 ip6-allnodes
 ff02::2 ip6-allrouters
 ```
 
-In both of these files replace the old hostname ```ubuntu-1``` with ```stem1.play.gerry```
-> This must be done as su, so ```sudo vi  /etc/hosts```
-
 ```bash
-$ cat /etc/hostname
-stem1.play.gerry
-
+$ sudo vi /etc/hosts
 $ cat /etc/hosts
 127.0.0.1       localhost
-127.0.1.1       stem1.play.gerry
 
 # The following lines are desirable for IPv6 capable hosts
 ::1     localhost ip6-localhost ip6-loopback
 ff02::1 ip6-allnodes
 ff02::2 ip6-allrouters
 ```
+
+# DHCP Client
 
 Edit `/etc/dhcp/dhclient.conf``
 
@@ -243,9 +250,10 @@ sudo apt install ntp
 ## Update all packages
 
 Update all installed packages.  
-
 ```
 sudo apt update
+
+sudo apt upgrade -y
 ```
 > Note: I am not sure if this/when this may be done automatically.   For example sometimes you get a 'locked' error.  I suspect that is because it is already running.
 
@@ -276,5 +284,5 @@ If you do not find a matching package file, you will have to downgrade your kern
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTM2NzA0NzY2N119
+eyJoaXN0b3J5IjpbMTMxNjUxNjY4NF19
 -->

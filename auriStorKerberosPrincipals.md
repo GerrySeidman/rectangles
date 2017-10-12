@@ -1,25 +1,12 @@
 # Setting up Kerberos Principals for AuriStor Servers
 
-### FIXING????
-
-kadmin: addprinc -randkey afs3-bos/play.gerry@PLAY.GERRY
-
-kadmin ktadd -k ./bos.keytab -e "aes256-cts-hmac-sha1-96:normal aes128-cts-hmac-sha1-96:normal des3-hmac-sha1:normal arcfour-hmac-md5:normal" afs3-bos/play.gerry@PLAY.GERRY
-
-Then the following worked:
-
-sudo bos create -server afsdb1.play.gerry -type simple -instance ptserver -cmd /usr/lib/yfs/ptserver -localauth
-
-
-### AFTER FIXING
-
 We will be setting up Kerberos Principals for for use by the AuriStor Servers.  Some of these principals have historical names
 
 The steps in this lab will be:
 
 1. Create Kerberos principal used in legacy AFS deployments `afs/play.gerry@PLAY.GERRY`
 2.  Create Kerberos principal used by YFS for RXGK authentication `yfs-rxgk/play.gerry@PLAY.GERRY`
-3. Create an afs3-bos principal and keytab for each YFS server.  `afs3-bos/play.gerry@PLAY.GERRY`
+3. Create an afs3-bos principal and keytab for **EACH OF** the YFS server.s
 
 After completing this lab:
 
@@ -30,10 +17,17 @@ After completing this lab:
 	* afs3-bos/afsfs1.play.gerry@PLAY.GERRY
  	* afs3-bos/afsfs2.play.gerry@PLAY.GERRY
 	* afs3-bos/afsfs3.play.gerry@PLAY.GERRY
+	
 * You will have generated Key files
-	* ????????
+	* rxgk.keytab
+	* rxkad.keytab
+	* bosdb1.keytab
+	* bosfs1.keytab
+	* bosfs2.keytab
+	* bosfs3.keytab
 
-###  To understand these principal names
+##  To understand these principal names
+
 `YFS`stands for `Your-File-System'`which was the original name of AuriStor. The YFS protocol is used by AuriStor
 
 `RX`is the low level RPC used by all AuriStor clients and servers to communicate.  `rxgk` is the  modern security protocol extensions that is used by AuriStor.
@@ -113,11 +107,24 @@ kadmin/krb1.play.gerry@PLAY.GERRY
 kiprop/krb1.play.gerry@PLAY.GERRY
 krbtgt/PLAY.GERRY@PLAY.GERRY
 yfs-rxgk/_afs.play.gerry@PLAY.GERRY
+
+kadmin: exit
 ```
 
-Now add the keys to the kerberos keytab.   It is important to note down the respective	`kvno`  for each principal
+# Generating Keytab Files
+
+We will now create keytab files for the server principals. 
+
+It is important to:
+* Keep these in a safe/secure place
+	* We will be creating them in the directory `~/keytabs/`
+	* They will be created as `su` so their permissions will be root
+* Note down the respective	`kvno`  for each principal as they are generated
 
 ``` bash
+$ mkdir ~/keytabs
+$ cd ~/keytabs
+$ sudo kadmin -p gerry/admin@PLAY.GERRY
 kadmin:  ktadd -k ./rxgk.keytab -e "aes256-cts-hmac-sha1-96:normal aes128-cts-hmac-sha1-96:normal des3-hmac-sha1:normal arcfour-hmac-md5:normal" yfs-rxgk/_afs.play.gerry
 Entry for principal yfs-rxgk/_afs.play.gerry with kvno 2, encryption type aes256-cts-hmac-sha1-96 added to keytab WRFILE:./rxgk.keytab                                                               .
 Entry for principal yfs-rxgk/_afs.play.gerry with kvno 2, encryption type aes128-cts-hmac-sha1-96 added to keytab WRFILE:./rxgk.keytab                                                               .
@@ -156,6 +163,45 @@ Entry for principal afs3-bos/afsfs3.play.gerry@PLAY.GERRY with kvno 2, encryptio
 Entry for principal afs3-bos/afsfs3.play.gerry@PLAY.GERRY with kvno 2, encryption type des3-cbc-sha1 added to keytab WRFILE:./bosfs3.keytab.
 Entry for principal afs3-bos/afsfs3.play.gerry@PLAY.GERRY with kvno 2, encryption type arcfour-hmac added to keytab WRFILE:./bosfs3.keytab.
 
+kadmin: exit
+
+
+gerry@client:~/keytabs$ ls -l
+total 24
+-rw------- 1 root root 330 Oct 10 14:09 bosdb1.keytab
+-rw------- 1 root root 330 Oct 10 14:09 bosfs1.keytab
+-rw------- 1 root root 330 Oct 10 14:09 bosfs2.keytab
+-rw------- 1 root root 330 Oct 10 14:09 bosfs3.keytab
+-rw------- 1 root root 322 Oct 10 14:08 rxgk.keytab
+-rw------- 1 root root 282 Oct 10 14:09 rxkad.keytab
+```
+
+
+## Files from this Lab
+
+* The following keytab files were generated
+	* ~/keytabs/rxgk.keytab
+	* ~/keytabs/rxkad.keytab
+	* ~/keytabs/bosdb1.keytab
+	* ~/keytabs/bosfs1.keytab
+	* ~/keytabs/bosfs2.keytab
+	* ~/keytabs/bosfs3.keytab
+
+
+# JUNK
+
+### FIXING????
+
+kadmin: addprinc -randkey afs3-bos/play.gerry@PLAY.GERRY
+
+kadmin ktadd -k ./bos.keytab -e "aes256-cts-hmac-sha1-96:normal aes128-cts-hmac-sha1-96:normal des3-hmac-sha1:normal arcfour-hmac-md5:normal" afs3-bos/play.gerry@PLAY.GERRY
+
+Then the following worked:
+
+
+### AFTER FIXING
+
+
 
 ???? THIS ISN"T PROBABLY USAED BUT I HAVEN"T DELETED IT.... 
 kadmin:  ktadd -k ./bos.keytab -e "aes256-cts-hmac-sha1-96:normal aes128-cts-hmac-sha1-96:normal des3-hmac-sha1:normal arcfour-hmac-md5:normal" afs3-bos/afsdb1.play.gerry@PLAY.GERRY
@@ -164,16 +210,6 @@ Entry for principal afs3-bos/afs1.play.gerry@PLAY.GERRY with kvno 2, encryption 
 Entry for principal afs3-bos/afs1.play.gerry@PLAY.GERRY with kvno 2, encryption type des3-cbc-sha1 added to keytab WRFILE:./bos.keytab                                                               .
 Entry for principal afs3-bos/afs1.play.gerry@PLAY.GERRY with kvno 2, encryption type arcfour-hmac added to keytab WRFILE:./bos.keytab.
 
-```
-
-The following files should have will created
-
-bosdb1.keytab  bosfs1.keytab  bosfs2.keytab  bosfs3.keytab  bos.keytab  rxgk.keytab  rxkad.keytab
-
-
-## Links to Sample Files from this Lab
-
-* No files were manually edited in this lab
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE0NzAyMDIzNjBdfQ==
+eyJoaXN0b3J5IjpbLTQwNzQyODQ0NV19
 -->

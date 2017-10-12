@@ -23,7 +23,6 @@ export NEW_HOST=dns1
 export NEW_IP=192.168.10.110
 
 sudo sed -i -- "s/192.168.10.100/$NEW_IP/g" /etc/network/interfaces
-sudo sed -i -- "s/stem1/$NEW_HOST/g" /etc/hosts
 sudo sed -i -- "s/stem1/$NEW_HOST/g" /etc/hostname
 sudo reboot
 ```
@@ -149,53 +148,12 @@ service bind9 start
 
 * The following files will have been edited in this lab
 	* /etc/network/interfaces
-	* /etc/hosts
-	* /etc/hostname
-	* 10-168-192.info
-	* named.conf.local
+	*  /etc/hostname
+	* /etc/bind/10-168-192.info
+	* /etc/bind/named.conf.local
+	* /etc/bind/play.gerry
 
-# DELTE BELOW... FALSE STARTS
 
-# UGH!!!  WHICH OF THE BELOW Bind9 is IT 
-	##... MUST RETEST
-	
-## Setting up Bind9
-
- Ignore The below... Not needed... Delete from Docs after restest of cookbook.
->> Grr.. couldn't replicatate what Kris did, trying to follow
->> `https://www.digitalocean.com/community/tutorials/how-to-configure-bind-as-a-private-network-dns-server-on-ubuntu-16-04`
->>
->> DO NOT DO THIS  ```sudo apt-get update```  BECAUSE OF GRUB/Kernel ISSUE
-
-Execute the below three commands to setup Bind9
-```
-sudo apt install bind9 bind9utils bind9-doc
-
-sudo systemctl daemon-reload
-
-sudo systemctl restart bind9
-```
- Ignore The below... Not needed... Delete from Docs after restest of cookbook.
->>Did not do below (AND VERIFIED IT DIDN'T NEED DOING)
->> sudo systemctl edit --full bind9
->> 
->> Add "-4" to the end of the ExecStart directive. It should look like the following:
-
-## Perhaps better Install of Bind9
-
-```
-sudo apt install bind9 bind9utils bind9-doc
-
-sudo systemctl daemon-reload
-
-sudo systemctl restart bind9
-
-````
-
-BETTER STILL:  Now TRYING
-``` bash
-sudo systemctl restart bind9
-```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTg4NjMxODc3Ml19
+eyJoaXN0b3J5IjpbMTkyNzEwNzk2OV19
 -->

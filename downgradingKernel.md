@@ -1,5 +1,7 @@
 ## Linux Kernel Caveat
 
+## INCOMPLETE SECTION... TBD
+
 The AuriStor package files (.deb) are available on the AuriStor repository for most kernel versions. While unlikley, it is possible that the packages have not yet been built for the Ubuntu Kernel Version you have installed.
 
 To find out your Linux Kernel version:  
@@ -20,5 +22,5 @@ However, if you do not find a matching package file, you will have to downgrade 
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTU0NDc5MTYzNF19
+eyJoaXN0b3J5IjpbMTA3ODg3ODQ3N119
 -->

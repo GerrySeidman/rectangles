@@ -1,12 +1,13 @@
 # Getting the AuriStor Software
 
+## INCOMPLETE SECTION... TBD
 
 
 ## AuriStor Software 
 
-<< THIS IS JUNK >> MFH: Go to https://filedrawers.auristor.com/ then navigate to /afs/your-file-system.com/public/yfs/recommended  if you don’t already have a working AFS client on another machine with which to get the rpms (need authentication for the your-file-system.com cell, talk to Auristor)
-
 From: 
+
+https://filedrawers.your-file-system.com/?path=/afs/your-file-system.com/public/yfs/recommended/server/xenial/pool/server/a/auristor
 ```
 //AFS/your-file-system.com/public/yfs/recommended/server/xenial/pool/server/a/auristor
 
@@ -15,6 +16,8 @@ auristorfs-fileserver_0.1591-1.20170805gitdebian~auristor_amd64.deb
 auristorfs-server_0.1591-1.20170805gitdebian~auristor_amd64.deb
 ```
 From:
+
+https://filedrawers.your-file-system.com/?path=/afs/your-file-system.com/public/yfs/recommended/client/xenial/pool/client/a/auristorfs-modules3-4.4.0-96-generic-source
 ```
 //AFS/your-file-system.com/public/yfs/recommended/client/xenial/pool/client/a/auristorfs-modules3-4.4.0-87-generic-source
 
@@ -22,6 +25,8 @@ auristorfs-modules3-4.4.0-87-generic_0.1591-1.20170805gitdebian~auristor_amd64.d
 ```
 
 From:
+
+https://filedrawers.your-file-system.com/?path=/afs/your-file-system.com/public/yfs/recommended/client/xenial/pool/client/a/auristor
 ```
 //AFS/your-file-system.com/public/yfs/recommended/client/xenial/pool/client/a/auristor
 
@@ -33,5 +38,5 @@ libauristorfs-dev_0.1591-1.20170805gitdebian~auristor_amd64.deb
 libkauristor1_0.1591-1.20170805gitdebian~auristor_amd64.deb
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjExNTE4NDI4OF19
+eyJoaXN0b3J5IjpbLTE0OTg0MzE1N119
 -->
