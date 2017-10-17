@@ -1,6 +1,55 @@
 
 # Kubernetes Setup
 
+## THIRD TRY with: KUBE-MASTER, KUBE-WORKER1 & KUBE W2
+
+Your Kubernetes master has initialized successfully!
+
+To start using your cluster, you need to run (as a regular user):
+
+  mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+You should now deploy a pod network to the cluster.
+Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
+  http://kubernetes.io/docs/admin/addons/
+
+You can now join any number of machines by running the following on each node
+as root:
+
+  kubeadm join --token 6e778a.99d8540ac49ff82e 192.168.10.150:6443 --discovery-token-ca-cert-hash sha256:b55f0aa87801be35ef0cab4c6024ad1e79355f5c11b4277bb12205d076c16069
+
+
+
+## SECOND TRY WITH:  Ubuntu KC-1 &  KW-1
+
+REMEMBER: 	   kubeadm init --pod-network-cidr=10.244.0.0/16 --apiserver-cert-extra-sans=192.168.10.20
+
+kubeadm init --pod-network-cidr=10.244.0.0/16 --apiserver-cert-extra-sans=192.168.10.150 --apiserver-advertise-address=192.168.10.150
+
+kubeadm init --pod-network-cidr=10.244.0.0/16 --apiserver-advertise-address=192.168.10.150
+
+
+Your Kubernetes master has initialized successfully!
+
+To start using your cluster, you need to run (as a regular user):
+
+  mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+You should now deploy a pod network to the cluster.
+Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
+  http://kubernetes.io/docs/admin/addons/
+
+You can now join any number of machines by running the following on each node
+as root:
+
+  kubeadm join --token c27992.9c3133b7b0eafc6a 10.0.2.12:6443 --discovery-token-ca-cert-hash sha256:b1e5008090238d483e0f2b5aab574c8a18f26b5b89666425b88d0c97ab8a6de2
+
+
+
 
 ## Using kubeadm
 
@@ -28,7 +77,7 @@
 	   
 	   kubeadm reset
 	   
-	   kubeadm init --pod-network-cidr=10.244.0.0/16
+	   kubeadm init --pod-network-cidr=10.244.0.0/16 --apiserver-cert-extra-sans=192.168.10.20
 
 		Your Kubernetes master has initialized successfully!
 		
@@ -48,10 +97,34 @@
 		  kubeadm join --token 9e7ebb.399cc9b4b97d0209 192.168.10.150:6443 --discovery-token-ca-cert-hash sha256:a936880c2836bec644ea850c00f188d817084ffbad2841edfffce2b56beddadb
 
 
+	REMEMBER TO DO WHAT THEY SAID
+	
+		To start using your cluster, you need to run (as a regular user):
+		
+		  mkdir -p $HOME/.kube
+		  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+		  sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 	To add Flannel:
 		kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/v0.9.0/Documentation/kube-flannel.yml
 
+To control from other than master:
+
+	scp gerry@kubc1:/etc/kubernetes/admin.conf .
+	kubectl --kubeconfig ./admin.conf get nodes
+
+To run demo app:
+
+	kubectl apply -n sock-shop -f "https://github.com/microservices-demo/microservices-demo/blob/master/deploy/kubernetes/complete-demo.yaml?raw=true"
+
+Kubernetes Dashboard
+
+	kubectl create -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml
+	
+	### FROM NON-MASTER MACHINE
+	
+	kubectl proxy
+	http://localhost:8001/ui
 
 
 ## DEPRECATE BELOW: From HARD WAY
@@ -282,5 +355,5 @@ done
 wget -q --show-progress --https-only --timestamping \
   "https://github.com/coreos/etcd/releases/download/v3.2.8/etcd-v3.2.8-linux-amd64.tar.gz"
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTU1MDM2OTEzMF19
+eyJoaXN0b3J5IjpbLTEzMTA1NDQ3MjNdfQ==
 -->

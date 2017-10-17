@@ -244,7 +244,7 @@ Uncomment or just add the single line
 The Kerberos protocol is sensitive to time differences between the KDC and a Kerberos client application.  As such it is necessary to  run a time synchronization service, such as NTP, on your KDC.
 
 Install NTP with 
-```
+```bash
 sudo apt install ntp	
 ```
 ## Update all packages
@@ -284,5 +284,5 @@ If you do not find a matching package file, you will have to downgrade your kern
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTMxNjUxNjY4NF19
+eyJoaXN0b3J5IjpbMjM3MjYyODgwXX0=
 -->

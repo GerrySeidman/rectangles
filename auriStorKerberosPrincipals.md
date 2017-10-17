@@ -1,3 +1,16 @@
+## NOTE FROM JEFF via Skype
+	congrats.    btw, who told you to configure the legacy authentication bits?
+
+	Setting up Kerberos v4 names with "bos adduser" and afs/cell@REALM for rxkad security.
+
+	That functionality is for existing AFS shops.  Its not for new cells.
+
+	New cells should only use the new authentication/security model
+
+	afs3-bos/host@REALM for bos server authentication
+	yfs-rxgk/_afs.cell@REALM for end user authentication
+	and the cell wide rxgk key
+
 # Setting up Kerberos Principals for AuriStor Servers
 
 We will be setting up Kerberos Principals for for use by the AuriStor Servers.  Some of these principals have historical names
@@ -40,7 +53,7 @@ The Kerberos Server may manage principals for multiple AFS/AuriStor cells.  As s
 Generic Principal Name |	Use	|	Principal for Project|
 | --- | --- | ---------------- | 
 | afs/`<AFS CELL>`@`<KERBEROS REALM>`	|	Legacy AFS	|	afs/play.gerry@PLAY.GERRY |
-| yfs-rxgk/_afs,`<AFS CELL>`@`<KERBEROS REALM>`	|	YFS RXGK auth	|	yfs-rxgk/_afs.play.gerry@PLAY.GERRY |
+| yfs-rxgk/_afs.`<AFS CELL>`@`<KERBEROS REALM>`	|	YFS RXGK auth	|	yfs-rxgk/_afs.play.gerry@PLAY.GERRY |
 | afs3-bos/`<SERVER HOST NAME>`@`<KERBEROS REALM>`	|	bos princ/keytab	|	(*)
 
 (*) In this project we have 1 DB server and 3 File Servers, we will need one pricipal for each
@@ -187,29 +200,6 @@ total 24
 	* ~/keytabs/bosfs2.keytab
 	* ~/keytabs/bosfs3.keytab
 
-
-# JUNK
-
-### FIXING????
-
-kadmin: addprinc -randkey afs3-bos/play.gerry@PLAY.GERRY
-
-kadmin ktadd -k ./bos.keytab -e "aes256-cts-hmac-sha1-96:normal aes128-cts-hmac-sha1-96:normal des3-hmac-sha1:normal arcfour-hmac-md5:normal" afs3-bos/play.gerry@PLAY.GERRY
-
-Then the following worked:
-
-
-### AFTER FIXING
-
-
-
-???? THIS ISN"T PROBABLY USAED BUT I HAVEN"T DELETED IT.... 
-kadmin:  ktadd -k ./bos.keytab -e "aes256-cts-hmac-sha1-96:normal aes128-cts-hmac-sha1-96:normal des3-hmac-sha1:normal arcfour-hmac-md5:normal" afs3-bos/afsdb1.play.gerry@PLAY.GERRY
-Entry for principal afs3-bos/afs1.play.gerry@PLAY.GERRY with kvno 2, encryption type aes256-cts-hmac-sha1-96 added to keytab WRFILE:./bos.keytab.
-Entry for principal afs3-bos/afs1.play.gerry@PLAY.GERRY with kvno 2, encryption type aes128-cts-hmac-sha1-96 added to keytab WRFILE:./bos.keytab.
-Entry for principal afs3-bos/afs1.play.gerry@PLAY.GERRY with kvno 2, encryption type des3-cbc-sha1 added to keytab WRFILE:./bos.keytab                                                               .
-Entry for principal afs3-bos/afs1.play.gerry@PLAY.GERRY with kvno 2, encryption type arcfour-hmac added to keytab WRFILE:./bos.keytab.
-
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTQwNzQyODQ0NV19
+eyJoaXN0b3J5IjpbMjA4ODIwNzg2Ml19
 -->

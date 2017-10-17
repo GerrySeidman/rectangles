@@ -30,9 +30,6 @@ AFSFS1          IN A    192.168.10.140
 AFSFS2          IN A    192.168.10.141
 AFSFS3          IN A    192.168.10.142
 CLIENT          IN A    192.168.10.99
-KUBM1           IN A    192.168.10.150
-KUBW1           IN A    192.168.10.160
-KUBW2           IN A    192.168.10.161
 
 _kerberos._udp.PLAY.GERRY.     IN SRV 1  0 88  krb1.play.gerry.
 _kerberos._tcp.PLAY.GERRY.     IN SRV 1  0 88  krb1.play.gerry.
