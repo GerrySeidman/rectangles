@@ -18,8 +18,8 @@ We will be setting up Kerberos Principals for for use by the AuriStor Servers.  
 The steps in this lab will be:
 
 1. Create Kerberos principal used in legacy AFS deployments `afs/play.gerry@PLAY.GERRY`
-2.  Create Kerberos principal used by YFS for RXGK authentication `yfs-rxgk/play.gerry@PLAY.GERRY`
-3. Create an afs3-bos principal and keytab for **EACH OF** the YFS server.s
+2.  Create Kerberos principal used by AuriStorFS for RXGK authentication `yfs-rxgk/play.gerry@PLAY.GERRY`
+3. Create an afs3-bos principal and keytab for **EACH OF** the AuriStorFS server.s
 
 After completing this lab:
 
@@ -41,7 +41,7 @@ After completing this lab:
 
 ##  To understand these principal names
 
-`YFS`stands for `Your-File-System'`which was the original name of AuriStor. The YFS protocol is used by AuriStor
+`YFS`stands for `Your-File-System'`which was the original name of AuriStor before the renaming of the company in 2015. The YFS protocol is used by AuriStor
 
 `RX`is the low level RPC used by all AuriStor clients and servers to communicate.  `rxgk` is the  modern security protocol extensions that is used by AuriStor.
 
@@ -124,7 +124,7 @@ yfs-rxgk/_afs.play.gerry@PLAY.GERRY
 kadmin: exit
 ```
 
-# Generating Keytab Files
+# Create the AuriStorFS Keytabs
 
 We will now create keytab files for the server principals. 
 
@@ -201,5 +201,5 @@ total 24
 	* ~/keytabs/bosfs3.keytab
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjA4ODIwNzg2Ml19
+eyJoaXN0b3J5IjpbLTE1MDY2Njc0MTRdfQ==
 -->

@@ -236,14 +236,13 @@ gerry@krb1:/etc$ cat krb5.conf
 
 * The following files will have been edited in this lab:
 	* /etc/network/interfaces
-	* /etc/hosts
-	* /etc/hostname
+	*  /etc/hostname
 	*  /etc/krb5kdc/kadm5.acl
 	*  /etc/krb5.conf
 	
 
 
-
+	
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEzMTg3OTc1NV19
+eyJoaXN0b3J5IjpbLTE5NjMxOTg2NTJdfQ==
 -->

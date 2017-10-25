@@ -366,7 +366,7 @@ vos create -server afsdb1.play.gerry  -partition /vicepa -name root.cell
 ```
 This is the same as
 ``` bash
-vos create afs1.test.gerry a root.cell -localauth
+vos create afsdb1.play.gerry a root.cell -localauth
 
 fs lq .
 ```
@@ -394,5 +394,5 @@ vos listfs
 
 service auristor-server restart
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTgyNzM0NjcwNF19
+eyJoaXN0b3J5IjpbLTE5NjUwNDI4OTZdfQ==
 -->

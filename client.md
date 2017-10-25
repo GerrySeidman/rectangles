@@ -34,6 +34,7 @@ Install a copy of `krb5.conf` onto`/etc/krb5.conf	`
 
 # Install AuriStor
 
+sudo dpkg -i auristorfs-modules*`uname -r`*.deb
 sudo dpkg -i auristorfs-common*
 sudo dpkg -i auristorfs-client*
 
@@ -42,7 +43,6 @@ sudo dpkg -i auristorfs-client*
 
 * The following files will have been edited in this lab:
 	* /etc/network/interfaces
-	* /etc/hosts
 	* /etc/hostname
 	*  /etc/krb5.conf
 	
@@ -51,5 +51,5 @@ sudo dpkg -i auristorfs-client*
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwNjI4MDk2MTldfQ==
+eyJoaXN0b3J5IjpbMTk3MjE4NTU2OV19
 -->
