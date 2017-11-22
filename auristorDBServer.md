@@ -1,5 +1,11 @@
 # Setting up the AuriStor Database Server
 
+## NOTE:  Jeff's Edits
+
+Look at https://www.auristor.com/documentation/man/linux/7/auristor_migration.html
+And
+o\tech\setup-auristor-Jeff.docx
+
 ## Clone and prepare AuriStor Database Server VM
 
 ### Clone VM 
@@ -29,17 +35,17 @@ Now install the Module Package
 ``` bash
 gerry@afsdb1:~/auristorSoftware$ sudo dpkg -i auristorfs-modules*`uname -r`*.deb
 Selecting previously unselected package auristorfs-modules3-4.4.0-87-generic.
-(Reading database ... 59796 files and directories currently installed.)
-Preparing to unpack auristorfs-modules3-4.4.0-87-generic_0.1591-1.20170805gitdebian~auristor_amd64.deb ...
-Unpacking auristorfs-modules3-4.4.0-87-generic (0.1591-1.20170805gitdebian~auristor) ...
-Setting up auristorfs-modules3-4.4.0-87-generic (0.1591-1.20170805gitdebian~auristor) ...
+(Reading database ... 59796 files and directories current #installed.)
+Preparing to unpack auristor module & common packagesfs-modules3-4.4.0-87-generic_0.1591-1.20170805gitdebian~auristor_amd64.deb ...
+Unpacking auristfs-modules3-4.4.0-87-generic (0.1591-1.20170805gitdebian~auristor) ...
+Setting up auristfs-modules3-4.4.0-87-generic (0.1591-1.20170805gitdebian~auristor) ...
 gerry@afsdb1:~/auristorSoftware$
 ```
 
-## Install the Common package 
+##  Install the Common package 
 
 ``` bash
-gerry@afsdb1:~/auristorSoftware$ sudo dpkg -i auristorfs-common*
+gerry@afsdb1:~/auristorSoftware$  sudo dpkg -i auristorfs-common*
 Selecting previously unselected package auristorfs-common.
 (Reading database ... 59807 files and directories currently installed.)
 Preparing to unpack auristorfs-common_0.1591-1.20170805gitdebian~auristor_amd64.deb ...
@@ -49,7 +55,6 @@ Processing triggers for libc-bin (2.23-0ubuntu9) ...
 Processing triggers for man-db (2.7.5-1) ...
 gerry@afsdb1:~/auristorSoftware$
 ```
-
 ## Install AuriStor Client Package
 
 During the installation, will be prompted 3 times with the following screens
@@ -213,14 +218,14 @@ gerry@afsdb1:~$
 The asetkey command is used to add a key to an AFS KeyFile from a Kerberos keytab.
 You must be sure to use the kvno that you noted when generating the keys
 
-> `asetkey add rxkad_krb5 <kvno> all <keytab file> afs/<your cell>@<YOUR KRB  REALM>`
 
 ``` bash
-gerry@afsdb1:~/keytabs$ sudo asetkey add rxkad_krb5 2 all rxkad.keytab afs/play.gerry@PLAY.GERRY
  
 gerry@afsdb1:~/keytabs$ sudo cp bosdb1.keytab /etc/yfs/server/bos.keytab
 
 gerry@afsdb1:~/keytabs$ sudo cp rxgk.keytab /etc/yfs/server
+
+gerry@afsdb1:~/keytabs$ sudo cp rxgk.keytab /etc/yfs/server/vl.keytab
 
 gerry@afsdb1:~/keytabs$ sudo asetkey add yfs-rxgk 1 aes256-cts-hmac-sha1-96 random
 ```
@@ -277,7 +282,7 @@ gerry@afsdb1:/vicepa$
 
 Upon installation, a user `yfsserver`  is created
 
-This is the equivalent of `sudo useradd -r -s /bin/nologin yfsserver`
+>> This is done by instal....REMOVE LINE ....This is the equivalent of `sudo useradd -r -s /bin/nologin yfsserver`
 
 ``` bash
 gerry@afsdb1:/vicepa$ id yfsserver
@@ -289,11 +294,14 @@ uid=999(yfsserver) gid=999(yfsserver) groups=999(yfsserver)`
 
 gerry@afsdb1:/vicepa$
 gerry@afsdb1:/vicepa$ sudo chown -R yfsserver: /etc/yfs/server
-gerry@afsdb1:/vicepa$ sudo chown -R yfsserver: /vicepa/
+	gerry@afsdb1:/vicepa$ sudo chown -R yfsserver: /vicepa/
 gerry@afsdb1:/vicepa$ sudo chown -R yfsserver: /var/log/yfs
 
 gerry@afsdb1:/vicepa$ sudo mkdir /var/run/yfs/
 gerry@afsdb1:/vicepa$ sudo chown yfsserver: /var/run/yfs/
+
+gerry@afsdb1:/vicepa$ sudo chown -R yfsserver: /var/lib/yfs
+
 ```
 
 ## Start Servers
@@ -303,7 +311,7 @@ gerry@afsdb1:/vicepa$ sudo chown yfsserver: /var/run/yfs/
 sudo systemctl restart auristorfs-server
 
 
-sudo bos create -server afsdb1.play.gerry -type simple -instance ptserver -cmd /usr/lib/yfs/ptserver -localauth
+	sudo bos create -server afsdb1.play.gerry -type simple -instance ptserver -cmd /usr/lib/yfs/ptserver -localauth
 
 sudo bos create -server afsdb1.play.gerry -type simple -instance vlserver -cmd /usr/lib/yfs/vlserver -localauth
 
@@ -386,6 +394,8 @@ pts ex gerry
 fs setacl gerry gerry all system:administrators read -clear
 
 
+
+
 ## Misc Commands
 
 vos listaddrs
@@ -393,6 +403,91 @@ vos listaddrs
 vos listfs
 
 service auristor-server restart
+
+Publicly Accessible Volume
+```
+vos create -server afsdb1.play.gerry  -partition /vicepa -name other.data
+
+fs sa /afs/.:mount/play.gerry:other.data system:anyuser all
+
+cd /afs/.:mount/play.gerry:other.data
+
+
+mkdir /home/gerry/otherData
+mount --bind /afs/.:mount/play.gerry:other.data /home/gerry/otherData
+
+
+
+% vos listaddrs | while read fs; do echo $fs; vos partinfo $fs; echo;done
+```
+## More Commands
+```
+vos apropos new
+vos help create
+vos cf fs part name
+vos examin
+fs mkmount
+fs mkm
+ls -ld
+vos rename
+vos listpart
+fs listquota
+vos backup vol
+vos examin vol
+vos listvol fs part
+vos move v fs p fs p
+while true 
+   do 
+     date >foo
+     cat foo
+   done
+vos list vldb -s p
+vos delentry
+Replication....
+vos addsite fs p v
+vos release vol
+```
+
+
+## Quicknotes
+
+```
+mkdir software
+mkdir keytabs
+
+V:\auristorSoftware\current>scp * gerry@192.168.10.130:/home/gerry/software
+
+dpkg -i auristorfs-modules*`uname -r`*.deb
+dpkg -i auristorfs-common*
+dpkg -i auristorfs-client*
+dpkg -i  auristorfs-server*
+dpkg -i  auristorfs-fileserver*
+dpkg -i  auristorfs-db*
+dpkg -i  auristorfs-doc*
+
+vi /etc/yfs/server/yfs-server.conf
+vi /etc/yfs/yfs-client.con:/
+
+asetkey add rxkad_krb5 2 all rxkad.keytab afs/play.gerry@PLAY.GERRY
+cp bosdb1.keytab /etc/yfs/server/bos.keytab
+cp rxgk.keytab /etc/yfs/server
+asetkey add yfs-rxgk 1 aes256-cts-hmac-sha1-96 random
+
+mkdir /vicepa
+touch /vicepa/AlwaysAttach
+
+chown -R yfsserver: /etc/yfs/server
+chown -R yfsserver: /vicepa/
+chown -R yfsserver: /var/log/yfs
+
+mkdir /var/run/yfs/
+chown yfsserver: /var/run/yfs/
+chown -R yfsserver: /var/lib/yfs
+
+systemctl restart auristorfs-server
+
+... add the remaining create stuff... (bos/vos/fs)
+```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5NjUwNDI4OTZdfQ==
+eyJoaXN0b3J5IjpbLTEyNDIwOTMwMTJdfQ==
 -->

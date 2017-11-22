@@ -22,6 +22,7 @@
 ; static ips
 ;
 GATEWAY         IN A    192.168.10.1
+STEM1           IN A    192.168.10.100
 DNS1            IN A    192.168.10.110
 KRB1            IN A    192.168.10.120
 AFSDB1          IN A    192.168.10.130

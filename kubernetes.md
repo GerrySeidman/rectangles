@@ -1,53 +1,83 @@
 
+# 10/29 - Create Cluster - THIS WORKS
+
+This is the culmination of what is done below with 'Using kubeadm'
+```
+root@kubm1:~# kubeadm init --pod-network-cidr=10.244.0.0/16 --apiserver-cert-extra-sans=192.168.10.150 --apiserver-advertise-address=192.168.10.150
+Your Kubernetes master has initialized successfully!
+
+To start using your cluster, you need to run (as a regular user):
+
+  mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+You should now deploy a pod network to the cluster.
+Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
+  http://kubernetes.io/docs/admin/addons/
+
+You can now join any number of machines by running the following on each node
+as root:
+
+  kubeadm join --token 2fb96d.954d91c6e142ced4 192.168.10.150:6443 --discovery-token-ca-cert-hash sha256:b405d944b095ec321b3991fd0e7fa6250836685dc0c4ab38fc4e7c358313ab06
+```
+Then doing as they say
+```
+  mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config		
+  kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/v0.9.0/Documentation/kube-flannel.yml
+```
+
+Then do the same on worker nodes (up to kubeadm, where you do the above join instead
+
+This was derived from
+* https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/#installing-kubeadm-on-your-hosts
+* https://kubernetes.io/docs/setup/independent/install-kubeadm/
+* https://kubernetes.io/docs/admin/kubeadm/#kubeadm-init
+* 
+
+
 # Kubernetes Setup
 
-## THIRD TRY with: KUBE-MASTER, KUBE-WORKER1 & KUBE W2
 
-Your Kubernetes master has initialized successfully!
+## Create a new VM for the Kubernetes Master
 
-To start using your cluster, you need to run (as a regular user):
+Clone VM and configure from the 
+``` bash
+export NEW_HOST=kubm1
+export NEW_IP=192.168.10.150
 
-  mkdir -p $HOME/.kube
-  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-  sudo chown $(id -u):$(id -g) $HOME/.kube/config
-
-You should now deploy a pod network to the cluster.
-Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
-  http://kubernetes.io/docs/admin/addons/
-
-You can now join any number of machines by running the following on each node
-as root:
-
-  kubeadm join --token 6e778a.99d8540ac49ff82e 192.168.10.150:6443 --discovery-token-ca-cert-hash sha256:b55f0aa87801be35ef0cab4c6024ad1e79355f5c11b4277bb12205d076c16069
+sudo sed -i -- "s/192.168.10.100/$NEW_IP/g" /etc/network/interfaces
+sudo sed -i -- "s/stem1/$NEW_HOST/g" /etc/hostname
+sudo reboot
+```
 
 
 
-## SECOND TRY WITH:  Ubuntu KC-1 &  KW-1
+## Create a new VM for the Kubernetes Worker-1
 
-REMEMBER: 	   kubeadm init --pod-network-cidr=10.244.0.0/16 --apiserver-cert-extra-sans=192.168.10.20
+Clone VM and configure from the 
+``` bash
+export NEW_HOST=kubw1
+export NEW_IP=192.168.10.160
 
-kubeadm init --pod-network-cidr=10.244.0.0/16 --apiserver-cert-extra-sans=192.168.10.150 --apiserver-advertise-address=192.168.10.150
+sudo sed -i -- "s/192.168.10.100/$NEW_IP/g" /etc/network/interfaces
+sudo sed -i -- "s/stem1/$NEW_HOST/g" /etc/hostname
+sudo reboot
+```
 
-kubeadm init --pod-network-cidr=10.244.0.0/16 --apiserver-advertise-address=192.168.10.150
+## Create a new VM for the Kubernetes Worker-2
 
+Clone VM and configure from the 
+``` bash
+export NEW_HOST=kubw2
+export NEW_IP=192.168.10.161
 
-Your Kubernetes master has initialized successfully!
-
-To start using your cluster, you need to run (as a regular user):
-
-  mkdir -p $HOME/.kube
-  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-  sudo chown $(id -u):$(id -g) $HOME/.kube/config
-
-You should now deploy a pod network to the cluster.
-Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
-  http://kubernetes.io/docs/admin/addons/
-
-You can now join any number of machines by running the following on each node
-as root:
-
-  kubeadm join --token c27992.9c3133b7b0eafc6a 10.0.2.12:6443 --discovery-token-ca-cert-hash sha256:b1e5008090238d483e0f2b5aab574c8a18f26b5b89666425b88d0c97ab8a6de2
-
+sudo sed -i -- "s/192.168.10.100/$NEW_IP/g" /etc/network/interfaces
+sudo sed -i -- "s/stem1/$NEW_HOST/g" /etc/hostname
+sudo reboot
+```
 
 
 
@@ -64,10 +94,15 @@ as root:
 			apt-get install -y docker.io
 			
 			apt-get update && apt-get install -y apt-transport-https
+			
 			curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
-			cat <<EOF >/etc/apt/sources.list.d/kubernetes.list
-			deb http://apt.kubernetes.io/ kubernetes-xenial main
-			EOF
+			
+			## FAILS 
+				cat <<EOF >/etc/apt/sources.list.d/kubernetes.list
+				deb http://apt.kubernetes.io/ kubernetes-xenial main
+				EOF
+			## CREATED MANUALLY 
+				/etc/apt/sources.list.d/kubernetes.list
 			apt-get update
 			apt-get install -y kubelet kubeadm kubectl
 			
@@ -120,240 +155,186 @@ To run demo app:
 Kubernetes Dashboard
 
 	kubectl create -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml
-	
-	### FROM NON-MASTER MACHINE
-	
-	kubectl proxy
-	http://localhost:8001/ui
 
+Accessing the Dashboard from another machine (via Proxy)
+```
+# GET TOKEN FOR WEB DASHBOARD
+kubectl -n kube-system describe secret kubernetes-dashboard
 
-## DEPRECATE BELOW: From HARD WAY
+# START PROXY
+kubectl proxy
 
-Following: https://github.com/kelseyhightower/kubernetes-the-hard-way/blob/master/
+# ACESS VIA WEBPAGE
+http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy
+```
+### dashboard-admin-create.yaml
+``` yaml
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRoleBinding
+metadata:
+  name: kubernetes-dashboard
+  labels:
+    k8s-app: kubernetes-dashboard
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+- kind: ServiceAccount
+  name: kubernetes-dashboard
+  namespace: kube-system
+```
 
-## 2. Client Tools
+Then get the token via:
+```
+kubectl -n kube-system get secret
 
-### JSON Tools
+kubectl -n kube-system describe secret namespace-controller-token
+kubectl -n kube-system describe secret kubernetes-dashboard
 
-wget -q --show-progress --https-only --timestamping \
-  https://pkg.cfssl.org/R1.2/cfssl_linux-amd64 \
-  https://pkg.cfssl.org/R1.2/cfssljson_linux-amd64
-chmod +x cfssl_linux-amd64 cfssljson_linux-amd64
-sudo mv cfssl_linux-amd64 /usr/local/bin/cfssl
-sudo mv cfssljson_linux-amd64 /usr/local/bin/cfssljson
+(Used to do specific, but the above seems to work better)
+kubectl -n kube-system describe secret namespace-controller-token-dkzjf
+- r
+kubectl -n kube-system describe secret kubernetes-dashboard-token-4mnq9
+```
 
-cfssl version
+## Quick Deployment
 
-### kubectl
+```
+kubectl run foo --image=justinlukin/basicflask --port=8090
 
-wget https://storage.googleapis.com/kubernetes-release/release/v1.8.0/bin/linux/amd64/kubectl
-chmod +x kubectl
-sudo mv kubectl /usr/local/bin/
+kubectl expose deployment foo --port=8090 --type=LoadBalancer
 
-kubectl version --client
+kubectl get svc
 
-## 3. Provisioning Resources
+kubectl get svc foo -o=yaml
 
-| Type | Description | Host Name(s) | Static IP(s) |
-| --- | --- | --- | --- |
-| Kube| Controller | kubc1.play.gerry (+) | 192.168.10.150 (+) |
-| Kube| Worker| kubw1.play.gerry (+)  | 192.168.10.160 (+) |
+kubectl get svc foo -o=json
+```
 
-Initially just one controller and two workers
+## Kubectl Cheat Sheet 
 
-## 4. Provisioning a CA and Generating TLS Certificates
+https://kubernetes.io/docs/user-guide/kubectl-cheatsheet/
 
-### Certificate Authority
+$ source <(kubectl completion bash) 
 
-Manually Create: ca-csr.json
-Manually Create: ca-config.json
+Docs: https://kubernetes.io/docs/user-guide/kubectl/v1.8/#get
 
-cfssl gencert -initca ca-csr.json | cfssljson -bare ca
+Man: https://www.mankier.com/package/kubernetes-client
 
-Results:
-	
-	ca-key.pem
-	ca.pem
+## Cookbook
 
-### Client and Server Certificates
+Also see: b:\books\Kubernetes-Cookbook.pdf
 
-Manually Create: admin-csr.json
+##  Deployment 
 
-cfssl gencert \
-  -ca=ca.pem \
-  -ca-key=ca-key.pem \
-  -config=ca-config.json \
-  -profile=kubernetes \
-  admin-csr.json | cfssljson -bare admin
-
-Results:
-
-	admin-key.pem
-	admin.pem
-
-### The Kubelet Client Certificates
-
-
-Manually created kubw1-csr.json (and 2, 3)
-
-I am guessing by having the internal and external addresses be the same...
-
-cfssl gencert \
-  -ca=ca.pem \
-  -ca-key=ca-key.pem \
-  -config=ca-config.json \
-  -hostname=kubw1.play.gerry,192.168.10.160,192.168.10.160 \
-  -profile=kubernetes \
-  kubw1-csr.json | cfssljson -bare kubw1
-
-cfssl gencert \
-  -ca=ca.pem \
-  -ca-key=ca-key.pem \
-  -config=ca-config.json \
-  -hostname=kubw2.play.gerry,192.168.10.161,192.168.10.161 \
-  -profile=kubernetes \
-  kubw2-csr.json | cfssljson -bare kubw2
-
-cfssl gencert \
-  -ca=ca.pem \
-  -ca-key=ca-key.pem \
-  -config=ca-config.json \
-  -hostname=kubw3.play.gerry,192.168.10.162,192.168.10.162 \
-  -profile=kubernetes \
-  kubw3-csr.json | cfssljson -bare kubw3
-
-Results:
-
-	kubw1-key.pem
-	kubw1.pem
-	kubw2-key.pem
-	kubw2.pem
-	kubw3-key.pem
-	kubw3.pem
-
-
-Created:   
-
-	kube-proxy-csr.json
-
-
-cfssl gencert \
-  -ca=ca.pem \
-  -ca-key=ca-key.pem \
-  -config=ca-config.json \
-  -profile=kubernetes \
-  kube-proxy-csr.json | cfssljson -bare kube-proxy
-
-Result:
-
-	kube-proxy-key.pem
-	kube-proxy.pem
-
-
-Create 
-
-	kubernetes-csr.json
-
-
-cfssl gencert \
-  -ca=ca.pem \
-  -ca-key=ca-key.pem \
-  -config=ca-config.json \
-  -hostname=10.32.0.1,10.240.0.10,10.240.0.11,10.240.0.12,192.168.10.150,192.168.10.160,192.168.10.161,192.168.10.162,,127.0.0.1,kubernetes.default \
-  -profile=kubernetes \
-  kubernetes-csr.json | cfssljson -bare kubernetes
-
-Result:
-
-	kubernetes-key.pem
-	kubernetes.pem
-
-
-## 5. Generating Kubernetes Configuration Files for Authentication
-
-### The kubelet Kubernetes Configuration File
-
-for instance in kubw1 kubw2 kubw3; do
-  kubectl config set-cluster kubernetes-the-hard-way \
-    --certificate-authority=ca.pem \
-    --embed-certs=true \
-    --server=https://192.168.10.150:6443 \
-    --kubeconfig=${instance}.kubeconfig
-
-  kubectl config set-credentials system:node:${instance} \
-    --client-certificate=${instance}.pem \
-    --client-key=${instance}-key.pem \
-    --embed-certs=true \
-    --kubeconfig=${instance}.kubeconfig
-
-  kubectl config set-context default \
-    --cluster=kubernetes-the-hard-way \
-    --user=system:node:${instance} \
-    --kubeconfig=${instance}.kubeconfig
-
-  kubectl config use-context default --kubeconfig=${instance}.kubeconfig
-done
-
-Results:
-	
-	kubw1.kubeconfig
-	kubw2.kubeconfig
-	kubw3.kubeconfig
-
-### The kube-proxy Kubernetes Configuration File
-
-
-kubectl config set-cluster kubernetes-the-hard-way \
-  --certificate-authority=ca.pem \
-  --embed-certs=true \
-  --server=https://192.168.10.150:6443 \
-  --kubeconfig=kube-proxy.kubeconfig
-  
-kubectl config set-credentials kube-proxy \
-  --client-certificate=kube-proxy.pem \
-  --client-key=kube-proxy-key.pem \
-  --embed-certs=true \
-  --kubeconfig=kube-proxy.kubeconfig
-  
-kubectl config set-context default \
-  --cluster=kubernetes-the-hard-way \
-  --user=kube-proxy \
-  --kubeconfig=kube-proxy.kubeconfig
-  
-kubectl config use-context default --kubeconfig=kube-proxy.kubeconfig
-
-### Distribute the Kubernetes Configuration Files
-
-for instance in kubw1 kubw2 kubw3; do
-  scp ${instance}.kubeconfig kube-proxy.kubeconfig ${instance}:~/
-done
-
-## 6. Generating the Data Encryption Config and Key
-
-cat > encryption-config.yaml <<EOF
-kind: EncryptionConfig
+```
 apiVersion: v1
-resources:
-  - resources:
-      - secrets
-    providers:
-      - aescbc:
-          keys:
-            - name: key1
-              secret: ${ENCRYPTION_KEY}
-      - identity: {}
-EOF
+kind: Service
+metadata:
+  name: ger-py
+  labels:
+    app: flask
+spec:
+  type: NodePort
+  ports:
+  - nodePort: 32222
+    port: 8090
+    protocol: TCP
+    targetPort: 8090
+  selector:
+    app: flask
+  sessionAffinity: None
+  type: LoadBalancer
+---
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: ger-py
+spec:
+  selector:
+    matchLabels:
+      app: flask
+  replicas: 1  # tells deployment to run 2 pods matching the template
+  template: # create pods using pod definition in this template
+    metadata:
+      # unlike pod-nginx.yaml, the name is not included in the meta data as a unique name is
+      # generated from the deployment name
+      labels:
+        app: flask
+    spec:
+      containers:
+      - name: flask
+```
+## Basic Usage
 
 
+```
+set KUBECONFIG=d:\beam\kubey\admin.conf
+export KUBECONFIG=/home/gerry/kube/admin.conf
 
-for instance in kubc1; do
-  scp encryption-config.yaml ${instance}:~/
-done
 
-## Bootstrapping the etcd Cluster
+kubectl apply -f gerpy.yaml
 
-wget -q --show-progress --https-only --timestamping \
-  "https://github.com/coreos/etcd/releases/download/v3.2.8/etcd-v3.2.8-linux-amd64.tar.gz"
+kubectl describe deployment ger-py
+
+kubectl describe pod ger-py
+
+kubectl describe pod/ger-py
+
+kubectl expose deployment ger-py --port=8090 --type=LoadBalancer
+
+kubectl edit deploy/foo	
+
+kubectl delete pod ger-py
+
+kubectl delete svc ger-py
+
+
+kubectl get deployment/foo -o json | jq --raw-output .status.conditions[0].type
+
+kubectl cluster-info dump --all-namespaces --output-directory=$PWD/clusterstate-now
+
+```
+
+## Tools
+
+Watching events:
+
+`kubectl get events --namespace=my-namespace`
+
+Getting Everything
+
+`kubectl get all`
+
+Executing a shell in a container
+
+`kubectl exec -it shell-demo -- /bin/bash`
+
+Execute single commands  (with output in your console)
+```
+kubectl exec shell-demo ps aux
+kubectl exec shell-demo ls /
+kubectl exec shell-demo cat /proc/1/mounts
+```
+Logs
+
+`kubectl logs xxx`
+
+Misc
+```
+kubectl run curl --image=radial/busyboxplus:curl -i --tty
+
+kubectl get nodes -o jsonpath='{range.items[*]}{.metadata.name}{"\n"}'
+
+```
+
+## Private Docker Registry
+
+At some point look at this
+	https://kubernetes.io/docs/concepts/containers/images/#use-cases
+
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEzMTA1NDQ3MjNdfQ==
+eyJoaXN0b3J5IjpbLTEyMDk3NDM4ODFdfQ==
 -->

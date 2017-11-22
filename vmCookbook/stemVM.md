@@ -1,3 +1,4 @@
+a
 # Setting up the Stem VM 
 
 In this lab you well create a base Virtual Machine Image that will be used as the "Stem" from which all other VMs in this project will be cloned.
@@ -292,5 +293,5 @@ If you do not find a matching package file, you will have to downgrade your kern
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjAyMjcxODQ5XX0=
+eyJoaXN0b3J5IjpbMjA4NjQ0NDk0OCwyMDIyNzE4NDldfQ==
 -->
